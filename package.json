@@ -2,6 +2,11 @@
   "name": "webeng",
   "version": "1.0.0",
   "dependencies": {
-    
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }
