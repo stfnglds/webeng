@@ -12,6 +12,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
     "jsdoc": "^3.5.5",
     "nodemon": "^1.18.4"
   }
