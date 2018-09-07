@@ -17,25 +17,50 @@ const groups = [
 ];
 
 const entries = [
-    { name: 'New York Bone  Hospital' },
-    { name: 'New York Teeth Hospital' },
-    { name: 'New York Pre Schools' },
-    { name: 'New YorkHigh Schools' },
-    { name: 'Marvins Fish Restaurants' },
-    { name: 'Davids Meat Restaurants' },
+  { name: 'New York Bone  Hospital' },
+  { name: 'New York Teeth Hospital' },
+  { name: 'New York Pre Schools' },
+  { name: 'New YorkHigh Schools' },
+  { name: 'Marvins Fish Restaurants' },
+  { name: 'Davids Meat Restaurants' },
 ];
 
-app.get('/api/addressbooks/', (req, res, next) => {
+const URL_ADDRESSBOOKS = '/api/addressbooks/';
+const URL_GROUPS = '/api/groups/';
+const URL_ENTRIES = '/api/entries/';
+
+
+// ADDRESSBOOKS
+
+app.get(URL_ADDRESSBOOKS, (req, res, next) => {
   res.send(addressbooks);
 });
 
-app.get('/api/groups/', (req, res, next) => {
+app.post(URL_ADDRESSBOOKS, (req, res) => {
+  res.send('POST request to the homepage');
+});
+
+// GROUPS
+
+app.get(URL_GROUPS, (req, res, next) => {
   res.send(groups);
 });
 
-app.get('/api/entries/', (req, res, next) => {
+app.post(URL_GROUPS, (req, res) => {
+  res.send('POST request to the homepage');
+});
+
+// ENTRIES
+
+app.get(URL_ENTRIES, (req, res, next) => {
   res.send(entries);
 });
+
+app.post(URL_ENTRIES, (req, res) => {
+  res.send('POST request to the homepage');
+});
+
+//-----------------------
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
