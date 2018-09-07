@@ -17,12 +17,12 @@ const groups = [
 ];
 
 const entries = [
-    { name: 'New York Bone  Hospital' },
-    { name: 'New York Teeth Hospital' },
-    { name: 'New York Pre Schools' },
-    { name: 'New YorkHigh Schools' },
-    { name: 'Marvins Fish Restaurants' },
-    { name: 'Davids Meat Restaurants' },
+  { name: 'New York Bone  Hospital' },
+  { name: 'New York Teeth Hospital' },
+  { name: 'New York Pre Schools' },
+  { name: 'New YorkHigh Schools' },
+  { name: 'Marvins Fish Restaurants' },
+  { name: 'Davids Meat Restaurants' },
 ];
 
 app.get('/api/addressbooks/', (req, res, next) => {
