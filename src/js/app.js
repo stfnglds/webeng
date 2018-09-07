@@ -29,6 +29,8 @@ const URL_ADDRESSBOOKS = '/api/addressbooks/';
 const URL_GROUPS = '/api/groups/';
 const URL_ENTRIES = '/api/entries/';
 
+const URL_PLACEHOLDER_ID = ':id';
+
 
 // ADDRESSBOOKS
 
@@ -36,9 +38,16 @@ app.get(URL_ADDRESSBOOKS, (req, res, next) => {
   res.send(addressbooks);
 });
 
+app.get(URL_ADDRESSBOOKS + URL_PLACEHOLDER_ID, (req, res, next) => {
+  res.send(addressbooks[req.param('id')]);
+});
+
 app.post(URL_ADDRESSBOOKS, (req, res) => {
   res.send('POST request to the homepage');
 });
+
+
+
 
 // GROUPS
 
@@ -46,14 +55,28 @@ app.get(URL_GROUPS, (req, res, next) => {
   res.send(groups);
 });
 
+app.get(URL_GROUPS + URL_PLACEHOLDER_ID, (req, res, next) => {
+  res.send(groups[req.param('id')]);
+});
+
 app.post(URL_GROUPS, (req, res) => {
   res.send('POST request to the homepage');
 });
+
+
+
+
+
+
 
 // ENTRIES
 
 app.get(URL_ENTRIES, (req, res, next) => {
   res.send(entries);
+});
+
+app.get(URL_ENTRIES + URL_PLACEHOLDER_ID, (req, res, next) => {
+  res.send(entries[req.param('id')]);
 });
 
 app.post(URL_ENTRIES, (req, res) => {
