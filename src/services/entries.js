@@ -1,70 +1,78 @@
 const Engine = require('tingodb')();
 // const db = new Engine.Db('../db/', {});
 
-const db = require('../common/db').db; // IMPORTANT
 
-const entriesCollection = db.collection('entries');
-const groupsCollection = db.collection('groups');
-const addressbooksCollection = db.collection('addressbooks');
-const utils = require('../common/utils');
-const schema = require('../common/schema');
 const validate = require('express-jsonschema').validate;
 const util = require('util');
-const logger = require('../common/logger');
 
 const express = require('express');
 
 const bodyParser = require('body-parser');
+const database = require('../common/db').db; // IMPORTANT
+
 
 const app = express();
 
-
+const logger = require('../common/logger');
+const utils = require('../common/utils');
+const schema = require('../common/schema');
 
 // parse application/json
 app.use(bodyParser.json());
 
-const URL_ADDRESSBOOKS = '/api/addressbooks/';
-const URL_GROUPS = '/api/groups/';
-const URL_ENTRIES = '/api/entries/';
+const entriesCollection = database.collection('entries');
+const groupsCollection = database.collection('groups');
+const addressbooksCollection = database.collection('addressbooks');
 
-const URL_PLACEHOLDER_ID = ':id';
-
-function transformPostData(data) {
+function transformData(data) {
   const result = data;
-
   // Convert the _id field from the DB to ID property
   result.id = result._id;
   delete result._id;
 
-  // Remove userId field as this is just used to store all events in a flat structure
-  // delete result.userId;
-
   return result;
 }
+
+
+app.post('/', (request, response) => {
+  console.log(request.body); // your JSON
+  response.send(request.body); // echo the result back
+});
+
+/*
+            _
+           | |
+  ___ _ __ | |_ _ __ _   _
+ / _ \ '_ \| __| '__| | | |
+|  __/ | | | |_| |  | |_| |
+ \___|_| |_|\__|_|   \__, |
+                      __/ |
+                     |___/
+ */
+
 
 function getEntries() {
   return new Promise(((resolve, reject) => {
     entriesCollection.find({}).toArray((error, list) => {
+      list.forEach((part, index, theArray) => {
+        theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
+      });
       resolve(list);
     });
   }));
 }
 
-function getGroups() {
-  return new Promise(((resolve, reject) => {
-    groupsCollection.find({}).toArray((error, list) => {
-      resolve(list);
-    });
-  }));
+function getEntryById(entryId) {
+    return new Promise(((resolve, reject) => {
+        entriesCollection.find({_id:entryId}).toArray((error, list) => {
+            list.forEach((part, index, theArray) => {
+                theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
+            });
+            resolve(list);
+        });
+    }));
 }
 
-function getAddressbooks() {
-  return new Promise(((resolve, reject) => {
-    addressbooksCollection.find({}).toArray((error, list) => {
-      resolve(list);
-    });
-  }));
-}
 
 function addEntry(newEntry) {
   // console.log(entry);
@@ -85,10 +93,6 @@ app.get('/api/entries/', (req, res, next) => {
   });
 });
 
-app.post('/', (request, response) => {
-  console.log(request.body); // your JSON
-  response.send(request.body); // echo the result back
-});
 
 app.post('/api/entries/', validate({ body: schema.EntryCreate }), (req, res) => {
   console.log(req.body);
@@ -100,6 +104,113 @@ app.post('/api/entries/', validate({ body: schema.EntryCreate }), (req, res) => 
     res.status(500).json(utils.createErrorObject(131, util.format('Failed to create entry %s', err)));
   });
 });
+
+
+/**
+ * Update entry
+ *
+ * @param entryId entry ID
+ * @param entry entry data
+ * @return {Object} entry Details
+ */
+function updateEntry(entryId, entry) {
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: entryId,
+    };
+
+    entriesCollection.update(query, entry, (error, item) => {
+      resolve(transformData(item));
+    });
+  }));
+}
+
+app.put('/api/entries/:entryId', validate({ body: schema.EntryCreate }), (req, res, next) => {
+  getEntryById(req.params.entryId).then((entry) => {
+    if (entry == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
+      return;
+    }
+
+    updateEntry(req.params.entryId, req.body).then(() => {
+      res.json(entry);
+    }, (err) => {
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
+    });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to update entry %s', err)));
+  });
+});
+
+/*
+           _     _                   _                 _
+          | |   | |                 | |               | |
+  __ _  __| | __| |_ __ ___  ___ ___| |__   ___   ___ | | __
+ / _` |/ _` |/ _` | '__/ _ \/ __/ __| '_ \ / _ \ / _ \| |/ /
+| (_| | (_| | (_| | | |  __/\__ \__ \ |_) | (_) | (_) |   <
+ \__,_|\__,_|\__,_|_|  \___||___/___/_.__/ \___/ \___/|_|\_\
+
+
+ */
+
+
+function getAddressbooks() {
+  return new Promise(((resolve, reject) => {
+    addressbooksCollection.find({}).toArray((error, list) => {
+      resolve(list);
+    });
+  }));
+}
+
+
+app.get('/api/addressbooks/', (req, res, next) => {
+  getAddressbooks().then((addressbooks) => {
+    res.json(addressbooks);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve addressbooks %s', err)));
+  });
+});
+
+/*
+
+  __ _ _ __ ___  _   _ _ __  ___
+ / _` | '__/ _ \| | | | '_ \/ __|
+| (_| | | | (_) | |_| | |_) \__ \
+ \__, |_|  \___/ \__,_| .__/|___/
+  __/ |               | |
+ |___/                |_|
+
+ */
+
+
+function getGroups() {
+  return new Promise(((resolve, reject) => {
+    groupsCollection.find({}).toArray((error, list) => {
+      resolve(list);
+    });
+  }));
+}
+
+
+app.get('/api/groups/', (req, res, next) => {
+  getGroups().then((groups) => {
+    res.json(groups);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
+  });
+});
+
+/*
+
+                                 _
+                                | |
+  __ _  ___ _ __   ___ _ __ __ _| |
+ / _` |/ _ \ '_ \ / _ \ '__/ _` | |
+| (_| |  __/ | | |  __/ | | (_| | |
+ \__, |\___|_| |_|\___|_|  \__,_|_|
+  __/ |
+ |___/
+ */
 
 app.use((err, req, res, next) => {
   let responseData;
@@ -133,62 +244,6 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.get('/api/groups/', (req, res, next) => {
-  getGroups().then((groups) => {
-    res.json(groups);
-  }, (err) => {
-    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
-  });
-});
-
-app.get('/api/addressbooks/', (req, res, next) => {
-  getAddressbooks().then((addressbooks) => {
-    res.json(addressbooks);
-  }, (err) => {
-    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve addressbooks %s', err)));
-  });
-});
-
-
-app.get(URL_ADDRESSBOOKS + URL_PLACEHOLDER_ID, (req, res, next) => {
-  res.send(addressbooksCollection[req.param('id')]);
-});
-
-app.post(URL_ADDRESSBOOKS, (req, res) => {
-  res.send('POST request to the homepage');
-});
-
-
-// GROUPS
-
-app.get(URL_GROUPS, (req, res, next) => {
-  res.send(groupsCollection);
-});
-
-app.get(URL_GROUPS + URL_PLACEHOLDER_ID, (req, res, next) => {
-  res.send(groupsCollection[req.param('id')]);
-});
-
-app.post(URL_GROUPS, (req, res) => {
-  res.send('POST request to the homepage');
-});
-
-
-// ENTRIES
-
-app.get(URL_ENTRIES, (req, res, next) => {
-  res.send(entriesCollection);
-});
-
-app.get(URL_ENTRIES + URL_PLACEHOLDER_ID, (req, res, next) => {
-  res.send(entriesCollection[req.param('id')]);
-});
-
-app.post(URL_ENTRIES, (req, res) => {
-  res.send('POST request to the homepage');
-});
-
-//-----------------------
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
