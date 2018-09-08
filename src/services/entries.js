@@ -1,62 +1,42 @@
 const Engine = require('tingodb')();
-//const db = new Engine.Db('../db/', {});
+// const db = new Engine.Db('../db/', {});
 
-const db = require('../common/db').db; //IMPORTANT
+const db = require('../common/db').db; // IMPORTANT
 
-const collection = db.collection('database');
-
-collection.find({}).toArray((error, list) => {
-    console.log(JSON.stringify(list));
-});
-
+const entriesCollection = db.collection('entries');
+const groupsCollection = db.collection('groups');
+const addressbooksCollection = db.collection('addressbooks');
 const utils = require('../common/utils');
-
+//const schema = require('../common/schema');
+const validate = require('express-jsonschema').validate;
 const util = require('util');
+const logger = require('../common/logger');
 
 const express = require('express');
 
+const bodyParser = require('body-parser');
+
 const app = express();
 
-
-
-const addressbooks = [
-  { name: 'Hospitals' },
-  { name: 'Schools' },
-  { name: 'Restaurants' },
-];
-const groups = [
-  { name: 'Bone Medicine' },
-  { name: 'Teeth Medicine' },
-  { name: 'Pre Schools' },
-  { name: 'High Schools' },
-  { name: 'Fish Restaurants' },
-  { name: 'Meat Restaurants' },
-];
-
-const entries = [
-  {
-    id: 1,
-    groups: {
-      id: 0,
-      name: 'string',
+const EntryCreate = {
+    type: 'object',
+    properties: {
+        name: {
+            type: 'string',
+            required: true,
+            maxLength: 50,
+        },
+        address: {
+            type: 'string',
+            required: false,
+            maxLength: 50,
+        },
     },
-    name: 'New York Central Hospital',
-    email: 'nyhp@ny.com',
-    address: '41th street',
-    rating: 3,
-  },
-  {
-    id: 0,
-    groups: {
-      id: 0,
-      name: 'string',
-    },
-    name: 'Saint Clara Hospital Washington',
-    email: 'sch@wsh.com',
-    address: 'main street 5',
-    rating: 4,
-  },
-];
+};
+
+
+// parse application/json
+app.use(bodyParser.json());
 
 const URL_ADDRESSBOOKS = '/api/addressbooks/';
 const URL_GROUPS = '/api/groups/';
@@ -64,28 +44,129 @@ const URL_ENTRIES = '/api/entries/';
 
 const URL_PLACEHOLDER_ID = ':id';
 
+function transformPostData(data) {
+  const result = data;
+
+  // Convert the _id field from the DB to ID property
+  result.id = result._id;
+  delete result._id;
+
+  // Remove userId field as this is just used to store all events in a flat structure
+  // delete result.userId;
+
+  return result;
+}
 
 function getEntries() {
   return new Promise(((resolve, reject) => {
-      collection.find("entries").toArray((error, list) => {
-          resolve(list);
-      });
+    entriesCollection.find({}).toArray((error, list) => {
+      resolve(list);
+    });
   }));
 }
 
-// ADDRESSBOOKS
+function getGroups() {
+  return new Promise(((resolve, reject) => {
+    groupsCollection.find({}).toArray((error, list) => {
+      resolve(list);
+    });
+  }));
+}
+
+function getAddressbooks() {
+  return new Promise(((resolve, reject) => {
+    addressbooksCollection.find({}).toArray((error, list) => {
+      resolve(list);
+    });
+  }));
+}
+
+function addEntry(newEntry) {
+  // console.log(entry);
+  // const newEntry = transformPostData(entry);
+  return new Promise(((resolve, reject) => {
+    entriesCollection.insert(newEntry, (error, result) => {
+      console.log(result);
+      resolve(result);
+    });
+  }));
+}
 
 app.get('/api/entries/', (req, res, next) => {
   getEntries().then((entries) => {
     res.json(entries);
   }, (err) => {
-    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve events %s', err)));
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve entries %s', err)));
+  });
+});
+
+app.post('/', (request, response) => {
+  console.log(request.body); // your JSON
+  response.send(request.body); // echo the result back
+});
+
+app.post('/api/entries/', validate({ body: EntryCreate }), (req, res) => {
+  console.log(req.body);
+  /* addEntry(req.body).then((entry) => {
+    logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, entry));
+    res.json(entry);
+  }, (err) => {
+    logger.debug(util.format('POST /calendar/%s/events - 500', req.userId));
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to create entry %s', err)));
+  }); */
+});
+
+app.use((err, req, res, next) => {
+  let responseData;
+
+  if (err.name === 'JsonSchemaValidation') {
+    // Log the error however you please
+    console.log(err.message);
+    // logs "express-jsonschema: Invalid data found"
+
+    // Set a bad request http response status or whatever you want
+    res.status(400);
+
+    // Format the response body however you want
+    responseData = {
+      statusText: 'Bad Request',
+      jsonSchemaValidation: true,
+      validations: err.validations, // All of your validation information
+    };
+
+    // Take into account the content type if your app serves various content types
+    if (req.xhr || req.get('Content-Type') === 'application/json') {
+      res.json(responseData);
+    } else {
+      // If this is an html request then you should probably have
+      // some type of Bad Request html template to respond with
+      res.render('badrequestTemplate', responseData);
+    }
+  } else {
+    // pass error to next error middleware handler
+    next(err);
+  }
+});
+
+app.get('/api/groups/', (req, res, next) => {
+  getGroups().then((groups) => {
+    res.json(groups);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
+  });
+});
+
+app.get('/api/addressbooks/', (req, res, next) => {
+  getAddressbooks().then((addressbooks) => {
+    res.json(addressbooks);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve addressbooks %s', err)));
   });
 });
 
 
 app.get(URL_ADDRESSBOOKS + URL_PLACEHOLDER_ID, (req, res, next) => {
-  res.send(addressbooks[req.param('id')]);
+  res.send(addressbooksCollection[req.param('id')]);
 });
 
 app.post(URL_ADDRESSBOOKS, (req, res) => {
@@ -96,11 +177,11 @@ app.post(URL_ADDRESSBOOKS, (req, res) => {
 // GROUPS
 
 app.get(URL_GROUPS, (req, res, next) => {
-  res.send(groups);
+  res.send(groupsCollection);
 });
 
 app.get(URL_GROUPS + URL_PLACEHOLDER_ID, (req, res, next) => {
-  res.send(groups[req.param('id')]);
+  res.send(groupsCollection[req.param('id')]);
 });
 
 app.post(URL_GROUPS, (req, res) => {
@@ -111,11 +192,11 @@ app.post(URL_GROUPS, (req, res) => {
 // ENTRIES
 
 app.get(URL_ENTRIES, (req, res, next) => {
-  res.send(entries);
+  res.send(entriesCollection);
 });
 
 app.get(URL_ENTRIES + URL_PLACEHOLDER_ID, (req, res, next) => {
-  res.send(entries[req.param('id')]);
+  res.send(entriesCollection[req.param('id')]);
 });
 
 app.post(URL_ENTRIES, (req, res) => {

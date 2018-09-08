@@ -64,9 +64,9 @@ function addEntry(entry) {
     // Add the Name as a property for later lookup
     const newEntry = entry;
 
-    entries.insert(newEntry, (error, result) => {
-      resolve(transformEvent(result[0]));
-    });
+    //entries.insert(newEntry, (error, result) => {
+    //  resolve(transformEvent(result[0]));
+    //});
   }));
 }
 
