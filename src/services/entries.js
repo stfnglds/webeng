@@ -7,7 +7,7 @@ const entriesCollection = db.collection('entries');
 const groupsCollection = db.collection('groups');
 const addressbooksCollection = db.collection('addressbooks');
 const utils = require('../common/utils');
-//const schema = require('../common/schema');
+const schema = require('../common/schema');
 const validate = require('express-jsonschema').validate;
 const util = require('util');
 const logger = require('../common/logger');
@@ -18,21 +18,6 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const EntryCreate = {
-    type: 'object',
-    properties: {
-        name: {
-            type: 'string',
-            required: true,
-            maxLength: 50,
-        },
-        address: {
-            type: 'string',
-            required: false,
-            maxLength: 50,
-        },
-    },
-};
 
 
 // parse application/json
@@ -105,15 +90,15 @@ app.post('/', (request, response) => {
   response.send(request.body); // echo the result back
 });
 
-app.post('/api/entries/', validate({ body: EntryCreate }), (req, res) => {
+app.post('/api/entries/', validate({ body: schema.EntryCreate }), (req, res) => {
   console.log(req.body);
-  /* addEntry(req.body).then((entry) => {
+  addEntry(req.body).then((entry) => {
     logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, entry));
     res.json(entry);
   }, (err) => {
     logger.debug(util.format('POST /calendar/%s/events - 500', req.userId));
     res.status(500).json(utils.createErrorObject(131, util.format('Failed to create entry %s', err)));
-  }); */
+  });
 });
 
 app.use((err, req, res, next) => {
