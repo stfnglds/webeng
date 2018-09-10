@@ -1,0 +1,3 @@
+{"k":"0000000078","o":"0000000459","v":"001"}
+{"_id":2,"_uid":2,"_dt":1536390506132,"_s":"12fcd0b52f223a873c452edf4da9d0b1"}
+{"name":"Hospital Book","groups":[{"name":"General Hospitals","entries":[{"name":"New York Central Hospital","email":"nyhp@ny.com","address":"41th street","rating":3},{"name":"Saint Clara Hospital Washington","email":"sch@wsh.com","address":"main street 5","rating":4}]},{"name":"Animal Hospitals","entries":[{"name":"Santa Barbara Animal Hospital","email":"sb@hospitalbarbara.com","address":"st. Barbara Street 5","rating":3}]}],"_id":{"$wrap":"$oid","v":2}}

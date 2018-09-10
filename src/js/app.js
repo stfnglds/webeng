@@ -1,3 +1,9 @@
+const Db = require('tingodb')().Db;
+const db = new Db('../db/', {});
+
+const collection = db.collection('database');
+
+
 const express = require('express');
 
 const app = express();
@@ -47,8 +53,6 @@ app.post(URL_ADDRESSBOOKS, (req, res) => {
 });
 
 
-
-
 // GROUPS
 
 app.get(URL_GROUPS, (req, res, next) => {
@@ -62,11 +66,6 @@ app.get(URL_GROUPS + URL_PLACEHOLDER_ID, (req, res, next) => {
 app.post(URL_GROUPS, (req, res) => {
   res.send('POST request to the homepage');
 });
-
-
-
-
-
 
 
 // ENTRIES
