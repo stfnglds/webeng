@@ -34,6 +34,69 @@ function transformData(data) {
 }
 
 
+/*
+
+                                 _
+                                | |
+  __ _  ___ _ __   ___ _ __ __ _| |
+ / _` |/ _ \ '_ \ / _ \ '__/ _` | |
+| (_| |  __/ | | |  __/ | | (_| | |
+ \__, |\___|_| |_|\___|_|  \__,_|_|
+  __/ |
+ |___/
+ */
+
+app.use((err, req, res, next) => {
+// Enable CORS for local testing
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Cache-Control, Pragma');
+
+  // Disable caching
+  res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.header('Pragma', 'no-cache');
+  res.header('Expires', 0);
+  res.setHeader('Last-Modified', (new Date()).toUTCString());
+
+  // intercept OPTIONS method
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+
+  let responseData;
+
+  if (err.name === 'JsonSchemaValidation') {
+    // Log the error however you please
+    console.log(err.message);
+    // logs "express-jsonschema: Invalid data found"
+
+    // Set a bad request http response status or whatever you want
+    res.status(400);
+
+    // Format the response body however you want
+    responseData = {
+      statusText: 'Bad Request',
+      jsonSchemaValidation: true,
+      validations: err.validations, // All of your validation information
+    };
+
+    // Take into account the content type if your app serves various content types
+    if (req.xhr || req.get('Content-Type') === 'application/json') {
+      res.json(responseData);
+    } else {
+      // If this is an html request then you should probably have
+      // some type of Bad Request html template to respond with
+      res.render('badrequestTemplate', responseData);
+    }
+  } else {
+    // pass error to next error middleware handler
+    next(err);
+  }
+});
+
+
 app.post('/', (request, response) => {
   console.log(request.body); // your JSON
   response.send(request.body); // echo the result back
@@ -63,14 +126,14 @@ function getEntries() {
 }
 
 function getEntryById(entryId) {
-    return new Promise(((resolve, reject) => {
-        entriesCollection.find({_id:entryId}).toArray((error, list) => {
-            list.forEach((part, index, theArray) => {
-                theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
-            });
-            resolve(list);
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    entriesCollection.find({ _id: entryId }).toArray((error, list) => {
+      list.forEach((part, index, theArray) => {
+        theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
+      });
+      resolve(list);
+    });
+  }));
 }
 
 
@@ -142,6 +205,35 @@ app.put('/api/entries/:entryId', validate({ body: schema.EntryCreate }), (req, r
   });
 });
 
+function removeEntry(eventId) {
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: eventId,
+    };
+    entriesCollection.remove(query, (error, item) => {
+      resolve();
+    });
+  }));
+}
+
+app.delete('/api/entries/:entryId', (req, res, next) => {
+  getEntryById(req.params.id).then((entry) => {
+    if (entry == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
+      return;
+    }
+
+    removeEntry(req.params.entryId).then(() => {
+      res.sendStatus(204);
+    }, (err) => {
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
+    });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
+  });
+});
+
+
 /*
            _     _                   _                 _
           | |   | |                 | |               | |
@@ -183,6 +275,46 @@ app.get('/api/addressbooks/', (req, res, next) => {
  */
 
 
+function getGroupById(groupId) {
+  return new Promise(((resolve, reject) => {
+    entriesCollection.find({ _id: groupId }).toArray((error, list) => {
+      list.forEach((part, index, theArray) => {
+        theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
+      });
+      resolve(list);
+    });
+  }));
+}
+
+function removeGroup(groupId) {
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: groupId,
+    };
+    groupsCollection.remove(query, (error, item) => {
+      resolve();
+    });
+  }));
+}
+
+app.delete('/api/groups/:groupId', (req, res, next) => {
+  getGroupById(req.params.id).then((group) => {
+    if (group == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown group ID %s', req.params.groupId)));
+      return;
+    }
+
+    removeGroup(req.params.groupId).then(() => {
+      res.sendStatus(204);
+    }, (err) => {
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+    });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+  });
+});
+
+
 function getGroups() {
   return new Promise(((resolve, reject) => {
     groupsCollection.find({}).toArray((error, list) => {
@@ -200,48 +332,22 @@ app.get('/api/groups/', (req, res, next) => {
   });
 });
 
-/*
 
-                                 _
-                                | |
-  __ _  ___ _ __   ___ _ __ __ _| |
- / _` |/ _ \ '_ \ / _ \ '__/ _` | |
-| (_| |  __/ | | |  __/ | | (_| | |
- \__, |\___|_| |_|\___|_|  \__,_|_|
-  __/ |
- |___/
- */
-
-app.use((err, req, res, next) => {
-  let responseData;
-
-  if (err.name === 'JsonSchemaValidation') {
-    // Log the error however you please
-    console.log(err.message);
-    // logs "express-jsonschema: Invalid data found"
-
-    // Set a bad request http response status or whatever you want
-    res.status(400);
-
-    // Format the response body however you want
-    responseData = {
-      statusText: 'Bad Request',
-      jsonSchemaValidation: true,
-      validations: err.validations, // All of your validation information
-    };
-
-    // Take into account the content type if your app serves various content types
-    if (req.xhr || req.get('Content-Type') === 'application/json') {
-      res.json(responseData);
-    } else {
-      // If this is an html request then you should probably have
-      // some type of Bad Request html template to respond with
-      res.render('badrequestTemplate', responseData);
+app.delete('/api/groups/:groupId', (req, res, next) => {
+  getGroupById(req.params.id).then((group) => {
+    if (group == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown group ID %s', req.params.groupId)));
+      return;
     }
-  } else {
-    // pass error to next error middleware handler
-    next(err);
-  }
+
+    removeGroup(req.params.groupId).then(() => {
+      res.sendStatus(204);
+    }, (err) => {
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+    });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+  });
 });
 
 
