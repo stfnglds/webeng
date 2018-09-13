@@ -1,0 +1,33 @@
+{"k":"0000000078","o":"0000000137","v":"001"}
+{"_id":2,"_uid":2,"_dt":1536408124658,"_s":"b7120798ea4ed7755e8233504f690a33"}
+{"name":"New York Central Hospital","email":"nyhp@ny.com","address":"41th street","rating":3,"group":123456,"_id":{"$wrap":"$oid","v":2}}
+{"k":"0000000078","o":"0000000065","v":"001"}
+{"_id":3,"_uid":3,"_dt":1536413358270,"_s":"36dc7b184628f5eee23cb1aab1a28a86"}
+{"name":"Sample Postman Collection","_id":{"$wrap":"$oid","v":3}}
+{"k":"0000000078","o":"0000000057","v":"001"}
+{"_id":4,"_uid":4,"_dt":1536413381704,"_s":"cddbe2bb3cd96d4c3445639fc31e9598"}
+{"name":"ein neuer eintrag","_id":{"$wrap":"$oid","v":4}}
+{"k":"0000000078","o":"0000000084","v":"001"}
+{"_id":5,"_uid":5,"_dt":1536413485187,"_s":"9b423ac1e38e7e859c3b82600e8c377e"}
+{"name":"ein neuer eintrag","address":"blabla straße","_id":{"$wrap":"$oid","v":5}}
+{"k":"0000000078","o":"0000000102","v":"001"}
+{"_id":6,"_uid":6,"_dt":1536413545785,"_s":"a2703ba05cc7cb85ce37afb43e549e60"}
+{"name":"ein neuer eintrag","address":"blabla straße","random":"random","_id":{"$wrap":"$oid","v":6}}
+{"k":"0000000078","o":"0000000053","v":"001"}
+{"_id":5,"_uid":6,"_dt":1536415056716,"_s":"404d5b34ea7174df383bc9bfc04ad3f5"}
+{"name":"Updated Event","_id":{"$wrap":"$oid","v":5}}
+{"k":"0000000078","o":"0000000053","v":"001"}
+{"_id":3,"_uid":6,"_dt":1536415088103,"_s":"a7472897836984e5dd0466f466ffaf33"}
+{"name":"Updated Event","_id":{"$wrap":"$oid","v":3}}
+{"k":"0000000078","o":"0000000069","v":"001"}
+{"_id":3,"_uid":6,"_dt":1536415163678,"_s":"edd31ab13577f1c10e9c30419da845a9"}
+{"name":"Uasldkfjaölskdföklasjdfvent","_id":{"$wrap":"$oid","v":3}}
+{"k":"0000000078","o":"0000000068","v":"001"}
+{"_id":3,"_uid":6,"_dt":1536415197348,"_s":"4498c17d21c886bd268384dfaba0a2d0"}
+{"name":"Just another random Hospital","_id":{"$wrap":"$oid","v":3}}
+{"k":"0000000078","o":"0000000087","v":"001"}
+{"_id":3,"_uid":6,"_dt":1536415256503,"_s":"9be6721f0fda5d4eecf5296027d24f11"}
+{"name":"Saint James Hospital","address":"Bakerstreet 42","_id":{"$wrap":"$oid","v":3}}
+{"k":"0000000049","o":"0000000000","v":"001"}
+{"_id":4,"_uid":6,"_dt":1536825708816,"_a":"del"}
+
