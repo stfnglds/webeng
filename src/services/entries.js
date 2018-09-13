@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors')
 
 var tingodb = require('tingodb')();
 var path = require('path');
@@ -34,6 +35,7 @@ const schema = require('../common/schema');
 
 // parse application/json
 app.use(bodyParser.json());
+app.use(cors());
 
 
 

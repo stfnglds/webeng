@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 //import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -22,10 +23,11 @@ import { AllEntriesComponent } from './all-entries/all-entries.component';
    // ListViewComponent
   ],
   imports: [
-    NgbModule,
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
+
    // RouterModule.forRoot(routes),
   ],
   providers: [],

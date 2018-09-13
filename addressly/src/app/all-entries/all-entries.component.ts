@@ -15,13 +15,11 @@ export class AllEntriesComponent implements OnInit {
   }
 
   entries: Entry[];
-  testArray: {
+  testArray = [
     "blabla",
     "blablablablabla",
     "bla"
-  };
-
-
+  ];
 
   title: string;
 

@@ -1,7 +1,7 @@
-<h2>Das wurde generiert: "{{entris}}"</h2>
-<ul>
-  <li>Test</li>
-  <li *ngFor='let entry of entries'>{{name}}</li>
-  <li>-----</li>
-  <li *ngFor='let a of testArray'>{{name}}</li>
-</ul>
+<div class="card" *ngFor='let entry of entries'>
+  <div class="card-body">
+    <h2>Name: {{entry.name}}</h2>
+    <p>Street: {{entry.address}}</p>
+    <p>ID: {{entry.id}}</p>
+  </div>
+</div>
