@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: Adressbooks
-host:
+host: localhost
 tags:
   - name: Entries
     description: Entries of books
@@ -42,7 +42,23 @@ paths:
         - in: body
           name: body
           schema:
-            $ref: '#/definitions/Entries'
+            type: object
+            properties:
+              groups:
+                type: integer
+              books:
+                type: integer
+              name:
+                type: string
+              email:
+                type: string
+              address:
+                type: string
+              rating:
+                  type: integer
+                  minimum: 1
+                  maximum: 10
+
       responses:
         '405':
           description: Invalid input
@@ -60,7 +76,22 @@ paths:
         - in: body
           name: body
           schema:
-            $ref: '#/definitions/Entries'
+            type: object
+            properties:
+              groups:
+                type: integer
+              books:
+                type: integer
+              name:
+                type: string
+              email:
+                type: string
+              address:
+                type: string
+              rating:
+                  type: integer
+                  minimum: 1
+                  maximum: 10
       responses:
         '400':
           description: Invalid ID supplied
@@ -122,7 +153,7 @@ paths:
           name: body
           required: true
           schema:
-            $ref: '#/definitions/Groups'
+            type: string
       responses:
         default:
           description: successful operation
