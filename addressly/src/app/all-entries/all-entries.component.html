@@ -10,6 +10,13 @@
       <h4 class="card-title">
         <span [hidden]="entry.editMode">[{{entry.id}}] {{entry.name}}</span>
         <input [hidden]="!entry.editMode" type="text" class="form-control" placeholder="Name" [(ngModel)]="entry.name">
+        <div>
+          <i class="far fa-star " [ngClass]="{'fas':entry.rating >= 1, 'rating':entry.editMode}" (click)="entry.rating=1" ></i>
+          <i class="far fa-star " [ngClass]="{'fas':entry.rating >= 2, 'rating':entry.editMode}" (click)="entry.rating=2"></i>
+          <i class="far fa-star " [ngClass]="{'fas':entry.rating >= 3, 'rating':entry.editMode}" (click)="entry.rating=3"></i>
+          <i class="far fa-star " [ngClass]="{'fas':entry.rating >= 4, 'rating':entry.editMode}" (click)="entry.rating=4"></i>
+          <i class="far fa-star " [ngClass]="{'fas':entry.rating >= 5, 'rating':entry.editMode}" (click)="entry.rating=5"></i>
+        </div>
       </h4>
       <p class="card-text">
         <span [hidden]="entry.editMode">{{entry.address}}</span>
@@ -19,6 +26,7 @@
       <button [hidden]="!entry.editMode" (click)="entry.editMode = !entry.editMode; saveEntry(entry);"
               class="btn btn-success">Save
       </button>
+
     </div>
   </div>
 

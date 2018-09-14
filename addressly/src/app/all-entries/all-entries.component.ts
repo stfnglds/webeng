@@ -24,7 +24,10 @@ export class AllEntriesComponent implements OnInit {
 
   private loadEntries() {
     this._dataService.fetchCalendarEntries().subscribe(data => {
-      this.entries = data;
+
+
+      this.entries=data;
+    //  this.entries=[{}];
     }, error => {
       console.log('Failed fetching entries');
     });
