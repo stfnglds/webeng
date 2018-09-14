@@ -35,6 +35,8 @@ const schema = require('../common/schema');
 
 // parse application/json
 app.use(bodyParser.json());
+
+//use CORS for Cross Requests
 app.use(cors());
 
 

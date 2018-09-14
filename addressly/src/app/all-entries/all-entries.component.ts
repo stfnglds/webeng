@@ -15,19 +15,14 @@ export class AllEntriesComponent implements OnInit {
   }
 
   entries: Entry[];
-  testArray = [
-    "blabla",
-    "blablablablabla",
-    "bla"
-  ];
 
   title: string;
 
   ngOnInit(): void {
-    this.loadCalendarEntries();
+    this.loadEntries();
   }
 
-  private loadCalendarEntries() {
+  private loadEntries() {
     this._dataService.fetchCalendarEntries().subscribe(data => {
       this.entries = data;
     }, error => {
@@ -56,6 +51,14 @@ export class AllEntriesComponent implements OnInit {
  /* onDeleted(): void {
     this.loadCalendarEntries();
   }*/
+
+  saveEntry(updatedEvent) {
+    this._dataService.updateCalendarEntries(updatedEvent).subscribe(
+      data =>{
+        this.loadEntries();
+      }
+    );
+  }
 
 }
 

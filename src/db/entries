@@ -1,18 +1,12 @@
-{"k":"0000000078","o":"0000000137","v":"001"}
-{"_id":2,"_uid":2,"_dt":1536839944135,"_s":"b7120798ea4ed7755e8233504f690a33"}
-{"name":"New York Central Hospital","email":"nyhp@ny.com","address":"41th street","rating":3,"group":123456,"_id":{"$wrap":"$oid","v":2}}
-{"k":"0000000078","o":"0000000137","v":"001"}
-{"_id":3,"_uid":3,"_dt":1536839957190,"_s":"da8d79983e4edb1d7f3a0a08f4d4e604"}
-{"name":"New York Central Hospital","email":"nyhp@ny.com","address":"41th street","rating":3,"group":123456,"_id":{"$wrap":"$oid","v":3}}
-{"k":"0000000078","o":"0000000137","v":"001"}
-{"_id":4,"_uid":4,"_dt":1536839960392,"_s":"c41429a4c6df4e714c5e32b663d4bffd"}
-{"name":"New York Central Hospital","email":"nyhp@ny.com","address":"41th street","rating":3,"group":123456,"_id":{"$wrap":"$oid","v":4}}
-{"k":"0000000078","o":"0000000079","v":"001"}
-{"_id":5,"_uid":5,"_dt":1536839976199,"_s":"cbe95f21226b24e01f84bf4ebcd9faa0"}
-{"title":"Christmas Feast","location":"Stuttgart","_id":{"$wrap":"$oid","v":5}}
-{"k":"0000000078","o":"0000000070","v":"001"}
-{"_id":6,"_uid":6,"_dt":1536839976203,"_s":"043023762a7f8501a3f93231b4c23c2e"}
-{"title":"New Years Eve","location":null,"_id":{"$wrap":"$oid","v":6}}
-{"k":"0000000049","o":"0000000000","v":"001"}
-{"_id":2,"_uid":6,"_dt":1536840264664,"_a":"del"}
-
+{"k":"0000000078","o":"0000000161","v":"001"}
+{"_id":3,"_uid":6,"_dt":1536922180294,"_s":"c37fa713aaa4b5628fc66d3fdb983918"}
+{"name":"New York Central Hospital","email":"nyhp@ny.com","address":"41th street","rating":3,"group":123456,"id":3,"editMode":false,"_id":{"$wrap":"$oid","v":3}}
+{"k":"0000000078","o":"0000000167","v":"001"}
+{"_id":4,"_uid":6,"_dt":1536922202019,"_s":"ccc42403c1c3b65bbc0240e7695133ee"}
+{"name":"Washington Central Hospital","email":"nyhp@ny.com","address":"3rd main street","rating":3,"group":123456,"id":4,"editMode":false,"_id":{"$wrap":"$oid","v":4}}
+{"k":"0000000078","o":"0000000153","v":"001"}
+{"_id":5,"_uid":6,"_dt":1536922323772,"_s":"62121d09a6aa977f6101010b652628f6"}
+{"title":"Christmas Feast","location":"Stuttgart","id":5,"editMode":false,"name":"Paris Hospital","address":"Rue Hopital 5","_id":{"$wrap":"$oid","v":5}}
+{"k":"0000000078","o":"0000000157","v":"001"}
+{"_id":6,"_uid":6,"_dt":1536922345838,"_s":"8fe055dd7da70a834070b3205f1ea687"}
+{"title":"New Years Eve","location":null,"id":6,"editMode":false,"name":"Schwarzwaldklinik","address":"Schwarzwälderstraße 1","_id":{"$wrap":"$oid","v":6}}

@@ -22,15 +22,17 @@ export class EntriesService {
   public fetchCalendarEntries(): Observable<Entry[]> {
     return this.http.get<Entry[]>(this.webServiceUrl);
   }
+
+  public updateCalendarEntries(entry: Entry): Observable<Entry> {
+    return this.http.put<Entry>(this.webServiceUrl + entry.id, JSON.stringify(entry), httpOptions);
+  }
   /* public fetchCalendarEntry(id: number): Observable<Entry> {
      return this.http.get<Entry>(this.webServiceUrl + id);
    }
    public createCalendarEntry(entry: Entry): Observable<Entry> {
      return this.http.post<Entry>(this.webServiceUrl, JSON.stringify(entry), httpOptions);
    }
-   public updateCalendarEntries(entry: Entry): Observable<Entry> {
-     return this.http.put<Entry>(this.webServiceUrl + entry.id, JSON.stringify(entry), httpOptions);
-   }
+
    public deleteCalendarEntries(entry: Entry): Observable<any> {
      return this.http.delete<any>(this.webServiceUrl + entry.id);
    }*/
