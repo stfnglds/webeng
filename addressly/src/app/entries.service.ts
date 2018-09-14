@@ -23,8 +23,12 @@ export class EntriesService {
     return this.http.get<Entry[]>(this.webServiceUrl);
   }
 
-  public updateCalendarEntries(entry: Entry): Observable<Entry> {
+  public updateEntry(entry: Entry): Observable<Entry> {
     return this.http.put<Entry>(this.webServiceUrl + entry.id, JSON.stringify(entry), httpOptions);
+  }
+
+  public deleteEntry(id: number): Observable<any> {
+    return this.http.delete<any>(this.webServiceUrl + id);
   }
   /* public fetchCalendarEntry(id: number): Observable<Entry> {
      return this.http.get<Entry>(this.webServiceUrl + id);

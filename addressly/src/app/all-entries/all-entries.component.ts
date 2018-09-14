@@ -53,12 +53,19 @@ export class AllEntriesComponent implements OnInit {
   }*/
 
   saveEntry(updatedEvent) {
-    this._dataService.updateCalendarEntries(updatedEvent).subscribe(
+    this._dataService.updateEntry(updatedEvent).subscribe(
       data =>{
         this.loadEntries();
       }
     );
   }
 
+  deleteEntry(id: number) {
+    this._dataService.deleteEntry(id).subscribe(
+      data =>{
+        this.loadEntries();
+      }
+    );
+  }
 }
 

@@ -10,3 +10,6 @@
 {"k":"0000000078","o":"0000000157","v":"001"}
 {"_id":6,"_uid":6,"_dt":1536922345838,"_s":"8fe055dd7da70a834070b3205f1ea687"}
 {"title":"New Years Eve","location":null,"id":6,"editMode":false,"name":"Schwarzwaldklinik","address":"Schwarzwälderstraße 1","_id":{"$wrap":"$oid","v":6}}
+{"k":"0000000049","o":"0000000000","v":"001"}
+{"_id":6,"_uid":6,"_dt":1536923022992,"_a":"del"}
+
