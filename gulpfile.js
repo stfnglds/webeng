@@ -9,9 +9,9 @@ gulp.task('default', (cb) => {
 });
 
 gulp.task('start server', () => {
-  nodemon({
-    script: './src/services/entries.js',
-    ext: 'js html',
-    env: { NODE_ENV: 'development' },
-  });
+    nodemon({
+        script: './src/services/entries.js',
+        ext: 'js html',
+        env: { NODE_ENV: 'development' },
+    });
 });

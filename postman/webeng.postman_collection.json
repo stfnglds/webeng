@@ -1,0 +1,126 @@
+{
+	"variables": [],
+	"info": {
+		"name": "webeng",
+		"_postman_id": "b43266b6-ce76-1cd0-b326-257c433487bb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "groups",
+			"request": {
+				"url": "http://localhost:3000/api/groups/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "addressbooks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Body matches string\"] = responseBody.has(\"string_you_want_to_search\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:3000/api/addressbooks/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "entries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Body matches string\"] = responseBody.has(\"string_you_want_to_search\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:3000/api/entries/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "entries",
+			"request": {
+				"url": "http://localhost:3000/api/entries/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"7875be4b-917d-4aff-8cc4-5606c36bf418\",\n  \"name\": \"Sample Postman Collection\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "entries",
+			"request": {
+				"url": "http://localhost:3000/api/entries/3",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Uasldkfjaölskdföklasjdfvent\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "entries",
+			"request": {
+				"url": "http://localhost:3000/api/entries/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Uasldkfjaölskdföklasjdfvent\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
