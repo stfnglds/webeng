@@ -41,16 +41,6 @@ app.use(cors());
 
 
 
-function transformData(data) {
-    const result = data;
-    // Convert the _id field from the DB to ID property
-    result.id = result._id;
-    delete result._id;
-
-    return result;
-}
-
-
 
 /*
                                  _
@@ -135,7 +125,7 @@ function getEntries() {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({}).toArray((error, list) => {
             list.forEach((part, index, theArray) => {
-                theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
+                theArray[index] = part; // eslint-disable-line no-param-reassign
             });
             resolve(list);
         });
@@ -146,7 +136,7 @@ function getEntryById(entryId) {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({ _id: entryId }).toArray((error, list) => {
             list.forEach((part, index, theArray) => {
-                theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
+                theArray[index] = part; // eslint-disable-line no-param-reassign
             });
             resolve(list);
         });
@@ -156,9 +146,13 @@ function getEntryById(entryId) {
 
 function addEntry(newEntry) {
     // console.log(entry);
-    // const newEntry = transformPostData(entry);
     return new Promise(((resolve, reject) => {
-        entriesCollection.insert(newEntry, (error, result) => {
+
+        var dbEntry ={};
+        dbEntry.name=newEntry.name;
+        dbEntry.address=newEntry.address;
+
+        entriesCollection.insert(dbEntry, (error, result) => {
             console.log(result);
             resolve(result);
         });
@@ -200,7 +194,7 @@ function updateEntry(entryId, entry) {
         };
 
         entriesCollection.update(query, entry, (error, item) => {
-            resolve(transformData(item));
+            resolve(item);
         });
     }));
 }
@@ -292,7 +286,7 @@ function getGroupById(groupId) {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({ _id: groupId }).toArray((error, list) => {
             list.forEach((part, index, theArray) => {
-                theArray[index] = transformData(part); // eslint-disable-line no-param-reassign
+                theArray[index] = part; // eslint-disable-line no-param-reassign
             });
             resolve(list);
         });

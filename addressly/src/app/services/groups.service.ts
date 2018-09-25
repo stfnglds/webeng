@@ -22,8 +22,12 @@ export class GroupsService {
     return this.http.get<Group[]>(this.webServiceUrl);
   }
 
+  public createGroup(group: Group): Observable<Group> {
+    return this.http.post<Group>(this.webServiceUrl, JSON.stringify(group), httpOptions);
+  }
+
   public updateGroup(group: Group): Observable<Group> {
-    return this.http.put<Group>(this.webServiceUrl + group.id, JSON.stringify(group), httpOptions);
+    return this.http.put<Group>(this.webServiceUrl + group._id, JSON.stringify(group), httpOptions);
   }
 
   public deleteGroup(id: number): Observable<any> {

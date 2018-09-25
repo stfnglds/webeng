@@ -24,7 +24,7 @@ export class EntriesService {
   }
 
   public updateEntry(entry: Entry): Observable<Entry> {
-    return this.http.put<Entry>(this.webServiceUrl + entry.id, JSON.stringify(entry), httpOptions);
+    return this.http.put<Entry>(this.webServiceUrl + entry._id, JSON.stringify(entry), httpOptions);
   }
 
   public deleteEntry(id: number): Observable<any> {
@@ -40,5 +40,8 @@ export class EntriesService {
    public deleteCalendarEntries(entry: Entry): Observable<any> {
      return this.http.delete<any>(this.webServiceUrl + entry.id);
    }*/
+  public createEntry(entry: Entry) : Observable<Entry>{
+    return this.http.post<any>(this.webServiceUrl,entry);
+  }
 }
 

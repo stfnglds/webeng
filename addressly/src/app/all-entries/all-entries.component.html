@@ -1,5 +1,7 @@
 <div class="container">
   <br>
+  <button (click)="createEntry()" class="btn btn-primary">New Entry</button>
+  <br>
   <p *ngFor='let group of groups'>-{{group.name}}-</p>
   <div class="card mx-auto" *ngFor='let entry of entries' style="max-width: 20rem; margin-bottom:2em">
     <h3 class="card-header" style="text-align: right">
@@ -7,12 +9,12 @@
       <button [hidden]="entry.delete" class="btn btn-outline-danger" (click)="entry.delete = true">
         <fa name="trash"></fa>
       </button>
-      <button [hidden]="!entry.delete" (click)="deleteEntry(entry.id)" class="btn btn-danger">wirklich Löschen</button>
+      <button [hidden]="!entry.delete" (click)="deleteEntry(entry._id)" class="btn btn-danger">wirklich Löschen</button>
     </h3>
     <br>
     <div class="card-body">
       <h4 class="card-title">
-        <span [hidden]="entry.editMode">[{{entry.id}}] {{entry.name}}</span>
+        <span [hidden]="entry.editMode">[{{entry._id}}] {{entry.name}}</span>
         <input [hidden]="!entry.editMode" type="text" class="form-control" placeholder="Name" [(ngModel)]="entry.name">
         <div>
           <i class="far fa-star " [ngClass]="{'fas':entry.rating >= 1, 'rating':entry.editMode}" (click)="entry.rating=1" ></i>
@@ -33,8 +35,7 @@
       </p>
       <button [hidden]="entry.editMode" (click)="entry.editMode = !entry.editMode" class="btn btn-primary">Edit</button>
       <button [hidden]="!entry.editMode" (click)="entry.editMode = !entry.editMode; saveEntry(entry);"
-              class="btn btn-success">Save
-      </button>
+              class="btn btn-success">Save     </button>
 
     </div>
   </div>

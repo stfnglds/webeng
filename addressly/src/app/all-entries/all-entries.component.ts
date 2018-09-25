@@ -45,10 +45,18 @@ export class AllEntriesComponent implements OnInit {
     });
   }
 
-  saveEntry(updatedEvent) {
-    this._dataService.updateEntry(updatedEvent).subscribe(
+  saveEntry(updatedEntry) {
+    this._dataService.updateEntry(updatedEntry).subscribe(
       data =>{
         this.loadEntries();
+      }
+    );
+  }
+
+  createEntry() {
+    this._dataService.createEntry({name:"new Entry",editMode:"true"}).subscribe(
+      data =>{
+        this.loadGroupsAndPutNewGroupFirst();
       }
     );
   }
@@ -59,6 +67,18 @@ export class AllEntriesComponent implements OnInit {
         this.loadEntries();
       }
     );
+  }
+
+  private loadGroupsAndPutNewGroupFirst() {
+    this._dataService.fetchCalendarEntries().subscribe(data => {
+
+      this.entries=data;
+      this.entries.unshift(this.entries.pop());
+      this.entries[0].editMode=true;
+      //  this.entries=[{}];
+    }, error => {
+      console.log('Failed fetching entries');
+    });
   }
 }
 
