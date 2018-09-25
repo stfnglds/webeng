@@ -1,11 +1,15 @@
 <div class="container">
+  <br>
+  <p *ngFor='let group of groups'>-{{group.name}}-</p>
   <div class="card mx-auto" *ngFor='let entry of entries' style="max-width: 20rem; margin-bottom:2em">
     <h3 class="card-header" style="text-align: right">
+     {{entry.group}}
       <button [hidden]="entry.delete" class="btn btn-outline-danger" (click)="entry.delete = true">
         <fa name="trash"></fa>
       </button>
       <button [hidden]="!entry.delete" (click)="deleteEntry(entry.id)" class="btn btn-danger">wirklich Löschen</button>
     </h3>
+    <br>
     <div class="card-body">
       <h4 class="card-title">
         <span [hidden]="entry.editMode">[{{entry.id}}] {{entry.name}}</span>
@@ -21,7 +25,12 @@
       <p class="card-text">
         <span [hidden]="entry.editMode">{{entry.address}}</span>
         <input [hidden]="!entry.editMode" type="text" class="form-control" placeholder="Address"
-               [(ngModel)]="entry.address"></p>
+               [(ngModel)]="entry.address">
+        <br>
+        <select class="form-control" [hidden]="!entry.editMode" [(ngModel)]="entry.group">
+          <option *ngFor='let group of groups' value="{{group._id}}">{{group._id}} {{group.name}}</option>
+        </select>
+      </p>
       <button [hidden]="entry.editMode" (click)="entry.editMode = !entry.editMode" class="btn btn-primary">Edit</button>
       <button [hidden]="!entry.editMode" (click)="entry.editMode = !entry.editMode; saveEntry(entry);"
               class="btn btn-success">Save

@@ -15,10 +15,12 @@ import { AllEntriesComponent } from './all-entries/all-entries.component';
 import { OverviewComponent } from './overview/overview.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OverviewComponentComponent } from './overview-component/overview-component.component';
+import {AllGroupsComponent} from "./all-groups/all-groups.component";
 
 
 const appRoutes: Routes = [
   { path: 'entries', component: AllEntriesComponent },
+  { path: 'groups', component: AllGroupsComponent },
   { path: '**', component: OverviewComponent },
 ];
 
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     AllEntriesComponent,
     NavbarComponent,
-    OverviewComponent
+    OverviewComponent,
+    AllGroupsComponent
    // EventDetailComponent,
    // EventTitleComponent,
    // DetailViewComponent,
