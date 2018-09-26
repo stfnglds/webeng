@@ -1,0 +1,34 @@
+<div class="container">
+  <!--<button (click)="createGroup()" class="btn btn-primary">New Group</button>-->
+  <br>
+  <div class="card mx-auto" *ngFor='let group of groups' style="max-width: 20rem; margin-bottom:2em" [ngStyle]="{'background-color': 'hsla('+group.addressbook*1234%360+',100%,75%,0.3)'}">
+    <h3 class="card-header" style="text-align: right">
+      <button [hidden]="group.delete" class="btn btn-outline-danger" (click)="group.delete = true">
+        <fa name="trash"></fa>
+      </button>
+      <button [hidden]="!group.delete" (click)="deletegroup(group._id)" class="btn btn-danger">wirklich Löschen</button>
+    </h3>
+    <br>
+    <div class="card-body">
+      <h4 class="card-title">
+        <span [hidden]="group.editMode">[{{group._id}}] {{group.name}}</span>
+        <input [hidden]="!group.editMode" type="text" class="form-control" placeholder="Name" [(ngModel)]="group.name">
+      </h4>
+      <p class="card-text">
+        <span [hidden]="group.editMode">{{group.address}}</span>
+      </p>
+
+      <br>
+      <select class="form-control" [hidden]="!group.editMode" [(ngModel)]="group.addressbook">
+        <option *ngFor='let addressbook of addressbooks' value="{{addressbook._id}}">{{addressbook._id}} {{addressbook.name}}</option>
+      </select>
+      
+      <button [hidden]="group.editMode" (click)="group.editMode = !group.editMode" class="btn btn-primary">Edit</button>
+      <button [hidden]="!group.editMode" (click)="group.editMode = !group.editMode; saveGroup(group);"
+              class="btn btn-success">Save
+      </button>
+
+    </div>
+  </div>
+
+</div>

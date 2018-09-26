@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class GroupsService {
 
-  private webServiceUrl = 'http://localhost:3000/api/groups/';
+   private webServiceUrl = 'http://localhost:3000/api/groups/';
 
   constructor(private http: HttpClient) { }
 

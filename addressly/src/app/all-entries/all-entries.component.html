@@ -1,11 +1,11 @@
 <div class="container">
   <br>
-  <button (click)="createEntry()" class="btn btn-primary">New Entry</button>
-  <br>
-  <p *ngFor='let group of groups'>-{{group.name}}-</p>
-  <div class="card mx-auto" *ngFor='let entry of entries' style="max-width: 20rem; margin-bottom:2em">
+  <div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em">
+    <button (click)="createEntry()" class="btn btn-primary" >New Entry</button>
+  </div>
+  <div class="card mx-auto" *ngFor='let entry of entries' style="max-width: 20rem; margin-bottom:2em"  [ngStyle]="{'background-color': 'hsla('+entry.group*1234%360+',100%,75%,0.3)'}">
     <h3 class="card-header" style="text-align: right">
-     {{entry.group}}
+     <!--{{getGroupNameFromId(entry.group)}}-->
       <button [hidden]="entry.delete" class="btn btn-outline-danger" (click)="entry.delete = true">
         <fa name="trash"></fa>
       </button>

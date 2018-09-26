@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Entry } from '../model/Entry';
 import { Group } from '../model/Group';
 import { EntriesService } from '../entries.service';
@@ -10,6 +10,8 @@ import { GroupsService } from '../services/groups.service';
   styleUrls: ['./all-entries.component.scss'],
   providers: [EntriesService,GroupsService]
 })
+
+
 export class AllEntriesComponent implements OnInit {
 
 
@@ -26,6 +28,7 @@ export class AllEntriesComponent implements OnInit {
     this.loadGroups();
   }
 
+
   private loadGroups() {
     this._groupService.fetchGroups().subscribe(data => {
 
@@ -37,9 +40,7 @@ export class AllEntriesComponent implements OnInit {
 
   private loadEntries() {
     this._dataService.fetchCalendarEntries().subscribe(data => {
-
       this.entries=data;
-    //  this.entries=[{}];
     }, error => {
       console.log('Failed fetching entries');
     });
@@ -54,7 +55,7 @@ export class AllEntriesComponent implements OnInit {
   }
 
   createEntry() {
-    this._dataService.createEntry({name:"new Entry",editMode:"true"}).subscribe(
+    this._dataService.createEntry({name:"new Entry",editMode:true}).subscribe(
       data =>{
         this.loadGroupsAndPutNewGroupFirst();
       }
@@ -67,6 +68,10 @@ export class AllEntriesComponent implements OnInit {
         this.loadEntries();
       }
     );
+  }
+
+  public getGroupNameFromId(searchId: number){
+    return this.groups.find( group => group._id === searchId);
   }
 
   private loadGroupsAndPutNewGroupFirst() {

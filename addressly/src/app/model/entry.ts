@@ -3,4 +3,5 @@ export interface Entry {
   name: string,
   rating?: number,
   editMode?: boolean;
+  group?:number;
 }

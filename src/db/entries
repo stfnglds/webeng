@@ -1,45 +1,9 @@
-{"k":"0000000078","o":"0000000122","v":"001"}
-{"_id":3,"_uid":6,"_dt":1536929587773,"_s":"1049f3d57023579528920b111ce788c4"}
-{"name":"Saint James Hospital","address":"Bakerstreet 42","rating":3,"id":3,"editMode":false,"_id":{"$wrap":"$oid","v":3}}
-{"k":"0000000078","o":"0000000167","v":"001"}
-{"_id":4,"_uid":6,"_dt":1536922202019,"_s":"ccc42403c1c3b65bbc0240e7695133ee"}
-{"name":"Washington Central Hospital","email":"nyhp@ny.com","address":"3rd main street","rating":3,"group":123456,"id":4,"editMode":false,"_id":{"$wrap":"$oid","v":4}}
-{"k":"0000000078","o":"0000000164","v":"001"}
-{"_id":5,"_uid":6,"_dt":1536929649210,"_s":"7b4b4bad4f44ebf06559a810d805e41f"}
-{"title":"Christmas Feast","location":"Stuttgart","id":5,"editMode":false,"name":"Paris Hospital","address":"Rue Hopital 5","rating":1,"_id":{"$wrap":"$oid","v":5}}
-{"k":"0000000078","o":"0000000067","v":"001"}
-{"_id":7,"_uid":7,"_dt":1537878971514,"_s":"58b2067b7d4f0e98ca3060e60f0742cf"}
-{"name":"new Entry","editMode":"true","_id":{"$wrap":"$oid","v":7}}
-{"k":"0000000078","o":"0000000067","v":"001"}
-{"_id":8,"_uid":8,"_dt":1537879015544,"_s":"f6a181c67ac95d5ab515a87f46ecd110"}
-{"name":"new Entry","editMode":"true","_id":{"$wrap":"$oid","v":8}}
-{"k":"0000000049","o":"0000000000","v":"001"}
-{"_id":7,"_uid":8,"_dt":1537879363552,"_a":"del"}
-
-{"k":"0000000049","o":"0000000000","v":"001"}
-{"_id":8,"_uid":8,"_dt":1537879365547,"_a":"del"}
-
-{"k":"0000000078","o":"0000000049","v":"001"}
-{"_id":9,"_uid":9,"_dt":1537879367963,"_s":"9af442bf6dad8668964c994ed9765581"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":9}}
-{"k":"0000000049","o":"0000000000","v":"001"}
-{"_id":9,"_uid":9,"_dt":1537879413563,"_a":"del"}
-
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":10,"_uid":10,"_dt":1537879415185,"_s":"fdf270ceba3e2752cb3e7881180068a3"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":10}}
-{"k":"0000000079","o":"0000000164","v":"001"}
-{"_id":5,"_uid":10,"_dt":1537879433451,"_s":"33739fd72da8ad3f190bfdb05f0abf3b"}
-{"title":"Christmas Feast","location":"Stuttgart","id":5,"editMode":false,"name":"Paris Hospital","address":"Rue Hopital 5","rating":3,"_id":{"$wrap":"$oid","v":5}}
-{"k":"0000000079","o":"0000000164","v":"001"}
-{"_id":5,"_uid":10,"_dt":1537879435804,"_s":"7b4b4bad4f44ebf06559a810d805e41f"}
-{"title":"Christmas Feast","location":"Stuttgart","id":5,"editMode":false,"name":"Paris Hospital","address":"Rue Hopital 5","rating":1,"_id":{"$wrap":"$oid","v":5}}
-{"k":"0000000080","o":"0000000078","v":"001"}
-{"_id":10,"_uid":10,"_dt":1537879623695,"_s":"d8d6e5822acdd3bf9ec22e8ccc058fcf"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":10},"editMode":false,"rating":3}
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":10,"_uid":10,"_dt":1537879626044,"_a":"del"}
-
 {"k":"0000000079","o":"0000000164","v":"001"}
 {"_id":4,"_uid":10,"_dt":1537879634593,"_s":"52b51c176fd864aaf603e6e8b9c3fabf"}
 {"name":"Washington Central Hospital","email":"nyhp@ny.com","address":"3rd main street","rating":3,"group":"2","id":4,"editMode":false,"_id":{"$wrap":"$oid","v":4}}
+{"k":"0000000079","o":"0000000176","v":"001"}
+{"_id":5,"_uid":16,"_dt":1537949382180,"_s":"67bd690579c47b5ce5471c500f80fe44"}
+{"title":"Christmas Feast","location":"Stuttgart","id":5,"editMode":false,"name":"Paris Hospital","address":"Rue Hopital 5","rating":1,"_id":{"$wrap":"$oid","v":5},"group":"2"}
+{"k":"0000000080","o":"0000000113","v":"001"}
+{"_id":16,"_uid":16,"_dt":1537950412072,"_s":"a33cea28077ecc2ff5102887b8d3dfb6"}
+{"name":"Fish 'N Chips","_id":{"$wrap":"$oid","v":16},"editMode":false,"group":"5","rating":3,"address":"London"}
