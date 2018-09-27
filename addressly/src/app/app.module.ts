@@ -17,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { OverviewComponentComponent } from './overview-component/overview-component.component';
 import {AllGroupsComponent} from "./all-groups/all-groups.component";
 import { AllAddressbooksComponent } from './all-addressbooks/all-addressbooks.component';
+import { EntryCardComponent } from './entry-card/entry-card.component';
 
 
 const appRoutes: Routes = [
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     OverviewComponent,
     AllGroupsComponent,
-    AllAddressbooksComponent
+    AllAddressbooksComponent,
+    EntryCardComponent
    // EventDetailComponent,
    // EventTitleComponent,
    // DetailViewComponent,

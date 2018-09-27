@@ -1,7 +1,7 @@
-import {Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Pipe, PipeTransform} from '@angular/core';
 import { Entry } from '../model/Entry';
 import { Group } from '../model/Group';
-import { EntriesService } from '../entries.service';
+import { EntriesService } from '../services/entries.service';
 import { GroupsService } from '../services/groups.service';
 
 @Component({
@@ -22,6 +22,9 @@ export class AllEntriesComponent implements OnInit {
   groups: Group[];
 
   title: string;
+
+  @Output()
+  deleted = new EventEmitter<void>();
 
   ngOnInit(): void {
     this.loadEntries();

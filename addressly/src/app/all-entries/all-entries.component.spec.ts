@@ -22,4 +22,5 @@ describe('AllEntriesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
