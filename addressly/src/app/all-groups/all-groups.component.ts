@@ -42,15 +42,16 @@ export class AllGroupsComponent implements OnInit {
     });
   }
 
-  // private loadGroupsAndPutNewGroupFirst() {
-  //   this._groupService.fetchGroups().subscribe(data => {
-  //
-  //     this.groups=data;
-  //     this.groups.unshift(this.groups.pop());
-  //   }, error => {
-  //     console.log('Failed fetching groups');
-  //   });
-  // }
+  private loadGroupsAndPutNewGroupFirst() {
+    this._groupService.fetchGroups().subscribe(data => {
+
+      this.groups=data;
+      this.groups.unshift(this.groups.pop());
+      this.groups[0].editMode=true;
+    }, error => {
+      console.log('Failed fetching groups');
+    });
+  }
 
   saveGroup(updatedGroup) {
     console.log(updatedGroup);
@@ -61,13 +62,13 @@ export class AllGroupsComponent implements OnInit {
     );
   }
 
-  // createGroup() {
-  //   this._groupService.createGroup({name:"new group"}).subscribe(
-  //     data =>{
-  //       this.loadGroupsAndPutNewGroupFirst();
-  //     }
-  //   );
-  // }
+  createGroup() {
+    this._groupService.createGroup({name:"new groupName"}).subscribe(
+      data =>{
+        this.loadGroupsAndPutNewGroupFirst();
+      }
+    );
+  }
 
   deleteGroup(id: number) {
     this._groupService.deleteGroup(id).subscribe(

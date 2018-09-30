@@ -4,4 +4,6 @@ export interface Entry {
   rating?: number,
   editMode?: boolean;
   group?:number;
+  delete?:boolean;
+  address?:string;
 }

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, Pipe, PipeTransform} from '@angular/core';
 import { Entry } from '../model/Entry';
 import { Group } from '../model/Group';
+import { GroupFilter } from '../model/GroupFilter';
 import { EntriesService } from '../services/entries.service';
 import { GroupsService } from '../services/groups.service';
 
@@ -20,6 +21,8 @@ export class AllEntriesComponent implements OnInit {
 
   entries: Entry[];
   groups: Group[];
+  filteredGroup: number;
+  filteredRating: number;
 
   title: string;
 
@@ -29,13 +32,16 @@ export class AllEntriesComponent implements OnInit {
   ngOnInit(): void {
     this.loadEntries();
     this.loadGroups();
+    // this.loadGroupFilters();
+    this.filteredGroup=-1;
+    this.filteredRating=1;
   }
 
 
   private loadGroups() {
     this._groupService.fetchGroups().subscribe(data => {
 
-      this.groups=data;
+      this.groups=data.sort(function(a:Group, b:Group){return a.addressbook-b.addressbook});
     }, error => {
       console.log('Failed fetching groups');
     });
@@ -49,32 +55,29 @@ export class AllEntriesComponent implements OnInit {
     });
   }
 
-  saveEntry(updatedEntry) {
-    this._dataService.updateEntry(updatedEntry).subscribe(
-      data =>{
-        this.loadEntries();
-      }
-    );
-  }
 
   createEntry() {
-    this._dataService.createEntry({name:"new Entry",editMode:true}).subscribe(
+    this._dataService.createEntry({name:"new Entry",rating:1}).subscribe(
       data =>{
         this.loadGroupsAndPutNewGroupFirst();
       }
     );
   }
 
-  deleteEntry(id: number) {
-    this._dataService.deleteEntry(id).subscribe(
-      data =>{
-        this.loadEntries();
-      }
-    );
-  }
+  // deleteEntry(id: number) {
+  //   this._dataService.deleteEntry(id).subscribe(
+  //     data =>{
+  //       this.loadEntries();
+  //     }
+  //   );
+  // }
 
-  public getGroupNameFromId(searchId: number){
-    return this.groups.find( group => group._id === searchId);
+  // public getGroupNameFromId(searchId: number){
+  //   return this.groups.find( groupName => groupName._id === searchId);
+  // }
+
+  onDeleted(): void {
+    this.loadEntries();
   }
 
   private loadGroupsAndPutNewGroupFirst() {
@@ -88,5 +91,20 @@ export class AllEntriesComponent implements OnInit {
       console.log('Failed fetching entries');
     });
   }
+
+  // private loadGroupFilters() {
+  //   this._groupService.fetchGroups().subscribe(data => {
+  //       data.forEach(group => {
+  //         var filter : GroupFilter;
+  //         filter._id=group._id;
+  //         filter.name=group.name;
+  //         filter.activated=false;
+  //         this.groupFilters.push(filter);
+  //       });
+  //       console.log("groupFilters loaded");
+  //   }, error => {
+  //     console.log('Failed fetching groups');
+  //   });
+  // }
 }
 

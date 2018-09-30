@@ -12,7 +12,7 @@
     <div class="card-body">
       <h4 class="card-title">
         <span [hidden]="addressbook.editMode">[{{addressbook._id}}] {{addressbook.name}}</span>
-        <input [hidden]="!addressbook.editMode" type="text" class="form-control" placeholder="Name" [(ngModel)]="addressbook.name">
+        <input [hidden]="!addressbook.editMode" type="text" class="form-control" placeholder="Name" [value]="addressbook.name">
       </h4>
       <p class="card-text">
         <span [hidden]="addressbook.editMode">{{addressbook.address}}</span>

@@ -1,12 +1,15 @@
 <div class="container">
-  <!--<button (click)="createGroup()" class="btn btn-primary">New Group</button>-->
+  <br>
+  <div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em">
+    <button (click)="createGroup()" class="btn btn-primary"><b>+</b></button>
+  </div>
   <br>
   <div class="card mx-auto" *ngFor='let group of groups' style="max-width: 20rem; margin-bottom:2em" [ngStyle]="{'background-color': 'hsla('+group.addressbook*1234%360+',100%,75%,0.3)'}">
     <h3 class="card-header" style="text-align: right">
       <button [hidden]="group.delete" class="btn btn-outline-danger" (click)="group.delete = true">
         <fa name="trash"></fa>
       </button>
-      <button [hidden]="!group.delete" (click)="deletegroup(group._id)" class="btn btn-danger">wirklich Löschen</button>
+      <button [hidden]="!group.delete" (click)="deleteGroup(group._id)" class="btn btn-danger">wirklich Löschen</button>
     </h3>
     <br>
     <div class="card-body">

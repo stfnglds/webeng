@@ -1,32 +1,15 @@
 const express = require('express');
-var cors = require('cors')
-
-var tingodb = require('tingodb')();
-var path = require('path');
-
-// Initialize a new SQLite DB in memory
-var database = new tingodb.Db(path.join(__dirname, '/../db'), {});
-console.log(path.join(__dirname, '/../db'));
-
-var entriesCollection = database.collection('entries');
-var groupsCollection = database.collection('groups');
-var addressbooksCollection = database.collection('addressbooks');
-
-
-
-//const Engine = require('tingodb')();
-//const db = new Engine.Db('../db/', {});
-
-
+const cors = require('cors');
+const tingodb = require('tingodb')();
+const path = require('path');
+const database = new tingodb.Db(path.join(__dirname, '/../db'), {});
+const entriesCollection = database.collection('entries');
+const groupsCollection = database.collection('groups');
+const addressbooksCollection = database.collection('addressbooks');
 const validate = require('express-jsonschema').validate;
 const util = require('util');
-
 const bodyParser = require('body-parser');
-//const database = require('../common/db').db; // IMPORTANT
-//console.log(db.collection('entries').insert({test:'test'}));
-
 const app = express();
-
 const logger = require('../common/logger');
 const utils = require('../common/utils');
 const schema = require('../common/schema');
@@ -36,8 +19,6 @@ app.use(bodyParser.json());
 
 //use CORS for Cross Requests
 app.use(cors());
-
-
 
 
 /*
@@ -119,6 +100,11 @@ app.get('/test/', (request, response) => {
  */
 
 
+/**
+ * get entry
+ *
+ * @return {Object} entry Details
+ */
 function getEntries() {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({}).toArray((error, list) => {
@@ -130,9 +116,15 @@ function getEntries() {
     }));
 }
 
+/**
+ * get entry by id
+ *
+ * @param entryId entry ID
+ * @return {Object} entry Details
+ */
 function getEntryById(entryId) {
     return new Promise(((resolve, reject) => {
-        entriesCollection.find({ _id: entryId }).toArray((error, list) => {
+        entriesCollection.find({_id: entryId}).toArray((error, list) => {
             list.forEach((part, index, theArray) => {
                 theArray[index] = part; // eslint-disable-line no-param-reassign
             });
@@ -142,13 +134,19 @@ function getEntryById(entryId) {
 }
 
 
+/**
+ * add entry
+ *
+ * @return {Object} entry Details
+ * @param newEntry
+ */
 function addEntry(newEntry) {
     // console.log(entry);
     return new Promise(((resolve, reject) => {
 
-        var dbEntry ={};
-        dbEntry.name=newEntry.name;
-        dbEntry.address=newEntry.address;
+        var dbEntry = {};
+        dbEntry.name = newEntry.name;
+        dbEntry.address = newEntry.address;
 
         entriesCollection.insert(dbEntry, (error, result) => {
             console.log(result);
@@ -165,8 +163,7 @@ app.get('/api/entries/', (req, res, next) => {
     });
 });
 
-
-app.post('/api/entries/', validate({ body: schema.EntryCreate }), (req, res) => {
+app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
     console.log(req.body);
     addEntry(req.body).then((entry) => {
         logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, entry));
@@ -197,7 +194,8 @@ function updateEntry(entryId, entry) {
     }));
 }
 
-app.put('/api/entries/:entryId', validate({ body: schema.EntryCreate }), (req, res, next) => {
+
+app.put('/api/entries/:entryId', validate({body: schema.EntryCreate}), (req, res, next) => {
     getEntryById(req.params.entryId).then((entry) => {
         if (entry == null) {
             res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
@@ -214,6 +212,13 @@ app.put('/api/entries/:entryId', validate({ body: schema.EntryCreate }), (req, r
     });
 });
 
+
+/**
+ * remove entry
+ *
+ * @return {Object} entry Details
+ * @param eventId
+ */
 function removeEntry(eventId) {
     return new Promise(((resolve, reject) => {
         const query = {
@@ -252,11 +257,15 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
  \__,_|\__,_|\__,_|_|  \___||___/___/_.__/ \___/ \___/|_|\_\
  */
 
-
-
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param addressbookId
+ */
 function getAddressbookById(addressbookId) {
     return new Promise(((resolve, reject) => {
-        addressbooksCollection.find({ _id: addressbookId }).toArray((error, list) => {
+        addressbooksCollection.find({_id: addressbookId}).toArray((error, list) => {
             list.forEach((part, index, theArray) => {
                 theArray[index] = part; // eslint-disable-line no-param-reassign
             });
@@ -264,7 +273,12 @@ function getAddressbookById(addressbookId) {
         });
     }));
 }
-
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param addressbookId
+ */
 function removeAddressbook(addressbookId) {
     return new Promise(((resolve, reject) => {
         const query = {
@@ -276,17 +290,23 @@ function removeAddressbook(addressbookId) {
     }));
 }
 
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param newAddressbook
+ */
 function addAddressbook(newAddressbook) {
     // console.log(entry);
     return new Promise(((resolve, reject) => {
 
-        var dbAddressbook ={name:"Restaurants"};
+        var dbAddressbook = {name: "Restaurants"};
         //dbAddressbook.name=newAddressbook.name;
 
         addressbooksCollection.insert(dbAddressbook, (error, result) => {
             console.log(result);
             console.log(error);
-            if(error){
+            if (error) {
                 reject(error);
             }
             resolve(result);
@@ -295,7 +315,7 @@ function addAddressbook(newAddressbook) {
 }
 
 
-app.post('/api/addressbooks/', validate({ body: schema.AddressbookCreate }), (req, res) => {
+app.post('/api/addressbooks/', validate({body: schema.AddressbookCreate}), (req, res) => {
     console.log(req.body);
     addAddressbook(req.body).then((addressbook) => {
         //logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, addressbook));
@@ -327,7 +347,7 @@ app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
  * Update entry
  *
  * @param addressbookId entry ID
- * @param entry entry data
+ * @param addressbook
  * @return {Object} entry Details
  */
 function updateAddressbook(addressbookId, addressbook) {
@@ -336,11 +356,11 @@ function updateAddressbook(addressbookId, addressbook) {
             _id: addressbookId,
         };
 
-        var updatedAddressbook={};
-        updatedAddressbook.name=addressbook.name;
+        var updatedAddressbook = {};
+        updatedAddressbook.name = addressbook.name;
 
         addressbooksCollection.update(query, addressbook, (error, item) => {
-            if(error){
+            if (error) {
                 reject(error);
             }
             resolve(item);
@@ -348,7 +368,7 @@ function updateAddressbook(addressbookId, addressbook) {
     }));
 }
 
-app.put('/api/addressbooks/:addressbookId', validate({ body: schema.AddressbookCreate }), (req, res, next) => {
+app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCreate}), (req, res, next) => {
     getAddressbookById(req.params.addressbookId).then((addressbook) => {
         if (addressbook == null) {
             res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
@@ -365,11 +385,18 @@ app.put('/api/addressbooks/:addressbookId', validate({ body: schema.AddressbookC
     });
 });
 
+
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param addressbookId
+ */
 function getAddressbooks() {
     return new Promise(((resolve, reject) => {
         addressbooksCollection.find({}).toArray((error, list) => {
             console.log(error);
-            if(error){
+            if (error) {
                 resolve(error);
             }
             resolve(list);
@@ -403,6 +430,7 @@ app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
     });
 });
+
 /*
   __ _ _ __ ___  _   _ _ __  ___
  / _` | '__/ _ \| | | | '_ \/ __|
@@ -412,10 +440,15 @@ app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
  |___/                |_|
  */
 
-
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param addressbookId
+ */
 function getGroupById(groupId) {
     return new Promise(((resolve, reject) => {
-        groupsCollection.find({ _id: groupId }).toArray((error, list) => {
+        groupsCollection.find({_id: groupId}).toArray((error, list) => {
             list.forEach((part, index, theArray) => {
                 theArray[index] = part; // eslint-disable-line no-param-reassign
             });
@@ -423,7 +456,12 @@ function getGroupById(groupId) {
         });
     }));
 }
-
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param addressbookId
+ */
 function removeGroup(groupId) {
     return new Promise(((resolve, reject) => {
         const query = {
@@ -434,13 +472,18 @@ function removeGroup(groupId) {
         });
     }));
 }
-
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param addressbookId
+ */
 function addGroup(newGroup) {
     // console.log(entry);
     return new Promise(((resolve, reject) => {
 
-        var dbGroup ={};
-        dbGroup.name=newGroup.name;
+        var dbGroup = {};
+        dbGroup.name = newGroup.name;
 
         groupsCollection.insert(dbGroup, (error, result) => {
             console.log(result);
@@ -450,31 +493,22 @@ function addGroup(newGroup) {
 }
 
 
-app.post('/api/groups/', validate({ body: schema.GroupCreate }), (req, res) => {
+app.post('/api/groups/', validate({body: schema.GroupCreate}), (req, res) => {
     console.log(req.body);
     addGroup(req.body).then((group) => {
-        //logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, group));
+        //logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, groupName));
         res.json(group);
     }, (err) => {
         //logger.debug(util.format('POST /calendar/%s/events - 500', req.userId));
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to create group %s', err)));
+        res.status(500).json(utils.createErrorObject(131, util.format('Failed to create groupName %s', err)));
     });
 });
 
 app.get('/api/groups/:groupId', (req, res, next) => {
-    getGroupById(req.params.id).then((group) => {
-        if (group == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown group ID %s', req.params.groupId)));
-            return;
-        }
-
-        removeGroup(req.params.groupId).then(() => {
-            res.sendStatus(204);
-        }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
-        });
+    getGroupById(req.params.groupId).then((group) => {
+        res.json(group);
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+        res.status(500).json(utils.createErrorObject(131, util.format('Failed to get groupName %s', err)));
     });
 });
 
@@ -491,11 +525,11 @@ function updateGroup(groupId, group) {
             _id: groupId,
         };
 
-        var updatedGroup={};
-        updatedGroup.name=group.name;
+        var updatedGroup = {};
+        updatedGroup.name = group.name;
 
         groupsCollection.update(query, group, (error, item) => {
-            if(error){
+            if (error) {
                 reject(error);
             }
             resolve(item);
@@ -503,23 +537,28 @@ function updateGroup(groupId, group) {
     }));
 }
 
-app.put('/api/groups/:groupId', validate({ body: schema.GroupCreate }), (req, res, next) => {
+app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         if (group == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown group ID %s', req.params.groupId)));
+            res.status(404).json(utils.createErrorObject(151, util.format('Unknown groupName ID %s', req.params.groupId)));
             return;
         }
 
         updateGroup(req.params.groupId, req.body).then(() => {
             res.json(group);
         }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
         });
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to update group %s', err)));
+        res.status(500).json(utils.createErrorObject(131, util.format('Failed to update groupName %s', err)));
     });
 });
-
+/**
+ * get addressbook by id
+ *
+ * @return {Object} entry Details
+ * @param addressbookId
+ */
 function getGroups() {
     return new Promise(((resolve, reject) => {
         groupsCollection.find({}).toArray((error, list) => {
@@ -539,19 +578,19 @@ app.get('/api/groups/', (req, res, next) => {
 
 
 app.delete('/api/groups/:groupId', (req, res, next) => {
-    getGroupById(req.params.id).then((group) => {
+    getGroupById(req.params.groupId).then((group) => {
         if (group == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown group ID %s', req.params.groupId)));
+            res.status(404).json(utils.createErrorObject(151, util.format('Unknown groupName ID %s', req.params.groupId)));
             return;
         }
 
         removeGroup(req.params.groupId).then(() => {
             res.sendStatus(204);
         }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
         });
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete group %s', err)));
+        res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
     });
 });
 

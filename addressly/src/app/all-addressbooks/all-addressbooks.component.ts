@@ -13,8 +13,6 @@ export class AllAddressbooksComponent implements OnInit {
 
   addressbooks: Addressbook[];
 
-  title: string;
-
   ngOnInit(): void {
     this.loadAddressbooks();
   }

@@ -34,4 +34,8 @@ export class GroupsService {
     return this.http.delete<any>(this.webServiceUrl + id);
   }
 
+  public getGroupById(id: number): Observable<any> {
+    return this.http.get<any>(this.webServiceUrl + id);
+  }
+
 }
