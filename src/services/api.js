@@ -108,10 +108,17 @@ app.get('/test/', (request, response) => {
 function getEntries() {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({}).toArray((error, list) => {
-            list.forEach((part, index, theArray) => {
-                theArray[index] = part; // eslint-disable-line no-param-reassign
-            });
-            resolve(list);
+            if(error){
+                console.log(error);
+                resolve(error);
+            }
+            if(list){
+                list.forEach((part, index, theArray) => {
+                    theArray[index] = part; // eslint-disable-line no-param-reassign
+                });
+                resolve(list);
+            }
+
         });
     }));
 }
@@ -189,6 +196,9 @@ function updateEntry(entryId, entry) {
         };
 
         entriesCollection.update(query, entry, (error, item) => {
+            if(error){
+                resolve(error);
+            }
             resolve(item);
         });
     }));
@@ -225,7 +235,11 @@ function removeEntry(eventId) {
             _id: eventId,
         };
         entriesCollection.remove(query, (error, item) => {
-            resolve();
+            if(error){
+                resolve(error);
+            }else {
+                resolve();
+            }
         });
     }));
 }
