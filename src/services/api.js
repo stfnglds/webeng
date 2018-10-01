@@ -109,6 +109,7 @@ function getEntries() {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({}).toArray((error, list) => {
             if(error){
+                console.log(error);
                 resolve(error);
             }
             if(list){
