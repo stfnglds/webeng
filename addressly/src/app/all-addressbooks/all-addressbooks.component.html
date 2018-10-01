@@ -1,0 +1,28 @@
+<div class="container">
+  <!--<button (click)="createAddressbook()" class="btn btn-primary">New Addressbook</button>-->
+  <br>
+  <div class="card mx-auto" *ngFor='let addressbook of addressbooks' style="max-width: 20rem; margin-bottom:2em">
+    <h3 class="card-header" style="text-align: right">
+      <button [hidden]="addressbook.delete" class="btn btn-outline-danger" (click)="addressbook.delete = true">
+        <fa name="trash"></fa>
+      </button>
+      <button [hidden]="!addressbook.delete" (click)="deleteAddressbook(addressbook._id)" class="btn btn-danger">wirklich Löschen</button>
+    </h3>
+    <br>
+    <div class="card-body">
+      <h4 class="card-title">
+        <span [hidden]="addressbook.editMode">[{{addressbook._id}}] {{addressbook.name}}</span>
+        <input [hidden]="!addressbook.editMode" type="text" class="form-control" placeholder="Name" [value]="addressbook.name">
+      </h4>
+      <p class="card-text">
+        <span [hidden]="addressbook.editMode">{{addressbook.address}}</span>
+      </p>
+      <button [hidden]="addressbook.editMode" (click)="addressbook.editMode = !addressbook.editMode" class="btn btn-primary">Edit</button>
+      <button [hidden]="!addressbook.editMode" (click)="addressbook.editMode = !addressbook.editMode; saveAddressbook(addressbook);"
+              class="btn btn-success">Save
+      </button>
+
+    </div>
+  </div>
+
+</div>

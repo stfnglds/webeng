@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllEntriesComponent } from './all-entries.component';
+import { AllGroupsComponent } from './all-groups.component';
 
-describe('AllEntriesComponent', () => {
-  let component: AllEntriesComponent;
-  let fixture: ComponentFixture<AllEntriesComponent>;
+describe('AllGroupsComponent', () => {
+  let component: AllGroupsComponent;
+  let fixture: ComponentFixture<AllGroupsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllEntriesComponent ]
+      declarations: [ AllGroupsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AllEntriesComponent);
+    fixture = TestBed.createComponent(AllGroupsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,5 +22,8 @@ describe('AllEntriesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
 
 });

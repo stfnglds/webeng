@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllEntriesComponent } from './all-entries.component';
+import { AllAddressbooksComponent } from './all-addressbooks.component';
 
-describe('AllEntriesComponent', () => {
-  let component: AllEntriesComponent;
-  let fixture: ComponentFixture<AllEntriesComponent>;
+describe('AllAddressbooksComponent', () => {
+  let component: AllAddressbooksComponent;
+  let fixture: ComponentFixture<AllAddressbooksComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllEntriesComponent ]
+      declarations: [ AllAddressbooksComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AllEntriesComponent);
+    fixture = TestBed.createComponent(AllAddressbooksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,5 +22,4 @@ describe('AllEntriesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });
