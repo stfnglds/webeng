@@ -31,7 +31,9 @@ app.use(cors());
   __/ |
  |___/
  */
-
+/**
+ *
+ */
 app.use((err, req, res, next) => {
 // Enable CORS for local testing
     res.header('Access-Control-Allow-Origin', '*');
@@ -82,7 +84,9 @@ app.use((err, req, res, next) => {
     }
 });
 
-
+/**
+ *
+ */
 app.get('/test/', (request, response) => {
     console.log(request.body); // your JSON
     response.send(request.body); // echo the result back
@@ -126,7 +130,7 @@ function getEntries() {
 /**
  * get entry by id
  *
- * @param entryId entry ID
+ * @param {number} entryId entry ID
  * @return {Object} entry Details
  */
 function getEntryById(entryId) {
@@ -140,13 +144,13 @@ function getEntryById(entryId) {
     }));
 }
 
-
 /**
  * add entry
  *
  * @return {Object} entry Details
- * @param newEntry
+ * @param {Object}newEntry
  */
+
 function addEntry(newEntry) {
     // console.log(entry);
     return new Promise(((resolve, reject) => {
@@ -162,6 +166,9 @@ function addEntry(newEntry) {
     }));
 }
 
+/**
+ *
+ */
 app.get('/api/entries/', (req, res, next) => {
     getEntries().then((entries) => {
         res.json(entries);
@@ -169,7 +176,9 @@ app.get('/api/entries/', (req, res, next) => {
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve entries %s', err)));
     });
 });
-
+/**
+ *
+ */
 app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
     console.log(req.body);
     addEntry(req.body).then((entry) => {
@@ -185,8 +194,8 @@ app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
 /**
  * Update entry
  *
- * @param entryId entry ID
- * @param entry entry data
+ * @param {Number} entryId entry ID
+ * @param {Object} entry original entry data
  * @return {Object} entry Details
  */
 function updateEntry(entryId, entry) {
@@ -204,7 +213,9 @@ function updateEntry(entryId, entry) {
     }));
 }
 
-
+/**
+ *
+ */
 app.put('/api/entries/:entryId', validate({body: schema.EntryCreate}), (req, res, next) => {
     getEntryById(req.params.entryId).then((entry) => {
         if (entry == null) {
@@ -225,9 +236,7 @@ app.put('/api/entries/:entryId', validate({body: schema.EntryCreate}), (req, res
 
 /**
  * remove entry
- *
- * @return {Object} entry Details
- * @param eventId
+ * @param {Number} eventId event ID
  */
 function removeEntry(eventId) {
     return new Promise(((resolve, reject) => {
@@ -244,6 +253,9 @@ function removeEntry(eventId) {
     }));
 }
 
+/**
+ *
+ */
 app.delete('/api/entries/:entryId', (req, res, next) => {
     getEntryById(req.params.id).then((entry) => {
         if (entry == null) {
@@ -274,8 +286,8 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
 /**
  * get addressbook by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} adressbook Details
+ * @param {Number} addressbookId
  */
 function getAddressbookById(addressbookId) {
     return new Promise(((resolve, reject) => {
@@ -288,13 +300,12 @@ function getAddressbookById(addressbookId) {
     }));
 }
 /**
- * get addressbook by id
+ * remove addressbook by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @param {Number} addressbookId
  */
 function removeAddressbook(addressbookId) {
-    return new Promise(((resolve, reject) => {
+    return new Promise(((resolve, reject) => {  addressbooksCollection
         const query = {
             _id: addressbookId,
         };
@@ -305,10 +316,10 @@ function removeAddressbook(addressbookId) {
 }
 
 /**
- * get addressbook by id
+ * create new addressbook
  *
- * @return {Object} entry Details
- * @param newAddressbook
+ * @return {Object} addresbook Details
+ * @param {Object} newAddressbook
  */
 function addAddressbook(newAddressbook) {
     // console.log(entry);
@@ -328,7 +339,9 @@ function addAddressbook(newAddressbook) {
     }));
 }
 
-
+/**
+ *
+ */
 app.post('/api/addressbooks/', validate({body: schema.AddressbookCreate}), (req, res) => {
     console.log(req.body);
     addAddressbook(req.body).then((addressbook) => {
@@ -339,7 +352,9 @@ app.post('/api/addressbooks/', validate({body: schema.AddressbookCreate}), (req,
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to create addressbook %s', err)));
     });
 });
-
+/**
+ *
+ */
 app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
     getAddressbookById(req.params.id).then((addressbook) => {
         if (addressbook == null) {
@@ -358,11 +373,11 @@ app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
 });
 
 /**
- * Update entry
+ * Update addressbook
  *
- * @param addressbookId entry ID
- * @param addressbook
- * @return {Object} entry Details
+ * @param {Number} addressbookId addressbook ID
+ * @param {Object} addressbook
+ * @return {Object} new addressbook Details
  */
 function updateAddressbook(addressbookId, addressbook) {
     return new Promise(((resolve, reject) => {
@@ -382,6 +397,9 @@ function updateAddressbook(addressbookId, addressbook) {
     }));
 }
 
+/**
+ *
+ */
 app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCreate}), (req, res, next) => {
     getAddressbookById(req.params.addressbookId).then((addressbook) => {
         if (addressbook == null) {
@@ -401,10 +419,9 @@ app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCr
 
 
 /**
- * get addressbook by id
+ * get all addressbooks
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} addressbooks Details
  */
 function getAddressbooks() {
     return new Promise(((resolve, reject) => {
@@ -418,7 +435,9 @@ function getAddressbooks() {
     }));
 }
 
-
+/**
+ *
+ */
 app.get('/api/addressbooks/', (req, res, next) => {
     getAddressbooks().then((addressbooks) => {
         res.json(addressbooks);
@@ -427,7 +446,9 @@ app.get('/api/addressbooks/', (req, res, next) => {
     });
 });
 
-
+/**
+ *
+ */
 app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
     getAddressbookById(req.params.id).then((addressbook) => {
         if (addressbook == null) {
@@ -506,7 +527,9 @@ function addGroup(newGroup) {
     }));
 }
 
-
+/**
+ *
+ */
 app.post('/api/groups/', validate({body: schema.GroupCreate}), (req, res) => {
     console.log(req.body);
     addGroup(req.body).then((group) => {
@@ -517,7 +540,9 @@ app.post('/api/groups/', validate({body: schema.GroupCreate}), (req, res) => {
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to create groupName %s', err)));
     });
 });
-
+/**
+ *
+ */
 app.get('/api/groups/:groupId', (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         res.json(group);
@@ -551,6 +576,9 @@ function updateGroup(groupId, group) {
     }));
 }
 
+/**
+ *
+ */
 app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         if (group == null) {
@@ -581,7 +609,9 @@ function getGroups() {
     }));
 }
 
-
+/**
+ *
+ */
 app.get('/api/groups/', (req, res, next) => {
     getGroups().then((groups) => {
         res.json(groups);
@@ -590,7 +620,9 @@ app.get('/api/groups/', (req, res, next) => {
     });
 });
 
-
+/**
+ *
+ */
 app.delete('/api/groups/:groupId', (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         if (group == null) {
@@ -608,7 +640,9 @@ app.delete('/api/groups/:groupId', (req, res, next) => {
     });
 });
 
-
+/**
+ *
+ */
 app.listen(3000, () => {
     console.log('Example app listening on port 3000!');
 });
