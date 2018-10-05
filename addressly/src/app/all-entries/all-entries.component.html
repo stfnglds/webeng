@@ -18,9 +18,9 @@
 
   <div class="container">
   <div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em">
-    <button (click)="createEntry()" class="btn btn-primary"><b>+</b></button>
+    <button (click)="createEntry()" class="btn btn-primary newEntryButton"><b>+</b></button>
   </div>
-  <div *ngFor='let entry of entries'>
+  <div *ngFor='let entry of entries' class="entryCardsContainer">
     <app-entry-card [in]="entry" (deleted)="onDeleted()"  [hidden]="((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating"></app-entry-card>
   </div>
   <!--<div class="card mx-auto" *ngFor='let entry of entries' style="max-width: 20rem; margin-bottom:2em"  [ngStyle]="{'background-color': 'hsla('+entry.groupName*1234%360+',100%,75%,0.3)'}">-->
