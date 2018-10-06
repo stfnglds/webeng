@@ -31,9 +31,7 @@ app.use(cors());
   __/ |
  |___/
  */
-/**
- *
- */
+
 app.use((err, req, res, next) => {
 // Enable CORS for local testing
     res.header('Access-Control-Allow-Origin', '*');
@@ -84,9 +82,7 @@ app.use((err, req, res, next) => {
     }
 });
 
-/**
- *
- */
+
 app.get('/test/', (request, response) => {
     console.log(request.body); // your JSON
     response.send(request.body); // echo the result back
@@ -166,9 +162,7 @@ function addEntry(newEntry) {
     }));
 }
 
-/**
- *
- */
+
 app.get('/api/entries/', (req, res, next) => {
     getEntries().then((entries) => {
         res.json(entries);
@@ -176,9 +170,8 @@ app.get('/api/entries/', (req, res, next) => {
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve entries %s', err)));
     });
 });
-/**
- *
- */
+
+
 app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
     console.log(req.body);
     addEntry(req.body).then((entry) => {
@@ -213,9 +206,7 @@ function updateEntry(entryId, entry) {
     }));
 }
 
-/**
- *
- */
+
 app.put('/api/entries/:entryId', validate({body: schema.EntryCreate}), (req, res, next) => {
     getEntryById(req.params.entryId).then((entry) => {
         if (entry == null) {
@@ -253,9 +244,7 @@ function removeEntry(eventId) {
     }));
 }
 
-/**
- *
- */
+
 app.delete('/api/entries/:entryId', (req, res, next) => {
     getEntryById(req.params.id).then((entry) => {
         if (entry == null) {
@@ -339,9 +328,7 @@ function addAddressbook(newAddressbook) {
     }));
 }
 
-/**
- *
- */
+
 app.post('/api/addressbooks/', validate({body: schema.AddressbookCreate}), (req, res) => {
     console.log(req.body);
     addAddressbook(req.body).then((addressbook) => {
@@ -352,9 +339,7 @@ app.post('/api/addressbooks/', validate({body: schema.AddressbookCreate}), (req,
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to create addressbook %s', err)));
     });
 });
-/**
- *
- */
+
 app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
     getAddressbookById(req.params.id).then((addressbook) => {
         if (addressbook == null) {
@@ -397,9 +382,7 @@ function updateAddressbook(addressbookId, addressbook) {
     }));
 }
 
-/**
- *
- */
+
 app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCreate}), (req, res, next) => {
     getAddressbookById(req.params.addressbookId).then((addressbook) => {
         if (addressbook == null) {
@@ -435,9 +418,7 @@ function getAddressbooks() {
     }));
 }
 
-/**
- *
- */
+
 app.get('/api/addressbooks/', (req, res, next) => {
     getAddressbooks().then((addressbooks) => {
         res.json(addressbooks);
@@ -446,9 +427,7 @@ app.get('/api/addressbooks/', (req, res, next) => {
     });
 });
 
-/**
- *
- */
+
 app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
     getAddressbookById(req.params.id).then((addressbook) => {
         if (addressbook == null) {
@@ -476,10 +455,10 @@ app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
  */
 
 /**
- * get addressbook by id
+ * get groups by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} groups Details
+ * @param {Number} groupId
  */
 function getGroupById(groupId) {
     return new Promise(((resolve, reject) => {
@@ -492,10 +471,9 @@ function getGroupById(groupId) {
     }));
 }
 /**
- * get addressbook by id
+ * remove group by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @param {Number}groupId
  */
 function removeGroup(groupId) {
     return new Promise(((resolve, reject) => {
@@ -508,10 +486,10 @@ function removeGroup(groupId) {
     }));
 }
 /**
- * get addressbook by id
+ * add groups
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} group Details
+ * @param {Object}newGroup new group data
  */
 function addGroup(newGroup) {
     // console.log(entry);
@@ -527,9 +505,7 @@ function addGroup(newGroup) {
     }));
 }
 
-/**
- *
- */
+
 app.post('/api/groups/', validate({body: schema.GroupCreate}), (req, res) => {
     console.log(req.body);
     addGroup(req.body).then((group) => {
@@ -540,9 +516,8 @@ app.post('/api/groups/', validate({body: schema.GroupCreate}), (req, res) => {
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to create groupName %s', err)));
     });
 });
-/**
- *
- */
+
+
 app.get('/api/groups/:groupId', (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         res.json(group);
@@ -552,11 +527,11 @@ app.get('/api/groups/:groupId', (req, res, next) => {
 });
 
 /**
- * Update entry
+ * Update group
  *
- * @param groupId entry ID
- * @param entry entry data
- * @return {Object} entry Details
+ * @param groupId group ID
+ * @param group group data
+ * @return {Object} group Details
  */
 function updateGroup(groupId, group) {
     return new Promise(((resolve, reject) => {
@@ -576,9 +551,7 @@ function updateGroup(groupId, group) {
     }));
 }
 
-/**
- *
- */
+
 app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         if (group == null) {
@@ -596,10 +569,9 @@ app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res,
     });
 });
 /**
- * get addressbook by id
+ * get all groups
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} group Details
  */
 function getGroups() {
     return new Promise(((resolve, reject) => {
@@ -609,9 +581,7 @@ function getGroups() {
     }));
 }
 
-/**
- *
- */
+
 app.get('/api/groups/', (req, res, next) => {
     getGroups().then((groups) => {
         res.json(groups);
@@ -620,9 +590,7 @@ app.get('/api/groups/', (req, res, next) => {
     });
 });
 
-/**
- *
- */
+
 app.delete('/api/groups/:groupId', (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         if (group == null) {
@@ -640,9 +608,7 @@ app.delete('/api/groups/:groupId', (req, res, next) => {
     });
 });
 
-/**
- *
- */
+
 app.listen(3000, () => {
     console.log('Example app listening on port 3000!');
 });
