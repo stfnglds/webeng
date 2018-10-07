@@ -108,11 +108,11 @@ app.get('/test/', (request, response) => {
 function getEntries() {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({}).toArray((error, list) => {
-            if(error){
+            if (error) {
                 console.log(error);
-                resolve(error);
+                reject(error);
             }
-            if(list){
+            if (list) {
                 list.forEach((part, index, theArray) => {
                     theArray[index] = part; // eslint-disable-line no-param-reassign
                 });
@@ -156,8 +156,14 @@ function addEntry(newEntry) {
         dbEntry.address = newEntry.address;
 
         entriesCollection.insert(dbEntry, (error, result) => {
-            console.log(result);
-            resolve(result);
+            if (error) {
+                console.log(error);
+                reject(error);
+            }
+            if (result) {
+                console.log(result);
+                resolve(result);
+            }
         });
     }));
 }
@@ -196,10 +202,13 @@ function updateEntry(entryId, entry) {
         };
 
         entriesCollection.update(query, entry, (error, item) => {
-            if(error){
-                resolve(error);
+            if (error) {
+                reject(error);
             }
-            resolve(item);
+            if (item) {
+                resolve(item);
+            }
+
         });
     }));
 }
@@ -235,9 +244,10 @@ function removeEntry(eventId) {
             _id: eventId,
         };
         entriesCollection.remove(query, (error, item) => {
-            if(error){
-                resolve(error);
-            }else {
+            if (error) {
+                reject(error);
+            }
+            if (item) {
                 resolve();
             }
         });
@@ -280,13 +290,20 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
 function getAddressbookById(addressbookId) {
     return new Promise(((resolve, reject) => {
         addressbooksCollection.find({_id: addressbookId}).toArray((error, list) => {
-            list.forEach((part, index, theArray) => {
-                theArray[index] = part; // eslint-disable-line no-param-reassign
-            });
-            resolve(list);
+            if (error) {
+                console.log(error);
+                reject(error);
+            }
+            if (list) {
+                list.forEach((part, index, theArray) => {
+                    theArray[index] = part; // eslint-disable-line no-param-reassign
+                });
+                resolve(list);
+            }
         });
     }));
 }
+
 /**
  * get addressbook by id
  *
@@ -299,7 +316,13 @@ function removeAddressbook(addressbookId) {
             _id: addressbookId,
         };
         addressbooksCollection.remove(query, (error, item) => {
-            resolve();
+            if (error) {
+                console.log(error);
+                reject(error);
+            }
+            if (item) {
+                resolve();
+            }
         });
     }));
 }
@@ -318,12 +341,15 @@ function addAddressbook(newAddressbook) {
         //dbAddressbook.name=newAddressbook.name;
 
         addressbooksCollection.insert(dbAddressbook, (error, result) => {
-            console.log(result);
-            console.log(error);
+
             if (error) {
+                console.log(error);
                 reject(error);
             }
-            resolve(result);
+            if (result) {
+                console.log(result);
+                resolve(result);
+            }
         });
     }));
 }
@@ -377,7 +403,9 @@ function updateAddressbook(addressbookId, addressbook) {
             if (error) {
                 reject(error);
             }
-            resolve(item);
+            if (item) {
+                resolve(item);
+            }
         });
     }));
 }
@@ -411,9 +439,11 @@ function getAddressbooks() {
         addressbooksCollection.find({}).toArray((error, list) => {
             console.log(error);
             if (error) {
-                resolve(error);
+                reject(error);
             }
-            resolve(list);
+            if (list) {
+                resolve(list);
+            }
         });
     }));
 }
@@ -463,13 +493,19 @@ app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
 function getGroupById(groupId) {
     return new Promise(((resolve, reject) => {
         groupsCollection.find({_id: groupId}).toArray((error, list) => {
-            list.forEach((part, index, theArray) => {
-                theArray[index] = part; // eslint-disable-line no-param-reassign
-            });
-            resolve(list);
+            if (error) {
+                reject(error);
+            }
+            if (list) {
+                list.forEach((part, index, theArray) => {
+                    theArray[index] = part; // eslint-disable-line no-param-reassign
+                });
+                resolve(list);
+            }
         });
     }));
 }
+
 /**
  * get addressbook by id
  *
@@ -482,10 +518,15 @@ function removeGroup(groupId) {
             _id: groupId,
         };
         groupsCollection.remove(query, (error, item) => {
-            resolve();
+            if (error) {
+                reject(error);
+            } else {
+                resolve();
+            }
         });
     }));
 }
+
 /**
  * get addressbook by id
  *
@@ -500,8 +541,13 @@ function addGroup(newGroup) {
         dbGroup.name = newGroup.name;
 
         groupsCollection.insert(dbGroup, (error, result) => {
-            console.log(result);
-            resolve(result);
+            if(error){
+                reject(error);
+            }
+            if(result) {
+                console.log(result);
+                resolve(result);
+            }
         });
     }));
 }
@@ -546,7 +592,10 @@ function updateGroup(groupId, group) {
             if (error) {
                 reject(error);
             }
-            resolve(item);
+            if(item){
+                resolve(item);
+            }
+
         });
     }));
 }
@@ -567,6 +616,7 @@ app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res,
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to update groupName %s', err)));
     });
 });
+
 /**
  * get addressbook by id
  *
@@ -576,7 +626,12 @@ app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res,
 function getGroups() {
     return new Promise(((resolve, reject) => {
         groupsCollection.find({}).toArray((error, list) => {
-            resolve(list);
+            if (error) {
+                reject(error);
+            }
+            if(list){
+                resolve(list);
+            }
         });
     }));
 }
@@ -589,7 +644,6 @@ app.get('/api/groups/', (req, res, next) => {
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
     });
 });
-
 
 app.delete('/api/groups/:groupId', (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {

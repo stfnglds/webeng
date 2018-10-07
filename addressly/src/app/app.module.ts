@@ -21,10 +21,10 @@ import { EntryCardComponent } from './entry-card/entry-card.component';
 
 
 const appRoutes: Routes = [
+  { path: '**', redirectTo: 'entries'},
   { path: 'entries', component: AllEntriesComponent },
   { path: 'groups', component: AllGroupsComponent },
-  { path: 'addressbooks', component: AllAddressbooksComponent },
-  { path: '**', component: OverviewComponent },
+  { path: 'addressbooks', component: AllAddressbooksComponent }
 ];
 
 @NgModule({
