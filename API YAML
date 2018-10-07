@@ -5,11 +5,11 @@ info:
 host: localhost
 tags:
   - name: Entries
-    description: Entries of books
-  - name: Books
-    description: Everything about Books
+    description: Entries of addressbooks
+  - name: Addressbooks
+    description: Everything about Addresbooks
   - name: Groups
-    description: Groups for entries of books
+    description: Groups for entries of addressbooks
 
 schemes:
   - https
@@ -37,7 +37,7 @@ paths:
     post:
       tags:
         - Entries
-      summary: Add a new entrie to a book/group
+      summary: Add a new entrie to a addressbook/group
       parameters:
         - in: body
           name: body
@@ -114,19 +114,20 @@ paths:
         '404':
           description: Entrie not found
 
-  /books:
+  /addressbooks:
     get:
       tags:
-        - Books
+        - Addressbooks
       summary: Get all books
 
       responses:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Books'
+            $ref: '#/definitions/Addressbooks'
         '404':
           description: No book found
+
 
   /group:
 
@@ -177,7 +178,7 @@ paths:
           description: Group not found
 
 definitions:
-  Books:
+  Addressbooks:
     type: object
     properties:
       id:
@@ -186,7 +187,7 @@ definitions:
       name:
         type: string
     xml:
-      name: Books
+      name: Addressbooks
   Groups:
     type: object
     properties:
