@@ -3,6 +3,50 @@
 
 $font-family-sans-serif: "Raleway", Roboto, "Helvetica Neue", Arial, sans-serif;
 
+
+
+
+body {
+  background-image: url(assets/just-waves.png);
+}
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret:              false !default;
+$enable-rounded:            true !default;
+$enable-shadows:            false !default;
+$enable-gradients:          false !default;
+$enable-transitions:        true !default;
+$enable-hover-media-query:  false !default; // Deprecated, no longer affects any compiled CSS
+$enable-grid-classes:       true !default;
+$enable-print-styles:       true !default;
+
+$blue:    #2C3E50 !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #E74C3C !default;
+$orange:  #fd7e14 !default;
+$yellow:  #F39C12 !default;
+$green:   #18BC9C !default;
+$teal:    #20c997 !default;
+$cyan:    #3498DB !default;
+$navbar_text_color: #009877 !default;
+
+$navbar-light-color:                rgba($navbar_text_color, .5) !default;
+$navbar-light-hover-color:          rgba($navbar_text_color, .7) !default;
+$navbar-light-active-color:         rgba($navbar_text_color, .9) !default;
+$navbar-light-disabled-color:       rgba($navbar_text_color, .3) !default;
+$navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-light-toggler-border-color: rgba($navbar_text_color, .1) !default;
+
+.card-header > button{
+  margin-right:0.5em;
+}
+
+
 // Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 

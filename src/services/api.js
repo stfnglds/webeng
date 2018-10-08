@@ -242,7 +242,13 @@ function updateEntry(entryId, entry) {
             _id: entryId,
         };
 
-        entriesCollection.update(query, entry, (error, item) => {
+        var dbEntry = {};
+        dbEntry.name=entry.name;
+        dbEntry.address=entry.address;
+        dbEntry.rating=entry.rating;
+        dbEntry.group=entry.group;
+
+        entriesCollection.update(query, dbEntry, (error, item) => {
             if (error) {
                 reject(error);
             }
@@ -377,8 +383,8 @@ function addAddressbook(newAddressbook) {
     // console.log(entry);
     return new Promise(((resolve, reject) => {
 
-        var dbAddressbook = {name: "Restaurants"};
-        //dbAddressbook.name=newAddressbook.name;
+        var dbAddressbook = {};
+        dbAddressbook.name=newAddressbook.name;
 
         addressbooksCollection.insert(dbAddressbook, (error, result) => {
 

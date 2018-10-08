@@ -35,14 +35,25 @@ export class AllAddressbooksComponent implements OnInit {
     );
   }
 
-  // createAddressbook() {
-  //   this._addressbookService.createAddressbook({name:"new addressbook"}).subscribe(
-  //     data =>{
-  //       this.loadAddressbooksAndPutNewAddressbookFirst();
-  //     }
-  //   );
-  // }
+  createAddressbook() {
+    this._addressbookService.createAddressbook({name:"new addressbook"}).subscribe(
+      data =>{
+        this.loadAddressbooksAndPutNewAddressbookFirst();
+      }
+    );
+  }
 
+  private loadAddressbooksAndPutNewAddressbookFirst() {
+    this._addressbookService.fetchAddressbooks().subscribe(data => {
+
+      this.addressbooks=data;
+      this.addressbooks.unshift(this.addressbooks.pop());
+      this.addressbooks[0].editMode=true;
+    }, error => {
+      console.log('Failed fetching addressbooks');
+    });
+  }
+  
   deleteAddressbook(id: number) {
     this._addressbookService.deleteAddressbook(id).subscribe(
       data =>{

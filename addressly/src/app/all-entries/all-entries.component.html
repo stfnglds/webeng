@@ -1,4 +1,5 @@
 <div class="container filterContainer">
+  <br>
   <h5>Filters</h5>
   <!--<div *ngFor='let group of groups' class="groupInAddressbookContainer" [ngStyle]="{'background-color': 'hsla('+group.addressbook*300%360+',50%,50%,0.7)'}" >-->
   <!--<button class="btn btn-primary btn-filter" (click)="filteredGroup = (filteredGroup==group._id ? -1 : group._id)"-->
@@ -8,7 +9,7 @@
   <!--</div>-->
 
   <div *ngFor="let addressbookList of groups | groupBy: 'addressbook'" class="groupInAddressbookContainer"
-       [ngStyle]="{'background-color': 'hsla('+addressbookList.key*300%360+',50%,50%,0.7)'}">
+       [ngStyle]="{'background-color': 'hsla('+addressbookList.key*300%360+',100%,90%,1'}">
     <div *ngFor="let addressbook of addressbooks">
       <h6 *ngIf="addressbook._id==addressbookList.key">{{addressbook.name}}</h6>
     </div>
