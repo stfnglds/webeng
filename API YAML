@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: 1.0.0
+  version: 2.0.0
   title: Adressbooks
 host: localhost
 tags:
@@ -25,13 +25,13 @@ paths:
           name: id
           type: integer
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             type: array
             items:
               $ref: '#/definitions/Entries'
-        '400':
+        400:
           description: Invalid status value
 
     post:
@@ -60,17 +60,17 @@ paths:
                   maximum: 10
 
       responses:
-        '405':
+        405:
           description: Invalid input
 
-  /entries/{id}:
+  /entries/{entryId}:
     put:
       tags:
         - Entries
       summary: Update an existing entrie
       parameters:
         - in: path
-          name: id
+          name: entryId
           required: true
           type: integer
         - in: body
@@ -93,11 +93,11 @@ paths:
                   minimum: 1
                   maximum: 10
       responses:
-        '400':
+        400:
           description: Invalid ID supplied
-        '404':
+        404:
           description: Entrie not found
-        '405':
+        405:
           description: Validation exception
     delete:
       tags:
@@ -105,44 +105,101 @@ paths:
       summary: Deletes a entrie
       parameters:
           - in: path
-            name: id
+            name: entryId
             required: true
             type: integer
       responses:
-        '400':
+        400:
           description: Invalid ID supplied
-        '404':
+        404:
           description: Entrie not found
 
   /addressbooks:
     get:
       tags:
         - Addressbooks
-      summary: Get all books
+      summary: Get all addressbooks
 
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/Addressbooks'
-        '404':
+        404:
           description: No book found
+    post:
+      tags:
+        - Addressbooks
+      summary: Create a new addressbook
+      parameters:
+        - in: body
+          name: Addressbook name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok
+        405:
+          description: Invalid input
 
 
-  /group:
+
+  /addressbooks/{addressbookId}:
+    get:
+      tags:
+      - Addressbooks
+      summary: Get one addressbook by id
+      parameters:
+        - in: path
+          name: addressbookId
+          required: true
+          type: integer
+      responses:
+        200:
+          description: succcessful operation
+          schema:
+            $ref: '#/definitions/Addressbooks'
+    put:
+      tags:
+      - Addressbooks
+      parameters:
+        - in: path
+          name: addressbookId
+          required: true
+          type: integer
+      responses:
+         200:
+          description: succcessful operation
+    delete:
+      tags:
+      - Addressbooks
+      parameters:
+        - in: path
+          name: addressbookId
+          required: true
+          type: integer
+      responses:
+         200:
+          description: succcessful operation
+
+
+
+
+  /groups:
 
     get:
       tags:
         - Groups
       summary: Get all groups
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             type: array
             items:
               $ref: '#/definitions/Groups'
-        '400':
+        400:
           description: Invalid status value
 
     post:
@@ -159,23 +216,48 @@ paths:
         default:
           description: successful operation
 
-  /group/{id}:
+
+  /groups/{groupId}:
     delete:
       tags:
         - Groups
       summary: Delete groups
 
       parameters:
-        - name: id
+        - name: groupId
           in: path
           description: The group id  that needs to be deleted
           required: true
           type: integer
       responses:
-        '400':
+        400:
           description: Invalid group id supplied
-        '404':
+        404:
           description: Group not found
+    put:
+      tags:
+      - Groups
+      parameters:
+        - name: groupId
+          in: path
+          description: The group id  that needs to be deleted
+          required: true
+          type: integer
+      responses:
+         400:
+          description: Invalid group id supplied
+    get:
+      tags:
+      - Groups
+      parameters:
+        - name: groupId
+          in: path
+          description: The group id  that needs to be deleted
+          required: true
+          type: integer
+      responses:
+         400:
+          description: Invalid group id supplied
 
 definitions:
   Addressbooks:
