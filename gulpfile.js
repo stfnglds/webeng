@@ -1,12 +1,11 @@
 const gulp = require('gulp');
 const jsdoc = require('gulp-jsdoc3');
 const nodemon = require('gulp-nodemon');
-var jasmineNode = require('gulp-jasmine-node');
-var watch = require('gulp-watch');
+const jasmineNode = require('gulp-jasmine-node');
 
 gulp.task('default', (cb) => {
-  gulp.src(['README.md', './src/**/*.js'], { read: false })
-    .pipe(jsdoc(cb));
+    gulp.src(['README.md', './src/**/*.js'], { read: false })
+        .pipe(jsdoc(cb));
 });
 
 gulp.task('start server', () => {
@@ -18,12 +17,12 @@ gulp.task('start server', () => {
 });
 
 
-gulp.task('jasmine', function () {
-    var filesForTest = ['spec/**/*_spec.js'];
+gulp.task('jasmine', () => {
+    const filesForTest = ['spec/**/*_spec.js'];
     return gulp.src(filesForTest).pipe(jasmineNode({
         timeout: 10000,
         includeStackTrace: false,
-        color: false
+        color: false,
+        port: 3001,
     }));
 });
-
