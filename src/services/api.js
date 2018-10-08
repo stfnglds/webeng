@@ -126,7 +126,7 @@ function getEntries() {
 /**
  * get entry by id
  *
- * @param entryId entry ID
+ * @param {number} entryId entry ID
  * @return {Object} entry Details
  */
 function getEntryById(entryId) {
@@ -140,13 +140,13 @@ function getEntryById(entryId) {
     }));
 }
 
-
 /**
  * add entry
  *
  * @return {Object} entry Details
- * @param newEntry
+ * @param {Object}newEntry
  */
+
 function addEntry(newEntry) {
     // console.log(entry);
     return new Promise(((resolve, reject) => {
@@ -168,6 +168,7 @@ function addEntry(newEntry) {
     }));
 }
 
+
 app.get('/api/entries/', (req, res, next) => {
     getEntries().then((entries) => {
         res.json(entries);
@@ -175,6 +176,7 @@ app.get('/api/entries/', (req, res, next) => {
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve entries %s', err)));
     });
 });
+
 
 app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
     console.log(req.body);
@@ -191,8 +193,8 @@ app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
 /**
  * Update entry
  *
- * @param entryId entry ID
- * @param entry entry data
+ * @param {Number} entryId entry ID
+ * @param {Object} entry original entry data
  * @return {Object} entry Details
  */
 function updateEntry(entryId, entry) {
@@ -234,9 +236,7 @@ app.put('/api/entries/:entryId', validate({body: schema.EntryCreate}), (req, res
 
 /**
  * remove entry
- *
- * @return {Object} entry Details
- * @param eventId
+ * @param {Number} eventId event ID
  */
 function removeEntry(eventId) {
     return new Promise(((resolve, reject) => {
@@ -253,6 +253,7 @@ function removeEntry(eventId) {
         });
     }));
 }
+
 
 app.delete('/api/entries/:entryId', (req, res, next) => {
     getEntryById(req.params.id).then((entry) => {
@@ -284,8 +285,8 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
 /**
  * get addressbook by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} adressbook Details
+ * @param {Number} addressbookId
  */
 function getAddressbookById(addressbookId) {
     return new Promise(((resolve, reject) => {
@@ -305,13 +306,12 @@ function getAddressbookById(addressbookId) {
 }
 
 /**
- * get addressbook by id
+ * remove addressbook by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @param {Number} addressbookId
  */
 function removeAddressbook(addressbookId) {
-    return new Promise(((resolve, reject) => {
+    return new Promise(((resolve, reject) => {  addressbooksCollection
         const query = {
             _id: addressbookId,
         };
@@ -328,10 +328,10 @@ function removeAddressbook(addressbookId) {
 }
 
 /**
- * get addressbook by id
+ * create new addressbook
  *
- * @return {Object} entry Details
- * @param newAddressbook
+ * @return {Object} addresbook Details
+ * @param {Object} newAddressbook
  */
 function addAddressbook(newAddressbook) {
     // console.log(entry);
@@ -384,11 +384,11 @@ app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
 });
 
 /**
- * Update entry
+ * Update addressbook
  *
- * @param addressbookId entry ID
- * @param addressbook
- * @return {Object} entry Details
+ * @param {Number} addressbookId addressbook ID
+ * @param {Object} addressbook
+ * @return {Object} new addressbook Details
  */
 function updateAddressbook(addressbookId, addressbook) {
     return new Promise(((resolve, reject) => {
@@ -410,6 +410,7 @@ function updateAddressbook(addressbookId, addressbook) {
     }));
 }
 
+
 app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCreate}), (req, res, next) => {
     getAddressbookById(req.params.addressbookId).then((addressbook) => {
         if (addressbook == null) {
@@ -429,10 +430,9 @@ app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCr
 
 
 /**
- * get addressbook by id
+ * get all addressbooks
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} addressbooks Details
  */
 function getAddressbooks() {
     return new Promise(((resolve, reject) => {
@@ -485,10 +485,10 @@ app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
  */
 
 /**
- * get addressbook by id
+ * get groups by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} groups Details
+ * @param {Number} groupId
  */
 function getGroupById(groupId) {
     return new Promise(((resolve, reject) => {
@@ -507,10 +507,9 @@ function getGroupById(groupId) {
 }
 
 /**
- * get addressbook by id
+ * remove group by id
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @param {Number}groupId
  */
 function removeGroup(groupId) {
     return new Promise(((resolve, reject) => {
@@ -528,10 +527,10 @@ function removeGroup(groupId) {
 }
 
 /**
- * get addressbook by id
+ * add groups
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} group Details
+ * @param {Object}newGroup new group data
  */
 function addGroup(newGroup) {
     // console.log(entry);
@@ -564,6 +563,7 @@ app.post('/api/groups/', validate({body: schema.GroupCreate}), (req, res) => {
     });
 });
 
+
 app.get('/api/groups/:groupId', (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         res.json(group);
@@ -573,11 +573,11 @@ app.get('/api/groups/:groupId', (req, res, next) => {
 });
 
 /**
- * Update entry
+ * Update group
  *
- * @param groupId entry ID
- * @param entry entry data
- * @return {Object} entry Details
+ * @param groupId group ID
+ * @param group group data
+ * @return {Object} group Details
  */
 function updateGroup(groupId, group) {
     return new Promise(((resolve, reject) => {
@@ -600,6 +600,7 @@ function updateGroup(groupId, group) {
     }));
 }
 
+
 app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res, next) => {
     getGroupById(req.params.groupId).then((group) => {
         if (group == null) {
@@ -618,10 +619,9 @@ app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res,
 });
 
 /**
- * get addressbook by id
+ * get all groups
  *
- * @return {Object} entry Details
- * @param addressbookId
+ * @return {Object} group Details
  */
 function getGroups() {
     return new Promise(((resolve, reject) => {
