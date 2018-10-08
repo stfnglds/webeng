@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-
 /*
                                  _
                                 | |
@@ -243,10 +242,10 @@ function updateEntry(entryId, entry) {
         };
 
         var dbEntry = {};
-        dbEntry.name=entry.name;
-        dbEntry.address=entry.address;
-        dbEntry.rating=entry.rating;
-        dbEntry.group=entry.group;
+        dbEntry.name = entry.name;
+        dbEntry.address = entry.address;
+        dbEntry.rating = entry.rating;
+        dbEntry.group = entry.group;
 
         entriesCollection.update(query, dbEntry, (error, item) => {
             if (error) {
@@ -309,7 +308,7 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
         removeEntry(req.params.entryId).then(() => {
             res.sendStatus(204);
         }, (err) => {
-           // console.log("fehler" + err);
+            // console.log("fehler" + err);
             res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
         });
     }, (err) => {
@@ -336,16 +335,14 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
  */
 function getAddressbookById(addressbookId) {
     return new Promise(((resolve, reject) => {
-        addressbooksCollection.find({_id: addressbookId}).toArray((error, list) => {
-            if (error) {
-                console.log(error);
+        addressbooksCollection.findOne({_id: addressbookId}, function (error, result) {
+            if (error) { /* handle err */
                 reject(error);
             }
-            if (list) {
-                list.forEach((part, index, theArray) => {
-                    theArray[index] = part; // eslint-disable-line no-param-reassign
-                });
-                resolve(list);
+            if (result) {
+                resolve(result);
+            } else {
+                resolve(null);
             }
         });
     }));
@@ -384,7 +381,7 @@ function addAddressbook(newAddressbook) {
     return new Promise(((resolve, reject) => {
 
         var dbAddressbook = {};
-        dbAddressbook.name=newAddressbook.name;
+        dbAddressbook.name = newAddressbook.name;
 
         addressbooksCollection.insert(dbAddressbook, (error, result) => {
 
@@ -413,19 +410,14 @@ app.post('/api/addressbooks/', validate({body: schema.AddressbookCreate}), (req,
 });
 
 app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
-    getAddressbookById(req.params.id).then((addressbook) => {
+    getAddressbookById(req.params.addressbookId).then((addressbook) => {
         if (addressbook == null) {
             res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
             return;
         }
-
-        removeAddressbook(req.params.addressbookId).then(() => {
-            res.sendStatus(204);
-        }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
-        });
+        res.json(addressbook);
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
+        res.status(500).json(utils.createErrorObject(131, util.format('Failed to get addressbook %s', err)));
     });
 });
 
@@ -463,6 +455,8 @@ app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCr
             res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
             return;
         }
+
+
 
         updateAddressbook(req.params.addressbookId, req.body).then(() => {
             res.json(addressbook);
@@ -505,7 +499,7 @@ app.get('/api/addressbooks/', (req, res, next) => {
 
 
 app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
-    getAddressbookById(req.params.id).then((addressbook) => {
+    getAddressbookById(req.params.addressbookId).then((addressbook) => {
         if (addressbook == null) {
             res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
             return;
@@ -537,16 +531,16 @@ app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
  * @param {Number} groupId
  */
 function getGroupById(groupId) {
+
     return new Promise(((resolve, reject) => {
-        groupsCollection.find({_id: groupId}).toArray((error, list) => {
-            if (error) {
+        groupsCollection.findOne({_id: groupId}, function (error, result) {
+            if (error) { /* handle err */
                 reject(error);
             }
-            if (list) {
-                list.forEach((part, index, theArray) => {
-                    theArray[index] = part; // eslint-disable-line no-param-reassign
-                });
-                resolve(list);
+            if (result) {
+                resolve(result);
+            } else {
+                resolve(null);
             }
         });
     }));
