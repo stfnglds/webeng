@@ -1,5 +1,3 @@
-var util = require('util');
-
 /**
  * Simple Logger class which supports logging to command line based on a configurable log level
  * @constructor
@@ -10,10 +8,10 @@ function Logger() {
 Logger.prototype.level = 'WARN';
 
 Logger.prototype.log = function (level, message) {
-    var levels = ['DEBUG', 'INFO', 'WARN', 'ERROR'];
+    const levels = ['DEBUG', 'INFO', 'WARN', 'ERROR'];
 
     if (levels.indexOf(level) >= levels.indexOf(this.level)) {
-        util.log(level + ': ' + message);
+        console.log(`${level}: ${message}`);
     }
 };
 

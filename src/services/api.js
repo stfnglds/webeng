@@ -2,22 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const tingodb = require('tingodb')();
 const path = require('path');
+
 const database = new tingodb.Db(path.join(__dirname, '/../db'), {});
 const entriesCollection = database.collection('entries');
 const groupsCollection = database.collection('groups');
 const addressbooksCollection = database.collection('addressbooks');
+// eslint-disable-next-line prefer-destructuring
 const validate = require('express-jsonschema').validate;
 const util = require('util');
 const bodyParser = require('body-parser');
+
 const app = express();
-const logger = require('../common/logger');
 const utils = require('../common/utils');
 const schema = require('../common/schema');
 
 // parse application/json
 app.use(bodyParser.json());
 
-//use CORS for Cross Requests
+// use CORS for Cross Requests
 app.use(cors());
 
 
@@ -34,58 +36,58 @@ app.use(cors());
 
 app.use((err, req, res, next) => {
 // Enable CORS for local testing
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Cache-Control, Pragma');
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Cache-Control, Pragma');
 
-    // Disable caching
-    res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.header('Pragma', 'no-cache');
-    res.header('Expires', 0);
-    res.setHeader('Last-Modified', (new Date()).toUTCString());
+  // Disable caching
+  res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.header('Pragma', 'no-cache');
+  res.header('Expires', 0);
+  res.setHeader('Last-Modified', (new Date()).toUTCString());
 
-    // intercept OPTIONS method
-    if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
+  // intercept OPTIONS method
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+
+  let responseData;
+
+  if (err.name === 'JsonSchemaValidation') {
+    // Log the error however you please
+    console.log(err.message);
+    // logs "express-jsonschema: Invalid data found"
+
+    // Set a bad request http response status or whatever you want
+    res.status(400);
+
+    // Format the response body however you want
+    responseData = {
+      statusText: 'Bad Request',
+      jsonSchemaValidation: true,
+      validations: err.validations, // All of your validation information
+    };
+
+    // Take into account the content type if your app serves various content types
+    if (req.xhr || req.get('Content-Type') === 'application/json') {
+      res.json(responseData);
     } else {
-        next();
+      // If this is an html request then you should probably have
+      // some type of Bad Request html template to respond with
+      res.render('badrequestTemplate', responseData);
     }
-
-    let responseData;
-
-    if (err.name === 'JsonSchemaValidation') {
-        // Log the error however you please
-        console.log(err.message);
-        // logs "express-jsonschema: Invalid data found"
-
-        // Set a bad request http response status or whatever you want
-        res.status(400);
-
-        // Format the response body however you want
-        responseData = {
-            statusText: 'Bad Request',
-            jsonSchemaValidation: true,
-            validations: err.validations, // All of your validation information
-        };
-
-        // Take into account the content type if your app serves various content types
-        if (req.xhr || req.get('Content-Type') === 'application/json') {
-            res.json(responseData);
-        } else {
-            // If this is an html request then you should probably have
-            // some type of Bad Request html template to respond with
-            res.render('badrequestTemplate', responseData);
-        }
-    } else {
-        // pass error to next error middleware handler
-        next(err);
-    }
+  } else {
+    // pass error to next error middleware handler
+    next(err);
+  }
 });
 
 
 app.get('/test/', (request, response) => {
-    console.log(request.body); // your JSON
-    response.send(request.body); // echo the result back
+  console.log(request.body); // your JSON
+  response.send(request.body); // echo the result back
 });
 
 /*
@@ -106,21 +108,20 @@ app.get('/test/', (request, response) => {
  * @return {Object} entry Details
  */
 function getEntries() {
-    return new Promise(((resolve, reject) => {
-        entriesCollection.find({}).toArray((error, list) => {
-            if (error) {
-                console.log("getEntries:" + error);
-                reject(error);
-            }
-            if (list) {
-                list.forEach((part, index, theArray) => {
-                    theArray[index] = part; // eslint-disable-line no-param-reassign
-                });
-                resolve(list);
-            }
-
+  return new Promise(((resolve, reject) => {
+    entriesCollection.find({}).toArray((error, list) => {
+      if (error) {
+        console.log(`getEntries:${error}`);
+        reject(error);
+      }
+      if (list) {
+        list.forEach((part, index, theArray) => {
+          theArray[index] = part; // eslint-disable-line no-param-reassign
         });
-    }));
+        resolve(list);
+      }
+    });
+  }));
 }
 
 /**
@@ -129,57 +130,22 @@ function getEntries() {
  * @param {number} entryId entry ID
  * @return {Object} entry Details
  */
-// function getEntryById(entryId) {
-//     return new Promise(((resolve, reject) => {
-//         entriesCollection.find({_id: entryId}).toArray((error, list) => {
-//             if(error){
-//                 console.log("getEntryById: " + error);
-//                 reject(error);
-//             }
-//             if(list){
-//                 list.forEach((part, index, theArray) => {
-//                     theArray[index] = part; // eslint-disable-line no-param-reassign
-//                 });
-//                 resolve(list);
-//             }
-//         });
-//     }));
-// }
 function getEntryById(entryId) {
-    return new Promise((resolve, reject) => {
-        //console.log(entryId);
-        entriesCollection.findOne({_id: entryId}, function (error, result) {
-            if (error) { /* handle err */
-                console.log("getEntryById: " + error);
-                reject(error);
-            }
-            if (result) {
-                resolve(result);
-            } else {
-                resolve(null);
-            }
-        });
+  return new Promise((resolve, reject) => {
+    // console.log(entryId);
+    entriesCollection.findOne({ _id: entryId }, (error, result) => {
+      if (error) { /* handle err */
+        console.log(`getEntryById: ${error}`);
+        reject(error);
+      }
+      if (result) {
+        resolve(result);
+      } else {
+        resolve(null);
+      }
     });
+  });
 }
-
-// toArray((error, list) => {
-// console.log("getEntryById list:",list);
-// if(list==[]){
-//     console.log("list==[]");
-//     resolve(null);
-// }else{
-//     resolve(list);
-// }
-// if(error){
-//
-// }
-// if(list){
-//     console.log("list: "+list);
-//     // list.forEach((part, index, theArray) => {
-//     //     theArray[index] = part; // eslint-disable-line no-param-reassign
-//     // });
-//     resolve(list);
-// }
 
 /**
  * add entry
@@ -188,43 +154,39 @@ function getEntryById(entryId) {
  * @param {Object}newEntry
  */
 function addEntry(newEntry) {
-    // console.log(entry);
-    return new Promise(((resolve, reject) => {
+  // console.log(entry);
+  return new Promise(((resolve, reject) => {
+    const dbEntry = {};
+    dbEntry.name = newEntry.name;
+    dbEntry.address = newEntry.address;
 
-        var dbEntry = {};
-        dbEntry.name = newEntry.name;
-        dbEntry.address = newEntry.address;
-
-        entriesCollection.insert(dbEntry, (error, result) => {
-            if (error) {
-                console.log(error);
-                reject(error);
-            }
-            if (result) {
-                console.log(result);
-                resolve(result);
-            }
-        });
-    }));
+    entriesCollection.insert(dbEntry, (error, result) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      }
+      if (result) {
+        console.log(result);
+        resolve(result);
+      }
+    });
+  }));
 }
 
-app.get('/api/entries/', (req, res, next) => {
-    getEntries().then((entries) => {
-        res.json(entries);
-    }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve entries %s', err)));
-    });
+app.get('/api/entries/', (req, res) => {
+  getEntries().then((entries) => {
+    res.json(entries);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve entries %s', err)));
+  });
 });
 
-app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
-    console.log(req.body);
-    addEntry(req.body).then((entry) => {
-        logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, entry));
-        res.json(entry);
-    }, (err) => {
-        logger.debug(util.format('POST /calendar/%s/events - 500', req.userId));
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to create entry %s', err)));
-    });
+app.post('/api/entries/', validate({ body: schema.EntryCreate }), (req, res) => {
+  addEntry(req.body).then((entry) => {
+    res.json(entry);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to create entry %s', err)));
+  });
 });
 
 
@@ -236,45 +198,44 @@ app.post('/api/entries/', validate({body: schema.EntryCreate}), (req, res) => {
  * @return {Object} entry Details
  */
 function updateEntry(entryId, entry) {
-    return new Promise(((resolve, reject) => {
-        const query = {
-            _id: entryId,
-        };
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: entryId,
+    };
 
-        var dbEntry = {};
-        dbEntry.name = entry.name;
-        dbEntry.address = entry.address;
-        dbEntry.rating = entry.rating;
-        dbEntry.group = entry.group;
+    const dbEntry = {};
+    dbEntry.name = entry.name;
+    dbEntry.address = entry.address;
+    dbEntry.rating = entry.rating;
+    dbEntry.group = entry.group;
 
-        entriesCollection.update(query, dbEntry, (error, item) => {
-            if (error) {
-                reject(error);
-            }
-            if (item) {
-                resolve(item);
-            }
-
-        });
-    }));
+    entriesCollection.update(query, dbEntry, (error, item) => {
+      if (error) {
+        reject(error);
+      }
+      if (item) {
+        resolve(item);
+      }
+    });
+  }));
 }
 
 
-app.put('/api/entries/:entryId', validate({body: schema.EntryCreate}), (req, res, next) => {
-    getEntryById(req.params.entryId).then((entry) => {
-        if (entry == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
-            return;
-        }
+app.put('/api/entries/:entryId', validate({ body: schema.EntryCreate }), (req, res) => {
+  getEntryById(req.params.entryId).then((entry) => {
+    if (entry == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
+      return;
+    }
 
-        updateEntry(req.params.entryId, req.body).then(() => {
-            res.json(entry);
-        }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
-        });
+    updateEntry(req.params.entryId, req.body).then(() => {
+      res.json(entry);
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to update entry %s', err)));
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
     });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to update entry %s', err)));
+  });
 });
 
 
@@ -283,38 +244,38 @@ app.put('/api/entries/:entryId', validate({body: schema.EntryCreate}), (req, res
  * @param {Number} eventId event ID
  */
 function removeEntry(eventId) {
-    return new Promise(((resolve, reject) => {
-        const query = {
-            _id: eventId,
-        };
-        entriesCollection.remove(query, (error, item) => {
-            if (error) {
-                console.log(error);
-                reject(error);
-            } else {
-                resolve();
-            }
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: eventId,
+    };
+    entriesCollection.remove(query, (error, item) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        resolve(item);
+      }
+    });
+  }));
 }
 
-app.delete('/api/entries/:entryId', (req, res, next) => {
-    getEntryById(req.params.entryId).then((entry) => {
-        if (entry == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
-            return;
-        }
+app.delete('/api/entries/:entryId', (req, res) => {
+  getEntryById(req.params.entryId).then((entry) => {
+    if (entry == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
+      return;
+    }
 
-        removeEntry(req.params.entryId).then(() => {
-            res.sendStatus(204);
-        }, (err) => {
-            // console.log("fehler" + err);
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
-        });
+    removeEntry(req.params.entryId).then(() => {
+      res.sendStatus(204);
     }, (err) => {
-        //console.log("no id found" + err);
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
+      // console.log("fehler" + err);
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
     });
+  }, (err) => {
+    // console.log("no id found" + err);
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
+  });
 });
 
 
@@ -334,18 +295,18 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
  * @param {Number} addressbookId
  */
 function getAddressbookById(addressbookId) {
-    return new Promise(((resolve, reject) => {
-        addressbooksCollection.findOne({_id: addressbookId}, function (error, result) {
-            if (error) { /* handle err */
-                reject(error);
-            }
-            if (result) {
-                resolve(result);
-            } else {
-                resolve(null);
-            }
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    addressbooksCollection.findOne({ _id: addressbookId }, (error, result) => {
+      if (error) { /* handle err */
+        reject(error);
+      }
+      if (result) {
+        resolve(result);
+      } else {
+        resolve(null);
+      }
+    });
+  }));
 }
 
 /**
@@ -354,20 +315,20 @@ function getAddressbookById(addressbookId) {
  * @param {Number} addressbookId
  */
 function removeAddressbook(addressbookId) {
-    return new Promise(((resolve, reject) => {
-        const query = {
-            _id: addressbookId,
-        };
-        addressbooksCollection.remove(query, (error, item) => {
-            if (error) {
-                console.log(error);
-                reject(error);
-            }
-            if (item) {
-                resolve();
-            }
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: addressbookId,
+    };
+    addressbooksCollection.remove(query, (error, item) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      }
+      if (item) {
+        resolve();
+      }
+    });
+  }));
 }
 
 /**
@@ -377,48 +338,44 @@ function removeAddressbook(addressbookId) {
  * @param {Object} newAddressbook
  */
 function addAddressbook(newAddressbook) {
-    // console.log(entry);
-    return new Promise(((resolve, reject) => {
+  // console.log(entry);
+  return new Promise(((resolve, reject) => {
+    const dbAddressbook = {};
+    dbAddressbook.name = newAddressbook.name;
 
-        var dbAddressbook = {};
-        dbAddressbook.name = newAddressbook.name;
-
-        addressbooksCollection.insert(dbAddressbook, (error, result) => {
-
-            if (error) {
-                console.log(error);
-                reject(error);
-            }
-            if (result) {
-                console.log(result);
-                resolve(result);
-            }
-        });
-    }));
+    addressbooksCollection.insert(dbAddressbook, (error, result) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      }
+      if (result) {
+        console.log(result);
+        resolve(result);
+      }
+    });
+  }));
 }
 
 
-app.post('/api/addressbooks/', validate({body: schema.AddressbookCreate}), (req, res) => {
-    console.log(req.body);
-    addAddressbook(req.body).then((addressbook) => {
-        //logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, addressbook));
-        res.json(addressbook);
-    }, (err) => {
-        //logger.debug(util.format('POST /calendar/%s/events - 500', req.userId));
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to create addressbook %s', err)));
-    });
+app.post('/api/addressbooks/', validate({ body: schema.AddressbookCreate }), (req, res) => {
+  console.log(req.body);
+  addAddressbook(req.body).then((addressbook) => {
+    res.json(addressbook);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to create addressbook %s', err)));
+  });
 });
 
-app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
-    getAddressbookById(req.params.addressbookId).then((addressbook) => {
-        if (addressbook == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
-            return;
-        }
-        res.json(addressbook);
-    }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to get addressbook %s', err)));
-    });
+app.get('/api/addressbooks/:addressbookId', (req, res) => {
+  getAddressbookById(req.params.addressbookId).then((addressbook) => {
+    if (addressbook == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
+      return;
+    }
+    res.json(addressbook);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to get addressbook %s', err)));
+  });
 });
 
 /**
@@ -429,43 +386,42 @@ app.get('/api/addressbooks/:addressbookId', (req, res, next) => {
  * @return {Object} new addressbook Details
  */
 function updateAddressbook(addressbookId, addressbook) {
-    return new Promise(((resolve, reject) => {
-        const query = {
-            _id: addressbookId,
-        };
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: addressbookId,
+    };
 
-        var updatedAddressbook = {};
-        updatedAddressbook.name = addressbook.name;
+    const updatedAddressbook = {};
+    updatedAddressbook.name = addressbook.name;
 
-        addressbooksCollection.update(query, addressbook, (error, item) => {
-            if (error) {
-                reject(error);
-            }
-            if (item) {
-                resolve(item);
-            }
-        });
-    }));
+    addressbooksCollection.update(query, addressbook, (error, item) => {
+      if (error) {
+        reject(error);
+      }
+      if (item) {
+        resolve(item);
+      }
+    });
+  }));
 }
 
 
-app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCreate}), (req, res, next) => {
-    getAddressbookById(req.params.addressbookId).then((addressbook) => {
-        if (addressbook == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
-            return;
-        }
+app.put('/api/addressbooks/:addressbookId', validate({ body: schema.AddressbookCreate }), (req, res) => {
+  getAddressbookById(req.params.addressbookId).then((addressbook) => {
+    if (addressbook == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
+      return;
+    }
 
 
-
-        updateAddressbook(req.params.addressbookId, req.body).then(() => {
-            res.json(addressbook);
-        }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
-        });
+    updateAddressbook(req.params.addressbookId, req.body).then(() => {
+      res.json(addressbook);
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to update addressbook %s', err)));
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
     });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to update addressbook %s', err)));
+  });
 });
 
 
@@ -475,44 +431,44 @@ app.put('/api/addressbooks/:addressbookId', validate({body: schema.AddressbookCr
  * @return {Object} addressbooks Details
  */
 function getAddressbooks() {
-    return new Promise(((resolve, reject) => {
-        addressbooksCollection.find({}).toArray((error, list) => {
-            console.log(error);
-            if (error) {
-                reject(error);
-            }
-            if (list) {
-                resolve(list);
-            }
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    addressbooksCollection.find({}).toArray((error, list) => {
+      console.log(error);
+      if (error) {
+        reject(error);
+      }
+      if (list) {
+        resolve(list);
+      }
+    });
+  }));
 }
 
 
-app.get('/api/addressbooks/', (req, res, next) => {
-    getAddressbooks().then((addressbooks) => {
-        res.json(addressbooks);
-    }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve addressbooks %s', err)));
-    });
+app.get('/api/addressbooks/', (req, res) => {
+  getAddressbooks().then((addressbooks) => {
+    res.json(addressbooks);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve addressbooks %s', err)));
+  });
 });
 
 
-app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
-    getAddressbookById(req.params.addressbookId).then((addressbook) => {
-        if (addressbook == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
-            return;
-        }
+app.delete('/api/addressbooks/:addressbookId', (req, res) => {
+  getAddressbookById(req.params.addressbookId).then((addressbook) => {
+    if (addressbook == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown addressbook ID %s', req.params.addressbookId)));
+      return;
+    }
 
-        removeAddressbook(req.params.addressbookId).then(() => {
-            res.sendStatus(204);
-        }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
-        });
+    removeAddressbook(req.params.addressbookId).then(() => {
+      res.sendStatus(204);
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
     });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
+  });
 });
 
 /*
@@ -531,19 +487,18 @@ app.delete('/api/addressbooks/:addressbookId', (req, res, next) => {
  * @param {Number} groupId
  */
 function getGroupById(groupId) {
-
-    return new Promise(((resolve, reject) => {
-        groupsCollection.findOne({_id: groupId}, function (error, result) {
-            if (error) { /* handle err */
-                reject(error);
-            }
-            if (result) {
-                resolve(result);
-            } else {
-                resolve(null);
-            }
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    groupsCollection.findOne({ _id: groupId }, (error, result) => {
+      if (error) { /* handle err */
+        reject(error);
+      }
+      if (result) {
+        resolve(result);
+      } else {
+        resolve(null);
+      }
+    });
+  }));
 }
 
 /**
@@ -552,18 +507,18 @@ function getGroupById(groupId) {
  * @param {Number}groupId
  */
 function removeGroup(groupId) {
-    return new Promise(((resolve, reject) => {
-        const query = {
-            _id: groupId,
-        };
-        groupsCollection.remove(query, (error, item) => {
-            if (error) {
-                reject(error);
-            } else {
-                resolve();
-            }
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: groupId,
+    };
+    groupsCollection.remove(query, (error, item) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(item);
+      }
+    });
+  }));
 }
 
 /**
@@ -573,43 +528,40 @@ function removeGroup(groupId) {
  * @param {Object}newGroup new group data
  */
 function addGroup(newGroup) {
-    // console.log(entry);
-    return new Promise(((resolve, reject) => {
+  // console.log(entry);
+  return new Promise(((resolve, reject) => {
+    const dbGroup = {};
+    dbGroup.name = newGroup.name;
 
-        var dbGroup = {};
-        dbGroup.name = newGroup.name;
-
-        groupsCollection.insert(dbGroup, (error, result) => {
-            if (error) {
-                reject(error);
-            }
-            if (result) {
-                console.log(result);
-                resolve(result);
-            }
-        });
-    }));
+    groupsCollection.insert(dbGroup, (error, result) => {
+      if (error) {
+        reject(error);
+      }
+      if (result) {
+        console.log(result);
+        resolve(result);
+      }
+    });
+  }));
 }
 
 
-app.post('/api/groups/', validate({body: schema.GroupCreate}), (req, res) => {
-    console.log(req.body);
-    addGroup(req.body).then((group) => {
-        //logger.debug(util.format('POST /calendar/%s/events - 200 - %j', req.userId, groupName));
-        res.json(group);
-    }, (err) => {
-        //logger.debug(util.format('POST /calendar/%s/events - 500', req.userId));
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to create groupName %s', err)));
-    });
+app.post('/api/groups/', validate({ body: schema.GroupCreate }), (req, res) => {
+  console.log(req.body);
+  addGroup(req.body).then((group) => {
+    res.json(group);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to create groupName %s', err)));
+  });
 });
 
 
-app.get('/api/groups/:groupId', (req, res, next) => {
-    getGroupById(req.params.groupId).then((group) => {
-        res.json(group);
-    }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to get groupName %s', err)));
-    });
+app.get('/api/groups/:groupId', (req, res) => {
+  getGroupById(req.params.groupId).then((group) => {
+    res.json(group);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to get groupName %s', err)));
+  });
 });
 
 /**
@@ -620,42 +572,41 @@ app.get('/api/groups/:groupId', (req, res, next) => {
  * @return {Object} group Details
  */
 function updateGroup(groupId, group) {
-    return new Promise(((resolve, reject) => {
-        const query = {
-            _id: groupId,
-        };
+  return new Promise(((resolve, reject) => {
+    const query = {
+      _id: groupId,
+    };
 
-        var updatedGroup = {};
-        updatedGroup.name = group.name;
+    const updatedGroup = {};
+    updatedGroup.name = group.name;
 
-        groupsCollection.update(query, group, (error, item) => {
-            if (error) {
-                reject(error);
-            }
-            if (item) {
-                resolve(item);
-            }
-
-        });
-    }));
+    groupsCollection.update(query, group, (error, item) => {
+      if (error) {
+        reject(error);
+      }
+      if (item) {
+        resolve(item);
+      }
+    });
+  }));
 }
 
 
-app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res, next) => {
-    getGroupById(req.params.groupId).then((group) => {
-        if (group == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown groupName ID %s', req.params.groupId)));
-            return;
-        }
+app.put('/api/groups/:groupId', validate({ body: schema.GroupCreate }), (req, res) => {
+  getGroupById(req.params.groupId).then((group) => {
+    if (group == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown groupName ID %s', req.params.groupId)));
+      return;
+    }
 
-        updateGroup(req.params.groupId, req.body).then(() => {
-            res.json(group);
-        }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
-        });
+    updateGroup(req.params.groupId, req.body).then(() => {
+      res.json(group);
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to update groupName %s', err)));
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
     });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to update groupName %s', err)));
+  });
 });
 
 /**
@@ -664,45 +615,45 @@ app.put('/api/groups/:groupId', validate({body: schema.GroupCreate}), (req, res,
  * @return {Object} group Details
  */
 function getGroups() {
-    return new Promise(((resolve, reject) => {
-        groupsCollection.find({}).toArray((error, list) => {
-            if (error) {
-                reject(error);
-            }
-            if (list) {
-                resolve(list);
-            }
-        });
-    }));
+  return new Promise(((resolve, reject) => {
+    groupsCollection.find({}).toArray((error, list) => {
+      if (error) {
+        reject(error);
+      }
+      if (list) {
+        resolve(list);
+      }
+    });
+  }));
 }
 
 
-app.get('/api/groups/', (req, res, next) => {
-    getGroups().then((groups) => {
-        res.json(groups);
-    }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
-    });
+app.get('/api/groups/', (req, res) => {
+  getGroups().then((groups) => {
+    res.json(groups);
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
+  });
 });
 
-app.delete('/api/groups/:groupId', (req, res, next) => {
-    getGroupById(req.params.groupId).then((group) => {
-        if (group == null) {
-            res.status(404).json(utils.createErrorObject(151, util.format('Unknown groupName ID %s', req.params.groupId)));
-            return;
-        }
+app.delete('/api/groups/:groupId', (req, res) => {
+  getGroupById(req.params.groupId).then((group) => {
+    if (group == null) {
+      res.status(404).json(utils.createErrorObject(151, util.format('Unknown groupName ID %s', req.params.groupId)));
+      return;
+    }
 
-        removeGroup(req.params.groupId).then(() => {
-            res.sendStatus(204);
-        }, (err) => {
-            res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
-        });
+    removeGroup(req.params.groupId).then(() => {
+      res.sendStatus(204);
     }, (err) => {
-        res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
     });
+  }, (err) => {
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete groupName %s', err)));
+  });
 });
 
 
 app.listen(3000, () => {
-    console.log('Example app listening on port 3000!');
+  console.log('API listening on port 3000!');
 });

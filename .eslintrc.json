@@ -1,3 +1,20 @@
 {
-    "extends": "airbnb-base"
+    "extends": "airbnb-base",
+    "root": true,
+
+    "rules": {
+        // enable additional rules
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        // disable rules from base configurations
+        "no-console": "off",
+        "strict": "off",
+        "eqeqeq": "warn"
+    }
 }

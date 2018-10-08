@@ -1,4 +1,4 @@
-var utils = exports;
+const utils = exports;
 
 utils.createErrorObject = function (errorCode, errorMessage) {
     return {
