@@ -4,6 +4,8 @@ import { Group } from '../model/Group';
 import { GroupFilter } from '../model/GroupFilter';
 import { EntriesService } from '../services/entries.service';
 import { GroupsService } from '../services/groups.service';
+import {Addressbook} from "../model/addressbook";
+import {AddressbooksService} from "../services/addressbooks.service";
 
 @Component({
   selector: 'app-all-entries',
@@ -16,11 +18,13 @@ import { GroupsService } from '../services/groups.service';
 export class AllEntriesComponent implements OnInit {
 
 
-  constructor(private _dataService: EntriesService,private _groupService: GroupsService) {
+  constructor(private _dataService: EntriesService,private _groupService: GroupsService,private _addressbookService: AddressbooksService) {
   }
 
   entries: Entry[];
   groups: Group[];
+  addressbooks: Addressbook[];
+  groupsFilter:Group[][];
   filteredGroup: number;
   filteredRating: number;
 
@@ -32,6 +36,7 @@ export class AllEntriesComponent implements OnInit {
   ngOnInit(): void {
     this.loadEntries();
     this.loadGroups();
+    this.loadAddressbooks();
     // this.loadGroupFilters();
     this.filteredGroup=-1;
     this.filteredRating=1;
@@ -42,8 +47,33 @@ export class AllEntriesComponent implements OnInit {
     this._groupService.fetchGroups().subscribe(data => {
 
       this.groups=data.sort(function(a:Group, b:Group){return a.addressbook-b.addressbook});
-    }, error => {
-      console.log('Failed fetching groups');
+      // this.groupsFilter=this.groups.reduce(function (r:Group, a:Group) {
+      //   r[a.addressbook] = r[a.addressbook] || [];
+      //   r[a.addressbook].push(a);
+      //   return r;
+      // }, Object.create(null));
+
+    //   this.groups.forEach(function(item){
+    //     console.log("item",item);
+    //     console.log("groupsFilter[1]",this.groupsFilter[1]);
+    //     var addressbookList=this.groupsFilter[item.addressbook];
+    //
+    //     if(addressbookList){
+    //       addressbookList.push(item);
+    //     } else{
+    //       this.groupsFilter[item.addressbook] = [item];
+    //     }
+    //
+    //   });
+    //   console.log("groups filter",this.groupsFilter);
+    // }, error => {
+    //   console.log('Failed fetching groups');
+    });
+  }
+  private loadAddressbooks() {
+    this._addressbookService.fetchAddressbooks().subscribe(data => {
+
+      this.addressbooks=data.sort(function(a:Addressbook, b:Addressbook){return a._id-b._id});
     });
   }
 

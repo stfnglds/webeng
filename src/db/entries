@@ -1,126 +1,18 @@
 {"k":"0000000079","o":"0000000164","v":"001"}
 {"_id":4,"_uid":19,"_dt":1538290284388,"_s":"ace933a0ffae1cbe23f224846862b149"}
 {"name":"Washington Central Hospital","email":"nyhp@ny.com","address":"3rd main street","rating":3,"group":"6","id":4,"editMode":false,"_id":{"$wrap":"$oid","v":4}}
-{"k":"0000000079","o":"0000000177","v":"001"}
-{"_id":5,"_uid":16,"_dt":1538034283586,"_s":"400f06108e2a0abcafd7aee6d3f18606"}
-{"title":"Christmas Feast","location":"Stuttgart","id":5,"editMode":false,"name":"Paris Hospital","address":"Rue Hopital 52","rating":1,"_id":{"$wrap":"$oid","v":5},"group":"6"}
 {"k":"0000000080","o":"0000000113","v":"001"}
 {"_id":16,"_uid":16,"_dt":1538034286439,"_s":"ee6b0a46ae53a80067b755b95b09fda8"}
 {"name":"Fish 'N Chips","_id":{"$wrap":"$oid","v":16},"editMode":false,"group":"7","rating":3,"address":"London"}
 {"k":"0000000080","o":"0000000125","v":"001"}
 {"_id":18,"_uid":20,"_dt":1538290356261,"_s":"dec32cace189f9c477661ae71152d941"}
 {"name":"McFastFood","_id":{"$wrap":"$oid","v":18},"editMode":false,"rating":2,"group":"7","address":"Colesterolstreet 9000"}
-{"k":"0000000080","o":"0000000120","v":"001"}
-{"_id":20,"_uid":20,"_dt":1538290321282,"_s":"e8d84a69aaf24b6a1024d7a55b6ef625"}
-{"name":"Super Sushi","_id":{"$wrap":"$oid","v":20},"editMode":false,"rating":5,"address":"Mainstreet 123","group":"10"}
+{"k":"0000000080","o":"0000000118","v":"001"}
+{"_id":20,"_uid":38,"_dt":1538929493815,"_s":"91d602dd4540b89401c2969d13663eed"}
+{"name":"Super Sus","_id":{"$wrap":"$oid","v":20},"editMode":false,"rating":5,"address":"Mainstreet 123","group":"10"}
 {"k":"0000000080","o":"0000000130","v":"001"}
 {"_id":21,"_uid":21,"_dt":1538290408041,"_s":"cb8e582bb517826e27aaf3d81b7a74a0"}
 {"name":"Schwarzwaldklinik","_id":{"$wrap":"$oid","v":21},"editMode":false,"rating":2,"address":"Blackforrestroad 12","group":"8"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":22,"_uid":22,"_dt":1538740724899,"_s":"94bd971e1b590e2afac1c875dd31c304"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":22}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":23,"_uid":23,"_dt":1538742303250,"_s":"05b402aa215861b2fa1d61f61f107296"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":23}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":24,"_uid":24,"_dt":1538742665453,"_s":"8d855aef810940d107144d5122b8c3ad"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":24}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":25,"_uid":25,"_dt":1538742702346,"_s":"b1adaac91c3fc92757e6b25d061f6769"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":25}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":26,"_uid":26,"_dt":1538742883421,"_s":"09b52a4699706c6f09775d0812364ce1"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":26}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":27,"_uid":27,"_dt":1538743119830,"_s":"4b16ff0f90c45fcaa3e81a6ed26e8fc1"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":27}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":28,"_uid":28,"_dt":1538743238044,"_s":"c5bdd06e9ae73c8244a156932af39974"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":28}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":28,"_uid":28,"_dt":1538743241276,"_s":"40affdacec93b481d373b2c9904d7b32"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":28},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":29,"_uid":29,"_dt":1538743607263,"_s":"36df659b7e1c352697a790d7bd7bbe7f"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":29}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":29,"_uid":29,"_dt":1538743609942,"_s":"b999825da1b434cd33f2c36fd8883de1"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":29},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":30,"_uid":30,"_dt":1538743736682,"_s":"b870baa212c15ff8efa40dd79015dc32"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":30}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":30,"_uid":30,"_dt":1538743740135,"_s":"db95f5d4521a9ee27f8be0131b5fd29f"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":30},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":31,"_uid":31,"_dt":1538743828948,"_s":"5ad81457b8c51cec5cf99306573a0a7e"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":31}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":32,"_uid":32,"_dt":1538744504873,"_s":"07944f01337a95adee3c4304fa31c488"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":32}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":32,"_uid":32,"_dt":1538744507649,"_s":"1ac46f7366ac5549171e6573bc984a2e"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":32},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":33,"_uid":33,"_dt":1538744550966,"_s":"04f20639b74e274a53af5b39622d23cd"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":33}}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":34,"_uid":34,"_dt":1538744595857,"_s":"ce4b81bf8b6f348ab00aaa01aa699c5b"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":34}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":34,"_uid":34,"_dt":1538744599914,"_s":"31e52b3bbd3f6dfa69747014f5bef27c"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":34},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":35,"_uid":35,"_dt":1538744873865,"_s":"692a14bb8ad938291d7d85a0ea4b2094"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":35}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":35,"_uid":35,"_dt":1538744877398,"_s":"c4c4d315d17458e95d3b75f3cc63657d"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":35},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":32,"_uid":35,"_dt":1538744909022,"_a":"del"}
-
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":36,"_uid":36,"_dt":1538744929122,"_s":"87ceec867bf1c9ab6d83c6339caf5036"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":36}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":36,"_uid":36,"_dt":1538744932269,"_s":"fa626be0862435211777774b4d501b6e"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":36},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":37,"_uid":37,"_dt":1538745012527,"_s":"4e97886f5f5a66857176d5d193c91ffa"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":37}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":37,"_uid":37,"_dt":1538745016278,"_s":"d9acc59e797d8ba0f7de0ff6dee5abbd"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":37},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":38,"_uid":38,"_dt":1538745139430,"_s":"a7293ff3ad62500e29812c61343f647b"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":38}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":38,"_uid":38,"_dt":1538745143282,"_s":"923800fe89040eec17a1d8e432336265"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":38},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":39,"_uid":39,"_dt":1538745203378,"_s":"e088019a6abc2d323f4e3d867bf771bd"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":39}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":39,"_uid":39,"_dt":1538745207008,"_s":"a41908089f6a76f16e786f379a957989"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":39},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":39,"_uid":39,"_dt":1538745212690,"_a":"del"}
-
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":40,"_uid":40,"_dt":1538745298940,"_s":"c0d74e6a0e55ac4c0452fcf5b54a00c6"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":40}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":40,"_uid":40,"_dt":1538745302506,"_s":"cd2b221c3f75b9618e30b7c03e6fa799"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":40},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":40,"_uid":40,"_dt":1538745307178,"_a":"del"}
-
-{"k":"0000000080","o":"0000000050","v":"001"}
-{"_id":41,"_uid":41,"_dt":1538745362292,"_s":"2c2bed5a2b15ec86b685bb32324e1190"}
-{"name":"new Entry","_id":{"$wrap":"$oid","v":41}}
-{"k":"0000000080","o":"0000000114","v":"001"}
-{"_id":41,"_uid":41,"_dt":1538745366335,"_s":"daf15ac533ae756b80947e3288fbcbcd"}
-{"name":"new EntryRandom 1234 :_$§","_id":{"$wrap":"$oid","v":41},"editMode":false,"address":"1234 :_$§ Random"}
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":41,"_uid":41,"_dt":1538745370839,"_a":"del"}
-
+{"k":"0000000080","o":"0000000120","v":"001"}
+{"_id":20,"_uid":38,"_dt":1538929513292,"_s":"e8d84a69aaf24b6a1024d7a55b6ef625"}
+{"name":"Super Sushi","_id":{"$wrap":"$oid","v":20},"editMode":false,"rating":5,"address":"Mainstreet 123","group":"10"}

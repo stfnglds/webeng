@@ -109,7 +109,7 @@ function getEntries() {
     return new Promise(((resolve, reject) => {
         entriesCollection.find({}).toArray((error, list) => {
             if (error) {
-                console.log(error);
+                console.log("getEntries:" + error);
                 reject(error);
             }
             if (list) {
@@ -129,16 +129,57 @@ function getEntries() {
  * @param entryId entry ID
  * @return {Object} entry Details
  */
+// function getEntryById(entryId) {
+//     return new Promise(((resolve, reject) => {
+//         entriesCollection.find({_id: entryId}).toArray((error, list) => {
+//             if(error){
+//                 console.log("getEntryById: " + error);
+//                 reject(error);
+//             }
+//             if(list){
+//                 list.forEach((part, index, theArray) => {
+//                     theArray[index] = part; // eslint-disable-line no-param-reassign
+//                 });
+//                 resolve(list);
+//             }
+//         });
+//     }));
+// }
 function getEntryById(entryId) {
-    return new Promise(((resolve, reject) => {
-        entriesCollection.find({_id: entryId}).toArray((error, list) => {
-            list.forEach((part, index, theArray) => {
-                theArray[index] = part; // eslint-disable-line no-param-reassign
-            });
-            resolve(list);
+    return new Promise((resolve, reject) => {
+        //console.log(entryId);
+        entriesCollection.findOne({_id: entryId}, function (error, result) {
+            if (error) { /* handle err */
+                console.log("getEntryById: " + error);
+                reject(error);
+            }
+            if (result) {
+                resolve(result);
+            } else {
+                resolve(null);
+            }
         });
-    }));
+    });
 }
+
+// toArray((error, list) => {
+// console.log("getEntryById list:",list);
+// if(list==[]){
+//     console.log("list==[]");
+//     resolve(null);
+// }else{
+//     resolve(list);
+// }
+// if(error){
+//
+// }
+// if(list){
+//     console.log("list: "+list);
+//     // list.forEach((part, index, theArray) => {
+//     //     theArray[index] = part; // eslint-disable-line no-param-reassign
+//     // });
+//     resolve(list);
+// }
 
 
 /**
@@ -245,9 +286,9 @@ function removeEntry(eventId) {
         };
         entriesCollection.remove(query, (error, item) => {
             if (error) {
+                console.log(error);
                 reject(error);
-            }
-            if (item) {
+            } else {
                 resolve();
             }
         });
@@ -255,7 +296,7 @@ function removeEntry(eventId) {
 }
 
 app.delete('/api/entries/:entryId', (req, res, next) => {
-    getEntryById(req.params.id).then((entry) => {
+    getEntryById(req.params.entryId).then((entry) => {
         if (entry == null) {
             res.status(404).json(utils.createErrorObject(151, util.format('Unknown entry ID %s', req.params.entryId)));
             return;
@@ -264,9 +305,11 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
         removeEntry(req.params.entryId).then(() => {
             res.sendStatus(204);
         }, (err) => {
+           // console.log("fehler" + err);
             res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
         });
     }, (err) => {
+        //console.log("no id found" + err);
         res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
     });
 });
@@ -541,10 +584,10 @@ function addGroup(newGroup) {
         dbGroup.name = newGroup.name;
 
         groupsCollection.insert(dbGroup, (error, result) => {
-            if(error){
+            if (error) {
                 reject(error);
             }
-            if(result) {
+            if (result) {
                 console.log(result);
                 resolve(result);
             }
@@ -592,7 +635,7 @@ function updateGroup(groupId, group) {
             if (error) {
                 reject(error);
             }
-            if(item){
+            if (item) {
                 resolve(item);
             }
 
@@ -629,7 +672,7 @@ function getGroups() {
             if (error) {
                 reject(error);
             }
-            if(list){
+            if (list) {
                 resolve(list);
             }
         });

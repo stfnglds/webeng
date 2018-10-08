@@ -1,27 +1,42 @@
 <div class="container filterContainer">
-    <h5>Filter Groups</h5>
-      <div *ngFor='let group of groups' class="groupInAddressbookContainer" [ngStyle]="{'background-color': 'hsla('+group.addressbook*300%360+',50%,50%,0.7)'}" >
-        <button class="btn btn-primary btn-filter" (click)="filteredGroup = (filteredGroup==group._id ? -1 : group._id)"
-                [ngClass]="{'btn-success':filteredGroup==group._id}" >
-          <i class="fa fa-arrow-right" [hidden]="filteredGroup!=group._id"></i>{{group.name}}
-        </button>
-      </div>
+  <h5>Filters</h5>
+  <!--<div *ngFor='let group of groups' class="groupInAddressbookContainer" [ngStyle]="{'background-color': 'hsla('+group.addressbook*300%360+',50%,50%,0.7)'}" >-->
+  <!--<button class="btn btn-primary btn-filter" (click)="filteredGroup = (filteredGroup==group._id ? -1 : group._id)"-->
+  <!--[ngClass]="{'btn-success':filteredGroup==group._id}" >-->
+  <!--<i class="fa fa-arrow-right" [hidden]="filteredGroup!=group._id"></i>{{group.name}}-->
+  <!--</button>-->
+  <!--</div>-->
+
+  <div *ngFor="let addressbookList of groups | groupBy: 'addressbook'" class="groupInAddressbookContainer"
+       [ngStyle]="{'background-color': 'hsla('+addressbookList.key*300%360+',50%,50%,0.7)'}">
+    <div *ngFor="let addressbook of addressbooks">
+      <h6 *ngIf="addressbook._id==addressbookList.key">{{addressbook.name}}</h6>
+    </div>
+    <div *ngFor='let group of addressbookList.value'>
+      <button class="btn btn-primary btn-filter" (click)="filteredGroup = (filteredGroup==group._id ? -1 : group._id)"
+              [ngClass]="{'btn-success':filteredGroup==group._id}">
+        <i class="fa fa-arrow-right" [hidden]="filteredGroup!=group._id"></i>{{group.name}}
+      </button>
+    </div>
+  </div>
+
   <h5>Minimum Rating</h5>
   <div>
-    <i class="far fa-star rating" [ngClass]="{'fas':filteredRating >= 1}" (click)="filteredRating=1" ></i>
+    <i class="far fa-star rating" [ngClass]="{'fas':filteredRating >= 1}" (click)="filteredRating=1"></i>
     <i class="far fa-star rating" [ngClass]="{'fas':filteredRating >= 2}" (click)="filteredRating=2"></i>
     <i class="far fa-star rating" [ngClass]="{'fas':filteredRating >= 3}" (click)="filteredRating=3"></i>
     <i class="far fa-star rating" [ngClass]="{'fas':filteredRating >= 4}" (click)="filteredRating=4"></i>
     <i class="far fa-star rating" [ngClass]="{'fas':filteredRating >= 5}" (click)="filteredRating=5"></i>
   </div>
-  </div>
+</div>
 
-  <div class="container">
+<div class="container">
   <div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em">
     <button (click)="createEntry()" class="btn btn-primary newEntryButton"><b>+</b></button>
   </div>
   <div *ngFor='let entry of entries' class="entryCardsContainer">
-    <app-entry-card [in]="entry" (deleted)="onDeleted()"  [hidden]="((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating"></app-entry-card>
+    <app-entry-card [in]="entry" (deleted)="onDeleted()"
+                    [hidden]="((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating"></app-entry-card>
   </div>
   <!--<div class="card mx-auto" *ngFor='let entry of entries' style="max-width: 20rem; margin-bottom:2em"  [ngStyle]="{'background-color': 'hsla('+entry.groupName*1234%360+',100%,75%,0.3)'}">-->
   <!--<h3 class="card-header" style="text-align: right">-->
