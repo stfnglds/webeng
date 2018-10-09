@@ -4,9 +4,9 @@ const tingodb = require('tingodb')();
 const path = require('path');
 
 const database = new tingodb.Db(path.join(__dirname, '/../db'), {});
-const entriesCollection = database.collection('entries');
-const groupsCollection = database.collection('groups');
-const addressbooksCollection = database.collection('addressbooks');
+const entriesCollection = database.collection('entries.json');
+const groupsCollection = database.collection('groups.json');
+const addressbooksCollection = database.collection('addressbooks.json');
 // eslint-disable-next-line prefer-destructuring
 const validate = require('express-jsonschema').validate;
 const util = require('util');
