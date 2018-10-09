@@ -57,7 +57,7 @@ app.use((err, req, res, next) => {
 
   if (err.name === 'JsonSchemaValidation') {
     // Log the error however you please
-    console.log(err.message);
+    console.log(`API DEBUG, ${err.message}`);
     // logs "express-jsonschema: Invalid data found"
 
     // Set a bad request http response status or whatever you want
@@ -86,7 +86,7 @@ app.use((err, req, res, next) => {
 
 
 app.get('/test/', (request, response) => {
-  console.log(request.body); // your JSON
+  console.log(`API DEBUG, ${request.body}`); // your JSON
   response.send(request.body); // echo the result back
 });
 
@@ -111,7 +111,7 @@ function getEntries() {
   return new Promise(((resolve, reject) => {
     entriesCollection.find({}).toArray((error, list) => {
       if (error) {
-        console.log(`getEntries:${error}`);
+        console.log('API DEBUG, ' + `getEntries:${error}`);
         reject(error);
       }
       if (list) {
@@ -132,10 +132,10 @@ function getEntries() {
  */
 function getEntryById(entryId) {
   return new Promise((resolve, reject) => {
-    // console.log(entryId);
+    // console.log('API DEBUG, '+ entryId);
     entriesCollection.findOne({ _id: entryId }, (error, result) => {
       if (error) { /* handle err */
-        console.log(`getEntryById: ${error}`);
+        console.log('API DEBUG, ' + `getEntryById: ${error}`);
         reject(error);
       }
       if (result) {
@@ -154,7 +154,7 @@ function getEntryById(entryId) {
  * @param {Object}newEntry
  */
 function addEntry(newEntry) {
-  // console.log(entry);
+  // console.log('API DEBUG, '+ entry);
   return new Promise(((resolve, reject) => {
     const dbEntry = {};
     dbEntry.name = newEntry.name;
@@ -162,11 +162,11 @@ function addEntry(newEntry) {
 
     entriesCollection.insert(dbEntry, (error, result) => {
       if (error) {
-        console.log(error);
+        console.log(`API DEBUG, ${error}`);
         reject(error);
       }
       if (result) {
-        console.log(result);
+        console.log(`API DEBUG, ${result}`);
         resolve(result);
       }
     });
@@ -231,7 +231,7 @@ app.put('/api/entries/:entryId', validate({ body: schema.EntryCreate }), (req, r
     updateEntry(req.params.entryId, req.body).then(() => {
       res.json(entry);
     }, (err) => {
-      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to update entry %s', err)));
     });
   }, (err) => {
     res.status(500).json(utils.createErrorObject(131, util.format('Failed to update entry %s', err)));
@@ -250,7 +250,7 @@ function removeEntry(eventId) {
     };
     entriesCollection.remove(query, (error, item) => {
       if (error) {
-        console.log(error);
+        console.log(`API DEBUG, ${error}`);
         reject(error);
       } else {
         resolve(item);
@@ -269,11 +269,11 @@ app.delete('/api/entries/:entryId', (req, res) => {
     removeEntry(req.params.entryId).then(() => {
       res.sendStatus(204);
     }, (err) => {
-      // console.log("fehler" + err);
+      // console.log('API DEBUG, '+ "fehler" + err);
       res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
     });
   }, (err) => {
-    // console.log("no id found" + err);
+    // console.log('API DEBUG, '+ "no id found" + err);
     res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete entry %s', err)));
   });
 });
@@ -321,7 +321,7 @@ function removeAddressbook(addressbookId) {
     };
     addressbooksCollection.remove(query, (error, item) => {
       if (error) {
-        console.log(error);
+        console.log(`API DEBUG, ${error}`);
         reject(error);
       }
       if (item) {
@@ -338,27 +338,34 @@ function removeAddressbook(addressbookId) {
  * @param {Object} newAddressbook
  */
 function addAddressbook(newAddressbook) {
-  // console.log(entry);
+  // console.log('API DEBUG, '+ entry);
   return new Promise(((resolve, reject) => {
     const dbAddressbook = {};
     dbAddressbook.name = newAddressbook.name;
 
     addressbooksCollection.insert(dbAddressbook, (error, result) => {
       if (error) {
-        console.log(error);
+        console.log(`API DEBUG, ${error}`);
         reject(error);
       }
       if (result) {
-        console.log(result);
+        console.log(`API DEBUG, ${result}`);
         resolve(result);
       }
     });
   }));
 }
 
+app.get('/api/addressbooks/', (req, res) => {
+    getAddressbooks().then((addressbooks) => {
+        res.json(addressbooks);
+    }, (err) => {
+        res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve addressbooks %s', err)));
+    });
+});
 
 app.post('/api/addressbooks/', validate({ body: schema.AddressbookCreate }), (req, res) => {
-  console.log(req.body);
+  console.log(`API DEBUG, ${req.body}`);
   addAddressbook(req.body).then((addressbook) => {
     res.json(addressbook);
   }, (err) => {
@@ -417,7 +424,7 @@ app.put('/api/addressbooks/:addressbookId', validate({ body: schema.AddressbookC
     updateAddressbook(req.params.addressbookId, req.body).then(() => {
       res.json(addressbook);
     }, (err) => {
-      res.status(500).json(utils.createErrorObject(131, util.format('Failed to delete addressbook %s', err)));
+      res.status(500).json(utils.createErrorObject(131, util.format('Failed to update addressbook %s', err)));
     });
   }, (err) => {
     res.status(500).json(utils.createErrorObject(131, util.format('Failed to update addressbook %s', err)));
@@ -433,7 +440,7 @@ app.put('/api/addressbooks/:addressbookId', validate({ body: schema.AddressbookC
 function getAddressbooks() {
   return new Promise(((resolve, reject) => {
     addressbooksCollection.find({}).toArray((error, list) => {
-      console.log(error);
+      console.log(`API DEBUG, ${error}`);
       if (error) {
         reject(error);
       }
@@ -445,13 +452,7 @@ function getAddressbooks() {
 }
 
 
-app.get('/api/addressbooks/', (req, res) => {
-  getAddressbooks().then((addressbooks) => {
-    res.json(addressbooks);
-  }, (err) => {
-    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve addressbooks %s', err)));
-  });
-});
+
 
 
 app.delete('/api/addressbooks/:addressbookId', (req, res) => {
@@ -479,6 +480,34 @@ app.delete('/api/addressbooks/:addressbookId', (req, res) => {
   __/ |               | |
  |___/                |_|
  */
+
+
+/**
+ * get all groups
+ *
+ * @return {Object} group Details
+ */
+function getGroups() {
+    return new Promise(((resolve, reject) => {
+        groupsCollection.find({}).toArray((error, list) => {
+            if (error) {
+                reject(error);
+            }
+            if (list) {
+                resolve(list);
+            }
+        });
+    }));
+}
+
+
+app.get('/api/groups/', (req, res) => {
+    getGroups().then((groups) => {
+        res.json(groups);
+    }, (err) => {
+        res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
+    });
+});
 
 /**
  * get groups by id
@@ -528,7 +557,7 @@ function removeGroup(groupId) {
  * @param {Object}newGroup new group data
  */
 function addGroup(newGroup) {
-  // console.log(entry);
+  // console.log('API DEBUG, '+ entry);
   return new Promise(((resolve, reject) => {
     const dbGroup = {};
     dbGroup.name = newGroup.name;
@@ -538,7 +567,7 @@ function addGroup(newGroup) {
         reject(error);
       }
       if (result) {
-        console.log(result);
+        console.log(`API DEBUG, ${result}`);
         resolve(result);
       }
     });
@@ -547,7 +576,7 @@ function addGroup(newGroup) {
 
 
 app.post('/api/groups/', validate({ body: schema.GroupCreate }), (req, res) => {
-  console.log(req.body);
+  console.log(`API DEBUG, ${req.body}`);
   addGroup(req.body).then((group) => {
     res.json(group);
   }, (err) => {
@@ -558,9 +587,13 @@ app.post('/api/groups/', validate({ body: schema.GroupCreate }), (req, res) => {
 
 app.get('/api/groups/:groupId', (req, res) => {
   getGroupById(req.params.groupId).then((group) => {
+      if (group == null) {
+          res.status(404).json(utils.createErrorObject(151, util.format('Unknown group ID %s', req.params.groupId)));
+          return;
+      }
     res.json(group);
   }, (err) => {
-    res.status(500).json(utils.createErrorObject(131, util.format('Failed to get groupName %s', err)));
+    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve group %s', err)));
   });
 });
 
@@ -609,32 +642,7 @@ app.put('/api/groups/:groupId', validate({ body: schema.GroupCreate }), (req, re
   });
 });
 
-/**
- * get all groups
- *
- * @return {Object} group Details
- */
-function getGroups() {
-  return new Promise(((resolve, reject) => {
-    groupsCollection.find({}).toArray((error, list) => {
-      if (error) {
-        reject(error);
-      }
-      if (list) {
-        resolve(list);
-      }
-    });
-  }));
-}
 
-
-app.get('/api/groups/', (req, res) => {
-  getGroups().then((groups) => {
-    res.json(groups);
-  }, (err) => {
-    res.status(500).json(utils.createErrorObject(131, util.format('Failed to retrieve groups %s', err)));
-  });
-});
 
 app.delete('/api/groups/:groupId', (req, res) => {
   getGroupById(req.params.groupId).then((group) => {
@@ -655,5 +663,5 @@ app.delete('/api/groups/:groupId', (req, res) => {
 
 
 app.listen(3000, () => {
-  console.log('API listening on port 3000!');
+  console.log('API DEBUG, ' + 'API listening on port 3000!');
 });
