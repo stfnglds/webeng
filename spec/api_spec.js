@@ -1,4 +1,5 @@
 const request = require('request');
+// eslint-disable-next-line no-unused-vars
 const api = require('../src/services/api.js');
 
 // IMPORTANT: Stop API Node server before running gulp jasmine
@@ -39,36 +40,34 @@ describe('GET', () => {
 });
 
 describe('Server Codes', () => {
-
     describe('Entries', () => {
-        beforeEach(function () {
-            url = 'http://localhost:3000/api/entries';
-        });
+        const url = 'http://localhost:3000/api/entries';
 
-        it('should return 200 on GET', function (done) {
-            request.get(url, function (error, response) {
+
+        it('should return 200 on GET', (done) => {
+            request.get(url, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(200);
                 done();
             });
         });
 
-        it('should fail on POST', function (done) {
+        it('should fail on POST', (done) => {
             request.post(url, {
                 json: true,
                 body: {},
-            }, function (error, response) {
+            }, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(500);
                 done();
             });
         });
 
-        it('should give 200 on POST', function (done) {
+        it('should give 200 on POST', (done) => {
             request.post(url, {
                 json: true,
                 body: { name: 'test' },
-            }, function (error, response) {
+            }, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(200);
                 done();
@@ -77,34 +76,32 @@ describe('Server Codes', () => {
     });
 
     describe('Groups', () => {
-        beforeEach(function () {
-            url = 'http://localhost:3000/api/groups';
-        });
+        const url = 'http://localhost:3000/api/groups';
 
-        it('should return 200 on GET', function (done) {
-            request.get(url, function (error, response) {
+        it('should return 200 on GET', (done) => {
+            request.get(url, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(200);
                 done();
             });
         });
 
-        it('should fail on POST', function (done) {
+        it('should fail on POST', (done) => {
             request.post(url, {
                 json: true,
                 body: {},
-            }, function (error, response) {
+            }, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(500);
                 done();
             });
         });
 
-        it('should give 200 on POST', function (done) {
+        it('should give 200 on POST', (done) => {
             request.post(url, {
                 json: true,
                 body: { name: 'test' },
-            }, function (error, response) {
+            }, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(200);
                 done();
@@ -113,34 +110,33 @@ describe('Server Codes', () => {
     });
 
     describe('Addressbooks', () => {
-        beforeEach(function () {
-            url = 'http://localhost:3000/api/addressbooks';
-        });
+        const url = 'http://localhost:3000/api/addressbooks';
 
-        it('should return 200 on GET', function (done) {
-            request.get(url, function (error, response) {
+
+        it('should return 200 on GET', (done) => {
+            request.get(url, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(200);
                 done();
             });
         });
 
-        it('should fail on POST', function (done) {
+        it('should fail on POST', (done) => {
             request.post(url, {
                 json: true,
                 body: {},
-            }, function (error, response) {
+            }, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(500);
                 done();
             });
         });
 
-        it('should give 200 on POST', function (done) {
+        it('should give 200 on POST', (done) => {
             request.post(url, {
                 json: true,
                 body: { name: 'test' },
-            }, function (error, response) {
+            }, (error, response) => {
                 expect(response.statusCode)
                     .toEqual(200);
                 done();
@@ -148,5 +144,3 @@ describe('Server Codes', () => {
         });
     });
 });
-
-

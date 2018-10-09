@@ -2,6 +2,13 @@
     "extends": "airbnb-base",
     "root": true,
 
+    "plugins":[
+        "jasmine"
+    ],
+    "env":{
+        "jasmine":true
+    },
+
     "rules": {
         // enable additional rules
         "indent": [
