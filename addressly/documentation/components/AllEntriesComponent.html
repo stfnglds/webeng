@@ -1,0 +1,1162 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>addressly documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">addressly documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AllEntriesComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/all-entries/all-entries.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code><a href="../injectables/EntriesService.html" target="_self" >EntriesService</a></code>
+                            <code><a href="../injectables/GroupsService.html" target="_self" >GroupsService</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-all-entries</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>all-entries.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./all-entries.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addressbooks">addressbooks</a>
+                            </li>
+                            <li>
+                                <a href="#entries">entries</a>
+                            </li>
+                            <li>
+                                <a href="#filteredGroup">filteredGroup</a>
+                            </li>
+                            <li>
+                                <a href="#filteredRating">filteredRating</a>
+                            </li>
+                            <li>
+                                <a href="#groups">groups</a>
+                            </li>
+                            <li>
+                                <a href="#groupsFilter">groupsFilter</a>
+                            </li>
+                            <li>
+                                <a href="#title">title</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createEntry">createEntry</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadAddressbooks">loadAddressbooks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadEntries">loadEntries</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadGroups">loadGroups</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadGroupsAndPutNewGroupFirst">loadGroupsAndPutNewGroupFirst</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDeleted">onDeleted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deleted">deleted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_dataService: <a href="../injectables/EntriesService.html">EntriesService</a>, _groupService: <a href="../injectables/GroupsService.html">GroupsService</a>, _addressbookService: <a href="../injectables/AddressbooksService.html">AddressbooksService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/all-entries/all-entries.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_dataService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/EntriesService.html" target="_self" >EntriesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_groupService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/GroupsService.html" target="_self" >GroupsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_addressbookService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/AddressbooksService.html" target="_self" >AddressbooksService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="deleted"></a>
+                        <code>deleted</code>
+                    </td>
+                    <td class="col-md-10">
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/all-entries/all-entries.component.ts:34</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createEntry"></a>
+                        <span class="name">
+                            <b>
+                            createEntry
+                            </b>
+                            <a href="#createEntry"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>createEntry()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/all-entries/all-entries.component.ts:89</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadAddressbooks"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            loadAddressbooks
+                            </b>
+                            <a href="#loadAddressbooks"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>loadAddressbooks()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/all-entries/all-entries.component.ts:73</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadEntries"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            loadEntries
+                            </b>
+                            <a href="#loadEntries"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>loadEntries()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/all-entries/all-entries.component.ts:80</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadGroups"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            loadGroups
+                            </b>
+                            <a href="#loadGroups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>loadGroups()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/all-entries/all-entries.component.ts:46</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadGroupsAndPutNewGroupFirst"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            loadGroupsAndPutNewGroupFirst
+                            </b>
+                            <a href="#loadGroupsAndPutNewGroupFirst"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>loadGroupsAndPutNewGroupFirst()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/all-entries/all-entries.component.ts:113</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/all-entries/all-entries.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onDeleted"></a>
+                        <span class="name">
+                            <b>
+                            onDeleted
+                            </b>
+                            <a href="#onDeleted"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onDeleted()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/all-entries/all-entries.component.ts:109</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addressbooks"></a>
+                        <span class="name">
+                            <b>
+                            addressbooks
+                            </b>
+                            <a href="#addressbooks"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>addressbooks:     <code><a href="../interfaces/Addressbook.html" target="_self" >Addressbook[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/Addressbook.html" target="_self" >Addressbook[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/all-entries/all-entries.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entries"></a>
+                        <span class="name">
+                            <b>
+                            entries
+                            </b>
+                            <a href="#entries"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>entries:     <code><a href="../interfaces/Entry.html" target="_self" >Entry[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/Entry.html" target="_self" >Entry[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/all-entries/all-entries.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filteredGroup"></a>
+                        <span class="name">
+                            <b>
+                            filteredGroup
+                            </b>
+                            <a href="#filteredGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>filteredGroup:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/all-entries/all-entries.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filteredRating"></a>
+                        <span class="name">
+                            <b>
+                            filteredRating
+                            </b>
+                            <a href="#filteredRating"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>filteredRating:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/all-entries/all-entries.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="groups"></a>
+                        <span class="name">
+                            <b>
+                            groups
+                            </b>
+                            <a href="#groups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>groups:     <code><a href="../interfaces/Group.html" target="_self" >Group[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/Group.html" target="_self" >Group[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/all-entries/all-entries.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="groupsFilter"></a>
+                        <span class="name">
+                            <b>
+                            groupsFilter
+                            </b>
+                            <a href="#groupsFilter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>groupsFilter:     <code><a href="../interfaces/Group.html" target="_self" >Group[][]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/Group.html" target="_self" >Group[][]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/all-entries/all-entries.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <span class="name">
+                            <b>
+                            title
+                            </b>
+                            <a href="#title"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>title:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/all-entries/all-entries.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, EventEmitter, OnInit, Output, Pipe, PipeTransform} from &#x27;@angular/core&#x27;;
+import { Entry } from &#x27;../model/Entry&#x27;;
+import { Group } from &#x27;../model/Group&#x27;;
+import { GroupFilter } from &#x27;../model/GroupFilter&#x27;;
+import { EntriesService } from &#x27;../services/entries.service&#x27;;
+import { GroupsService } from &#x27;../services/groups.service&#x27;;
+import {Addressbook} from &quot;../model/addressbook&quot;;
+import {AddressbooksService} from &quot;../services/addressbooks.service&quot;;
+
+@Component({
+  selector: &#x27;app-all-entries&#x27;,
+  templateUrl: &#x27;./all-entries.component.html&#x27;,
+  styleUrls: [&#x27;./all-entries.component.scss&#x27;],
+  providers: [EntriesService,GroupsService]
+})
+
+
+export class AllEntriesComponent implements OnInit {
+
+
+  constructor(private _dataService: EntriesService,private _groupService: GroupsService,private _addressbookService: AddressbooksService) {
+  }
+
+  entries: Entry[];
+  groups: Group[];
+  addressbooks: Addressbook[];
+  groupsFilter:Group[][];
+  filteredGroup: number;
+  filteredRating: number;
+
+  title: string;
+
+  @Output()
+  deleted &#x3D; new EventEmitter&lt;void&gt;();
+
+  ngOnInit(): void {
+    this.loadEntries();
+    this.loadGroups();
+    this.loadAddressbooks();
+    // this.loadGroupFilters();
+    this.filteredGroup&#x3D;-1;
+    this.filteredRating&#x3D;1;
+  }
+
+
+  private loadGroups() {
+    this._groupService.fetchGroups().subscribe(data &#x3D;&gt; {
+
+      this.groups&#x3D;data.sort(function(a:Group, b:Group){return a.addressbook-b.addressbook});
+      // this.groupsFilter&#x3D;this.groups.reduce(function (r:Group, a:Group) {
+      //   r[a.addressbook] &#x3D; r[a.addressbook] || [];
+      //   r[a.addressbook].push(a);
+      //   return r;
+      // }, Object.create(null));
+
+    //   this.groups.forEach(function(item){
+    //     console.log(&quot;item&quot;,item);
+    //     console.log(&quot;groupsFilter[1]&quot;,this.groupsFilter[1]);
+    //     var addressbookList&#x3D;this.groupsFilter[item.addressbook];
+    //
+    //     if(addressbookList){
+    //       addressbookList.push(item);
+    //     } else{
+    //       this.groupsFilter[item.addressbook] &#x3D; [item];
+    //     }
+    //
+    //   });
+    //   console.log(&quot;groups filter&quot;,this.groupsFilter);
+    // }, error &#x3D;&gt; {
+    //   console.log(&#x27;Failed fetching groups&#x27;);
+    });
+  }
+  private loadAddressbooks() {
+    this._addressbookService.fetchAddressbooks().subscribe(data &#x3D;&gt; {
+
+      this.addressbooks&#x3D;data.sort(function(a:Addressbook, b:Addressbook){return a._id-b._id});
+    });
+  }
+
+  private loadEntries() {
+    this._dataService.fetchCalendarEntries().subscribe(data &#x3D;&gt; {
+      this.entries&#x3D;data;
+    }, error &#x3D;&gt; {
+      console.log(&#x27;Failed fetching entries&#x27;);
+    });
+  }
+
+
+  createEntry() {
+    this._dataService.createEntry({name:&quot;new Entry&quot;,rating:1}).subscribe(
+      data &#x3D;&gt;{
+        this.loadGroupsAndPutNewGroupFirst();
+      }
+    );
+  }
+
+  // deleteEntry(id: number) {
+  //   this._dataService.deleteEntry(id).subscribe(
+  //     data &#x3D;&gt;{
+  //       this.loadEntries();
+  //     }
+  //   );
+  // }
+
+  // public getGroupNameFromId(searchId: number){
+  //   return this.groups.find( groupName &#x3D;&gt; groupName._id &#x3D;&#x3D;&#x3D; searchId);
+  // }
+
+  onDeleted(): void {
+    this.loadEntries();
+  }
+
+  private loadGroupsAndPutNewGroupFirst() {
+    this._dataService.fetchCalendarEntries().subscribe(data &#x3D;&gt; {
+
+      this.entries&#x3D;data;
+      this.entries.unshift(this.entries.pop());
+      this.entries[0].editMode&#x3D;true;
+      //  this.entries&#x3D;[{}];
+    }, error &#x3D;&gt; {
+      console.log(&#x27;Failed fetching entries&#x27;);
+    });
+  }
+
+  // private loadGroupFilters() {
+  //   this._groupService.fetchGroups().subscribe(data &#x3D;&gt; {
+  //       data.forEach(group &#x3D;&gt; {
+  //         var filter : GroupFilter;
+  //         filter._id&#x3D;group._id;
+  //         filter.name&#x3D;group.name;
+  //         filter.activated&#x3D;false;
+  //         this.groupFilters.push(filter);
+  //       });
+  //       console.log(&quot;groupFilters loaded&quot;);
+  //   }, error &#x3D;&gt; {
+  //     console.log(&#x27;Failed fetching groups&#x27;);
+  //   });
+  // }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container filterContainer&quot;&gt;
+  &lt;br&gt;
+  &lt;h5&gt;Filters&lt;/h5&gt;
+  &lt;!--&lt;div *ngFor&#x3D;&#x27;let group of groups&#x27; class&#x3D;&quot;groupInAddressbookContainer&quot; [ngStyle]&#x3D;&quot;{&#x27;background-color&#x27;: &#x27;hsla(&#x27;+group.addressbook*300%360+&#x27;,50%,50%,0.7)&#x27;}&quot; &gt;--&gt;
+  &lt;!--&lt;button class&#x3D;&quot;btn btn-primary btn-filter&quot; (click)&#x3D;&quot;filteredGroup &#x3D; (filteredGroup&#x3D;&#x3D;group._id ? -1 : group._id)&quot;--&gt;
+  &lt;!--[ngClass]&#x3D;&quot;{&#x27;btn-success&#x27;:filteredGroup&#x3D;&#x3D;group._id}&quot; &gt;--&gt;
+  &lt;!--&lt;i class&#x3D;&quot;fa fa-arrow-right&quot; [hidden]&#x3D;&quot;filteredGroup!&#x3D;group._id&quot;&gt;&lt;/i&gt;{{group.name}}--&gt;
+  &lt;!--&lt;/button&gt;--&gt;
+  &lt;!--&lt;/div&gt;--&gt;
+
+  &lt;div *ngFor&#x3D;&quot;let addressbookList of groups | groupBy: &#x27;addressbook&#x27;&quot; class&#x3D;&quot;groupInAddressbookContainer&quot;
+       [ngStyle]&#x3D;&quot;{&#x27;background-color&#x27;: &#x27;hsla(&#x27;+addressbookList.key*300%360+&#x27;,100%,90%,1&#x27;}&quot;&gt;
+    &lt;div *ngFor&#x3D;&quot;let addressbook of addressbooks&quot;&gt;
+      &lt;h6 *ngIf&#x3D;&quot;addressbook._id&#x3D;&#x3D;addressbookList.key&quot;&gt;{{addressbook.name}}&lt;/h6&gt;
+    &lt;/div&gt;
+    &lt;div *ngFor&#x3D;&#x27;let group of addressbookList.value&#x27;&gt;
+      &lt;button class&#x3D;&quot;btn btn-primary btn-filter&quot; (click)&#x3D;&quot;filteredGroup &#x3D; (filteredGroup&#x3D;&#x3D;group._id ? -1 : group._id)&quot;
+              [ngClass]&#x3D;&quot;{&#x27;btn-success&#x27;:filteredGroup&#x3D;&#x3D;group._id}&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-arrow-right&quot; [hidden]&#x3D;&quot;filteredGroup!&#x3D;group._id&quot;&gt;&lt;/i&gt;{{group.name}}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h5&gt;Minimum Rating&lt;/h5&gt;
+  &lt;div&gt;
+    &lt;i class&#x3D;&quot;far fa-star rating&quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:filteredRating &gt;&#x3D; 1}&quot; (click)&#x3D;&quot;filteredRating&#x3D;1&quot;&gt;&lt;/i&gt;
+    &lt;i class&#x3D;&quot;far fa-star rating&quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:filteredRating &gt;&#x3D; 2}&quot; (click)&#x3D;&quot;filteredRating&#x3D;2&quot;&gt;&lt;/i&gt;
+    &lt;i class&#x3D;&quot;far fa-star rating&quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:filteredRating &gt;&#x3D; 3}&quot; (click)&#x3D;&quot;filteredRating&#x3D;3&quot;&gt;&lt;/i&gt;
+    &lt;i class&#x3D;&quot;far fa-star rating&quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:filteredRating &gt;&#x3D; 4}&quot; (click)&#x3D;&quot;filteredRating&#x3D;4&quot;&gt;&lt;/i&gt;
+    &lt;i class&#x3D;&quot;far fa-star rating&quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:filteredRating &gt;&#x3D; 5}&quot; (click)&#x3D;&quot;filteredRating&#x3D;5&quot;&gt;&lt;/i&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;card mx-auto&quot; style&#x3D;&quot;max-width: 20rem; margin-bottom:2em&quot;&gt;
+    &lt;button (click)&#x3D;&quot;createEntry()&quot; class&#x3D;&quot;btn btn-primary newEntryButton&quot;&gt;&lt;b&gt;+&lt;/b&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div *ngFor&#x3D;&#x27;let entry of entries&#x27; class&#x3D;&quot;entryCardsContainer&quot;&gt;
+    &lt;app-entry-card [in]&#x3D;&quot;entry&quot; (deleted)&#x3D;&quot;onDeleted()&quot;
+                    [hidden]&#x3D;&quot;((entry.group!&#x3D;filteredGroup || entry.group &#x3D;&#x3D;&#x3D; undefined) &amp;&amp; filteredGroup&gt;0) || entry.rating&lt;filteredRating&quot;&gt;&lt;/app-entry-card&gt;
+  &lt;/div&gt;
+  &lt;!--&lt;div class&#x3D;&quot;card mx-auto&quot; *ngFor&#x3D;&#x27;let entry of entries&#x27; style&#x3D;&quot;max-width: 20rem; margin-bottom:2em&quot;  [ngStyle]&#x3D;&quot;{&#x27;background-color&#x27;: &#x27;hsla(&#x27;+entry.groupName*1234%360+&#x27;,100%,75%,0.3)&#x27;}&quot;&gt;--&gt;
+  &lt;!--&lt;h3 class&#x3D;&quot;card-header&quot; style&#x3D;&quot;text-align: right&quot;&gt;--&gt;
+  &lt;!--&amp;lt;!&amp;ndash;{{getGroupNameFromId(entry.groupName)}}&amp;ndash;&amp;gt;--&gt;
+  &lt;!--&lt;button [hidden]&#x3D;&quot;entry.delete&quot; class&#x3D;&quot;btn btn-outline-danger&quot; (click)&#x3D;&quot;entry.delete &#x3D; true&quot;&gt;--&gt;
+  &lt;!--&lt;fa name&#x3D;&quot;trash&quot;&gt;&lt;/fa&gt;--&gt;
+  &lt;!--&lt;/button&gt;--&gt;
+  &lt;!--&lt;button [hidden]&#x3D;&quot;!entry.delete&quot; (click)&#x3D;&quot;deleteEntry(entry._id)&quot; class&#x3D;&quot;btn btn-danger&quot;&gt;wirklich Löschen&lt;/button&gt;--&gt;
+  &lt;!--&lt;/h3&gt;--&gt;
+  &lt;!--&lt;br&gt;--&gt;
+  &lt;!--&lt;div class&#x3D;&quot;card-body&quot;&gt;--&gt;
+  &lt;!--&lt;h4 class&#x3D;&quot;card-title&quot;&gt;--&gt;
+  &lt;!--&lt;span [hidden]&#x3D;&quot;entry.editMode&quot;&gt;[{{entry._id}}] {{entry.name}}&lt;/span&gt;--&gt;
+  &lt;!--&lt;in [hidden]&#x3D;&quot;!entry.editMode&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Name&quot; [(ngModel)]&#x3D;&quot;entry.name&quot;&gt;--&gt;
+  &lt;!--&lt;div&gt;--&gt;
+  &lt;!--&lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 1, &#x27;rating&#x27;:entry.editMode}&quot; (click)&#x3D;&quot;entry.rating&#x3D;1&quot; &gt;&lt;/i&gt;--&gt;
+  &lt;!--&lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 2, &#x27;rating&#x27;:entry.editMode}&quot; (click)&#x3D;&quot;entry.rating&#x3D;2&quot;&gt;&lt;/i&gt;--&gt;
+  &lt;!--&lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 3, &#x27;rating&#x27;:entry.editMode}&quot; (click)&#x3D;&quot;entry.rating&#x3D;3&quot;&gt;&lt;/i&gt;--&gt;
+  &lt;!--&lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 4, &#x27;rating&#x27;:entry.editMode}&quot; (click)&#x3D;&quot;entry.rating&#x3D;4&quot;&gt;&lt;/i&gt;--&gt;
+  &lt;!--&lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 5, &#x27;rating&#x27;:entry.editMode}&quot; (click)&#x3D;&quot;entry.rating&#x3D;5&quot;&gt;&lt;/i&gt;--&gt;
+  &lt;!--&lt;/div&gt;--&gt;
+  &lt;!--&lt;/h4&gt;--&gt;
+  &lt;!--&lt;p class&#x3D;&quot;card-text&quot;&gt;--&gt;
+  &lt;!--&lt;span [hidden]&#x3D;&quot;entry.editMode&quot;&gt;{{entry.address}}&lt;/span&gt;--&gt;
+  &lt;!--&lt;in [hidden]&#x3D;&quot;!entry.editMode&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Address&quot;--&gt;
+  &lt;!--[(ngModel)]&#x3D;&quot;entry.address&quot;&gt;--&gt;
+  &lt;!--&lt;br&gt;--&gt;
+  &lt;!--&lt;select class&#x3D;&quot;form-control&quot; [hidden]&#x3D;&quot;!entry.editMode&quot; [(ngModel)]&#x3D;&quot;entry.groupName&quot;&gt;--&gt;
+  &lt;!--&lt;option *ngFor&#x3D;&#x27;let groupName of groups&#x27; value&#x3D;&quot;{{groupName._id}}&quot;&gt;{{groupName._id}} {{groupName.name}}&lt;/option&gt;--&gt;
+  &lt;!--&lt;/select&gt;--&gt;
+  &lt;!--&lt;/p&gt;--&gt;
+  &lt;!--&lt;button [hidden]&#x3D;&quot;entry.editMode&quot; (click)&#x3D;&quot;entry.editMode &#x3D; !entry.editMode&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;Edit&lt;/button&gt;--&gt;
+  &lt;!--&lt;button [hidden]&#x3D;&quot;!entry.editMode&quot; (click)&#x3D;&quot;entry.editMode &#x3D; !entry.editMode; saveEntry(entry);&quot;--&gt;
+  &lt;!--class&#x3D;&quot;btn btn-success&quot;&gt;Save     &lt;/button&gt;--&gt;
+
+  &lt;!--&lt;/div&gt;--&gt;
+  &lt;!--&lt;/div&gt;--&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container filterContainer">  <br>  <h5>Filters</h5>  <!--<div *ngFor=\'let group of groups\' class="groupInAddressbookContainer" [ngStyle]="{\'background-color\': \'hsla(\'+group.addressbook*300%360+\',50%,50%,0.7)\'}" >-->  <!--<button class="btn btn-primary btn-filter" (click)="filteredGroup = (filteredGroup==group._id ? -1 : group._id)"-->  <!--[ngClass]="{\'btn-success\':filteredGroup==group._id}" >-->  <!--<i class="fa fa-arrow-right" [hidden]="filteredGroup!=group._id"></i>{{group.name}}-->  <!--</button>-->  <!--</div>-->  <div *ngFor="let addressbookList of groups | groupBy: \'addressbook\'" class="groupInAddressbookContainer"       [ngStyle]="{\'background-color\': \'hsla(\'+addressbookList.key*300%360+\',100%,90%,1\'}">    <div *ngFor="let addressbook of addressbooks">      <h6 *ngIf="addressbook._id==addressbookList.key">{{addressbook.name}}</h6>    </div>    <div *ngFor=\'let group of addressbookList.value\'>      <button class="btn btn-primary btn-filter" (click)="filteredGroup = (filteredGroup==group._id ? -1 : group._id)"              [ngClass]="{\'btn-success\':filteredGroup==group._id}">        <i class="fa fa-arrow-right" [hidden]="filteredGroup!=group._id"></i>{{group.name}}      </button>    </div>  </div>  <h5>Minimum Rating</h5>  <div>    <i class="far fa-star rating" [ngClass]="{\'fas\':filteredRating >= 1}" (click)="filteredRating=1"></i>    <i class="far fa-star rating" [ngClass]="{\'fas\':filteredRating >= 2}" (click)="filteredRating=2"></i>    <i class="far fa-star rating" [ngClass]="{\'fas\':filteredRating >= 3}" (click)="filteredRating=3"></i>    <i class="far fa-star rating" [ngClass]="{\'fas\':filteredRating >= 4}" (click)="filteredRating=4"></i>    <i class="far fa-star rating" [ngClass]="{\'fas\':filteredRating >= 5}" (click)="filteredRating=5"></i>  </div></div><div class="container">  <div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em">    <button (click)="createEntry()" class="btn btn-primary newEntryButton"><b>+</b></button>  </div>  <div *ngFor=\'let entry of entries\' class="entryCardsContainer">    <app-entry-card [in]="entry" (deleted)="onDeleted()"                    [hidden]="((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating"></app-entry-card>  </div>  <!--<div class="card mx-auto" *ngFor=\'let entry of entries\' style="max-width: 20rem; margin-bottom:2em"  [ngStyle]="{\'background-color\': \'hsla(\'+entry.groupName*1234%360+\',100%,75%,0.3)\'}">-->  <!--<h3 class="card-header" style="text-align: right">-->  <!--&lt;!&ndash;{{getGroupNameFromId(entry.groupName)}}&ndash;&gt;-->  <!--<button [hidden]="entry.delete" class="btn btn-outline-danger" (click)="entry.delete = true">-->  <!--<fa name="trash"></fa>-->  <!--</button>-->  <!--<button [hidden]="!entry.delete" (click)="deleteEntry(entry._id)" class="btn btn-danger">wirklich Löschen</button>-->  <!--</h3>-->  <!--<br>-->  <!--<div class="card-body">-->  <!--<h4 class="card-title">-->  <!--<span [hidden]="entry.editMode">[{{entry._id}}] {{entry.name}}</span>-->  <!--<in [hidden]="!entry.editMode" type="text" class="form-control" placeholder="Name" [(ngModel)]="entry.name">-->  <!--<div>-->  <!--<i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 1, \'rating\':entry.editMode}" (click)="entry.rating=1" ></i>-->  <!--<i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 2, \'rating\':entry.editMode}" (click)="entry.rating=2"></i>-->  <!--<i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 3, \'rating\':entry.editMode}" (click)="entry.rating=3"></i>-->  <!--<i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 4, \'rating\':entry.editMode}" (click)="entry.rating=4"></i>-->  <!--<i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 5, \'rating\':entry.editMode}" (click)="entry.rating=5"></i>-->  <!--</div>-->  <!--</h4>-->  <!--<p class="card-text">-->  <!--<span [hidden]="entry.editMode">{{entry.address}}</span>-->  <!--<in [hidden]="!entry.editMode" type="text" class="form-control" placeholder="Address"-->  <!--[(ngModel)]="entry.address">-->  <!--<br>-->  <!--<select class="form-control" [hidden]="!entry.editMode" [(ngModel)]="entry.groupName">-->  <!--<option *ngFor=\'let groupName of groups\' value="{{groupName._id}}">{{groupName._id}} {{groupName.name}}</option>-->  <!--</select>-->  <!--</p>-->  <!--<button [hidden]="entry.editMode" (click)="entry.editMode = !entry.editMode" class="btn btn-primary">Edit</button>-->  <!--<button [hidden]="!entry.editMode" (click)="entry.editMode = !entry.editMode; saveEntry(entry);"-->  <!--class="btn btn-success">Save     </button>-->  <!--</div>-->  <!--</div>--></div></div>'
+    var COMPONENTS = [{'name': 'AllAddressbooksComponent', 'selector': 'app-all-addressbooks'},{'name': 'AllEntriesComponent', 'selector': 'app-all-entries'},{'name': 'AllGroupsComponent', 'selector': 'app-all-groups'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EntryCardComponent', 'selector': 'app-entry-card'},{'name': 'NavbarComponent', 'selector': 'app-navbar'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AllEntriesComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AllEntriesComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

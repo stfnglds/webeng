@@ -12,6 +12,10 @@ const httpOptions = {
   providedIn: 'root'
 })
 
+/**
+ * @ngdoc service  //Mark the object as a service.
+ * @name app.EntriesService // Provide the module and the service name
+ **/
 
 export class EntriesService {
 

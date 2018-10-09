@@ -1,0 +1,915 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>addressly documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">addressly documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>EntryCardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/entry-card/entry-card.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-entry-card</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>entry-card.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./entry-card.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#entry">entry</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#groupName">groupName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#groups">groups</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deleteEntry">deleteEntry</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadGroups">loadGroups</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#saveEntry">saveEntry</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#in">in</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deleted">deleted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#in">in</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_entriesService: <a href="../injectables/EntriesService.html">EntriesService</a>, _groupService: <a href="../injectables/GroupsService.html">GroupsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/entry-card/entry-card.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_entriesService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/EntriesService.html" target="_self" >EntriesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_groupService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/GroupsService.html" target="_self" >GroupsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="in"></a>
+                        <code>in</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/entry-card/entry-card.component.ts:21</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="deleted"></a>
+                        <code>deleted</code>
+                    </td>
+                    <td class="col-md-10">
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/entry-card/entry-card.component.ts:37</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deleteEntry"></a>
+                        <span class="name">
+                            <b>
+                            deleteEntry
+                            </b>
+                            <a href="#deleteEntry"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>deleteEntry()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/entry-card/entry-card.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadGroups"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            loadGroups
+                            </b>
+                            <a href="#loadGroups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>loadGroups()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/entry-card/entry-card.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/entry-card/entry-card.component.ts:75</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="saveEntry"></a>
+                        <span class="name">
+                            <b>
+                            saveEntry
+                            </b>
+                            <a href="#saveEntry"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>saveEntry(updatedEntry: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/entry-card/entry-card.component.ts:63</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>updatedEntry</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entry"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            entry
+                            </b>
+                            <a href="#entry"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>entry:     <code><a href="../interfaces/Entry.html" target="_self" >Entry</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/Entry.html" target="_self" >Entry</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/entry-card/entry-card.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="groupName"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            groupName
+                            </b>
+                            <a href="#groupName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>groupName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/entry-card/entry-card.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="groups"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            groups
+                            </b>
+                            <a href="#groups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>groups:     <code><a href="../interfaces/Group.html" target="_self" >Group[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/Group.html" target="_self" >Group[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/entry-card/entry-card.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="in"></a>
+                        <span class="name"><b>in</b><a href="#in"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>in(entry: )</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/entry-card/entry-card.component.ts:21</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>entry</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, EventEmitter, Input, OnInit, Output} from &#x27;@angular/core&#x27;;
+import {Entry} from &quot;../model/entry&quot;;
+import {EntriesService} from &quot;../services/entries.service&quot;;
+import {GroupsService} from &quot;../services/groups.service&quot;;
+import {Group} from &quot;../model/group&quot;;
+
+@Component({
+  selector: &#x27;app-entry-card&#x27;,
+  templateUrl: &#x27;./entry-card.component.html&#x27;,
+  styleUrls: [&#x27;./entry-card.component.scss&#x27;]
+})
+
+
+export class EntryCardComponent implements OnInit {
+
+  public groupName&#x3D;&quot;&quot;;
+  public groups:Group[];
+  public entry:Entry;
+
+  @Input()
+  set in(entry:Entry){
+   this.entry&#x3D;entry;
+   //console.log(&quot;try to get group &quot;+this.entry.group);
+    this._groupService.getGroupById(this.entry.group).subscribe(
+      data&#x3D;&gt;{
+        //console.log(data);
+       // console.log(data.name);
+        this.groupName&#x3D;data[0].name;
+      },
+      error &#x3D;&gt;{
+        console.log(error);
+      }
+    );
+  }
+
+  @Output()
+  deleted &#x3D; new EventEmitter&lt;void&gt;();
+
+  constructor(private _entriesService: EntriesService, private _groupService: GroupsService) {
+    this.loadGroups();
+  }
+
+  private loadGroups() {
+    this._groupService.fetchGroups().subscribe(data &#x3D;&gt; {
+
+      this.groups&#x3D;data;
+    }, error &#x3D;&gt; {
+      console.log(&#x27;Failed fetching groups&#x27;);
+    });
+  }
+
+  deleteEntry() {
+    this._entriesService.deleteEntry(this.entry._id).subscribe(
+      data &#x3D;&gt; {
+        this.deleted.emit();
+      },
+      error &#x3D;&gt; {
+        console.log(&#x27;Failed to delete entry&#x27;);
+      }
+    );
+  }
+
+  saveEntry(updatedEntry) {
+    this._entriesService.updateEntry(updatedEntry).subscribe(
+      data &#x3D;&gt;{
+
+      },
+      error &#x3D;&gt; {
+        console.log(&#x27;Failed to update entry&#x27;);
+      }
+    );
+  }
+
+
+  ngOnInit() {
+
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;card mx-auto&quot; style&#x3D;&quot;max-width: 20rem; margin-bottom:2em&quot;
+     [ngStyle]&#x3D;&quot;{&#x27;background-color&#x27;: &#x27;hsla(&#x27;+entry.group*1234%360+&#x27;,100%,90%,1)&#x27;}&quot;&gt;
+  &lt;div class&#x3D;&quot;card-header entryHeader&quot; style&#x3D;&quot;text-align: right&quot;&gt;
+    &lt;span class&#x3D;&quot;groupName&quot;&gt;{{groupName}}&lt;/span&gt;
+    &lt;button [hidden]&#x3D;&quot;entry.editMode&quot; (click)&#x3D;&quot;entry.editMode &#x3D; !entry.editMode&quot; class&#x3D;&quot;btn btn-outline-success&quot;&gt;&lt;i
+      class&#x3D;&quot;fa fa-edit&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button [hidden]&#x3D;&quot;!entry.editMode&quot; (click)&#x3D;&quot;entry.editMode &#x3D; !entry.editMode; saveEntry(entry);&quot;
+            class&#x3D;&quot;btn btn-success entrySaveButton&quot;&gt;&lt;i class&#x3D;&quot;fa fa-save&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;button [hidden]&#x3D;&quot;entry.delete&quot; class&#x3D;&quot;btn btn-outline-danger deleteButton&quot; (click)&#x3D;&quot;entry.delete &#x3D; true&quot;&gt;
+      &lt;i class&#x3D;&quot;fa fa-trash&quot;&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;button [hidden]&#x3D;&quot;!entry.delete&quot; (click)&#x3D;&quot;deleteEntry(entry._id)&quot; class&#x3D;&quot;btn btn-danger reallyDeleteEntryButton&quot;&gt;
+      wirklich Löschen
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;br&gt;
+  &lt;div class&#x3D;&quot;card-body&quot;&gt;
+    &lt;h4 class&#x3D;&quot;card-title&quot;&gt;
+      &lt;span [hidden]&#x3D;&quot;entry.editMode&quot;&gt;[{{entry._id}}] {{entry.name}}&lt;/span&gt;
+      &lt;input [hidden]&#x3D;&quot;!entry.editMode&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control entryInputName&quot; placeholder&#x3D;&quot;Name&quot;
+             [(ngModel)]&#x3D;&quot;entry.name&quot;&gt;
+      &lt;div&gt;
+        &lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 1, &#x27;rating&#x27;:entry.editMode}&quot;
+           (click)&#x3D;&quot;entry.rating&#x3D;1&quot;&gt;&lt;/i&gt;
+        &lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 2, &#x27;rating&#x27;:entry.editMode}&quot;
+           (click)&#x3D;&quot;entry.rating&#x3D;2&quot;&gt;&lt;/i&gt;
+        &lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 3, &#x27;rating&#x27;:entry.editMode}&quot;
+           (click)&#x3D;&quot;entry.rating&#x3D;3&quot;&gt;&lt;/i&gt;
+        &lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 4, &#x27;rating&#x27;:entry.editMode}&quot;
+           (click)&#x3D;&quot;entry.rating&#x3D;4&quot;&gt;&lt;/i&gt;
+        &lt;i class&#x3D;&quot;far fa-star &quot; [ngClass]&#x3D;&quot;{&#x27;fas&#x27;:entry.rating &gt;&#x3D; 5, &#x27;rating&#x27;:entry.editMode}&quot;
+           (click)&#x3D;&quot;entry.rating&#x3D;5&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    &lt;/h4&gt;
+    &lt;p class&#x3D;&quot;card-text&quot;&gt;
+      &lt;span [hidden]&#x3D;&quot;entry.editMode&quot;&gt;{{entry.address}}&lt;/span&gt;
+      &lt;input [hidden]&#x3D;&quot;!entry.editMode&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control entryInputAddress&quot; placeholder&#x3D;&quot;Address&quot;
+             [(ngModel)]&#x3D;&quot;entry.address&quot;&gt;
+      &lt;br&gt;
+      &lt;select class&#x3D;&quot;form-control&quot; [hidden]&#x3D;&quot;!entry.editMode&quot; [(ngModel)]&#x3D;&quot;entry.group&quot;&gt;
+        &lt;option *ngFor&#x3D;&#x27;let group of groups&#x27; value&#x3D;&quot;{{group._id}}&quot;&gt;{{group._id}} {{group.name}}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/p&gt;
+
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em"     [ngStyle]="{\'background-color\': \'hsla(\'+entry.group*1234%360+\',100%,90%,1)\'}">  <div class="card-header entryHeader" style="text-align: right">    <span class="groupName">{{groupName}}</span>    <button [hidden]="entry.editMode" (click)="entry.editMode = !entry.editMode" class="btn btn-outline-success"><i      class="fa fa-edit"></i></button>    <button [hidden]="!entry.editMode" (click)="entry.editMode = !entry.editMode; saveEntry(entry);"            class="btn btn-success entrySaveButton"><i class="fa fa-save"></i></button>    <button [hidden]="entry.delete" class="btn btn-outline-danger deleteButton" (click)="entry.delete = true">      <i class="fa fa-trash"></i>    </button>    <button [hidden]="!entry.delete" (click)="deleteEntry(entry._id)" class="btn btn-danger reallyDeleteEntryButton">      wirklich Löschen    </button>  </div>  <br>  <div class="card-body">    <h4 class="card-title">      <span [hidden]="entry.editMode">[{{entry._id}}] {{entry.name}}</span>      <input [hidden]="!entry.editMode" type="text" class="form-control entryInputName" placeholder="Name"             [(ngModel)]="entry.name">      <div>        <i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 1, \'rating\':entry.editMode}"           (click)="entry.rating=1"></i>        <i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 2, \'rating\':entry.editMode}"           (click)="entry.rating=2"></i>        <i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 3, \'rating\':entry.editMode}"           (click)="entry.rating=3"></i>        <i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 4, \'rating\':entry.editMode}"           (click)="entry.rating=4"></i>        <i class="far fa-star " [ngClass]="{\'fas\':entry.rating >= 5, \'rating\':entry.editMode}"           (click)="entry.rating=5"></i>      </div>    </h4>    <p class="card-text">      <span [hidden]="entry.editMode">{{entry.address}}</span>      <input [hidden]="!entry.editMode" type="text" class="form-control entryInputAddress" placeholder="Address"             [(ngModel)]="entry.address">      <br>      <select class="form-control" [hidden]="!entry.editMode" [(ngModel)]="entry.group">        <option *ngFor=\'let group of groups\' value="{{group._id}}">{{group._id}} {{group.name}}</option>      </select>    </p>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AllAddressbooksComponent', 'selector': 'app-all-addressbooks'},{'name': 'AllEntriesComponent', 'selector': 'app-all-entries'},{'name': 'AllGroupsComponent', 'selector': 'app-all-groups'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EntryCardComponent', 'selector': 'app-entry-card'},{'name': 'NavbarComponent', 'selector': 'app-navbar'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'EntryCardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EntryCardComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
