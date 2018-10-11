@@ -4,6 +4,7 @@
     <button (click)="createGroup()" class="btn btn-primary"><b>+</b></button>
   </div>
   <br>
+  <app-error-message *ngIf='!groups  && errorText!==""' [data]="errorText"></app-error-message>
   <div class="card mx-auto" *ngFor='let group of groups' style="max-width: 20rem; margin-bottom:2em" [ngStyle]="{'background-color': 'hsla('+group.addressbook*1234%360+',100%,90%,1)'}">
     <h3 class="card-header" style="text-align: right">
       <button [hidden]="group.editMode" (click)="group.editMode = !group.editMode" class="btn btn-outline-success"><i class="fa fa-edit"></i></button>
@@ -30,7 +31,7 @@
       <select class="form-control" [hidden]="!group.editMode" [(ngModel)]="group.addressbook">
         <option *ngFor='let addressbook of addressbooks' value="{{addressbook._id}}">{{addressbook._id}} {{addressbook.name}}</option>
       </select>
-      
+
 
 
     </div>

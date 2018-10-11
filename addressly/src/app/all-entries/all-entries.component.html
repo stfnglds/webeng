@@ -32,9 +32,15 @@
 </div>
 
 <div class="container">
+
+
   <div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em">
     <button (click)="createEntry()" class="btn btn-primary newEntryButton"><b>+</b></button>
   </div>
+
+  <app-error-message *ngIf=" !entries && errorText!=='' " [data]="errorText"></app-error-message>
+
+
   <div *ngFor='let entry of entries' class="entryCardsContainer">
     <app-entry-card [data]="entry" (deleted)="onDeleted()"
                     [hidden]="((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating"></app-entry-card>

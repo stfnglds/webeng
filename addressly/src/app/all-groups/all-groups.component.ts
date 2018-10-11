@@ -15,10 +15,11 @@ export class AllGroupsComponent implements OnInit {
 
   groups: Group[];
   addressbooks: Addressbook[];
-
+  errorText: string;
   title: string;
 
   ngOnInit(): void {
+    this.errorText='';
     this.loadGroups();
     this.loadAddressbooks();
   }
@@ -28,7 +29,7 @@ export class AllGroupsComponent implements OnInit {
 
       this.addressbooks=data;
     }, error => {
-      console.log('Failed fetching addressbooks');
+      this.errorText += error +"\n";
     });
   }
 
@@ -38,7 +39,7 @@ export class AllGroupsComponent implements OnInit {
 
       this.groups=data;
     }, error => {
-      console.log('Failed fetching groups');
+      this.errorText += error +"\n";
     });
   }
 
@@ -49,7 +50,7 @@ export class AllGroupsComponent implements OnInit {
       this.groups.unshift(this.groups.pop());
       this.groups[0].editMode=true;
     }, error => {
-      console.log('Failed fetching groups');
+      this.errorText += error +"\n";
     });
   }
 
@@ -58,6 +59,8 @@ export class AllGroupsComponent implements OnInit {
     this._groupService.updateGroup(updatedGroup).subscribe(
       data =>{
         this.loadGroups();
+      }, error => {
+        this.errorText += error +"\n";
       }
     );
   }
@@ -66,6 +69,8 @@ export class AllGroupsComponent implements OnInit {
     this._groupService.createGroup({name:"new groupName"}).subscribe(
       data =>{
         this.loadGroupsAndPutNewGroupFirst();
+      }, error => {
+        this.errorText += error +"\n";
       }
     );
   }
@@ -74,6 +79,8 @@ export class AllGroupsComponent implements OnInit {
     this._groupService.deleteGroup(id).subscribe(
       data =>{
         this.loadGroups();
+      }, error => {
+        this.errorText += error +"\n";
       }
     );
   }

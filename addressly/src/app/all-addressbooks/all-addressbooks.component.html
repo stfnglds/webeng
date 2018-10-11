@@ -4,6 +4,7 @@
     <button (click)="createAddressbook()" class="btn btn-primary"><b>+</b></button>
   </div>
   <br>
+  <app-error-message *ngIf='!addressbooks && errorText!==""'    [data]="errorText"></app-error-message>
   <div class="card mx-auto" *ngFor='let addressbook of addressbooks' style="max-width: 20rem; margin-bottom:2em">
     <div class="card-header" style="text-align: right">
       <button [hidden]="addressbook.editMode" (click)="addressbook.editMode = !addressbook.editMode" class="btn btn-outline-success"><i class="fa fa-edit"></i></button>

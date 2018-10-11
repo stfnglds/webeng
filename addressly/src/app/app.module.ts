@@ -16,6 +16,7 @@ import {AllGroupsComponent} from "./all-groups/all-groups.component";
 import { AllAddressbooksComponent } from './all-addressbooks/all-addressbooks.component';
 import { EntryCardComponent } from './entry-card/entry-card.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 const appRoutes: Routes = [
   { path: 'entries', component: AllEntriesComponent },
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     AllGroupsComponent,
     AllAddressbooksComponent,
     EntryCardComponent,
-    GroupByPipe
+    GroupByPipe,
+    ErrorMessageComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

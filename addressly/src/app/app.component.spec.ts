@@ -12,8 +12,8 @@ import {AllGroupsComponent} from "./all-groups/all-groups.component";
 import {AllAddressbooksComponent} from "./all-addressbooks/all-addressbooks.component";
 import {EntryCardComponent} from "./entry-card/entry-card.component";
 import {GroupByPipe} from "./pipes/group-by.pipe";
-import {CUSTOM_ELEMENTS_SCHEMA, Input} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
+import {ErrorMessageComponent} from "./error-message/error-message.component";
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -30,7 +30,8 @@ describe('AppComponent', () => {
         AllGroupsComponent,
         AllAddressbooksComponent,
         EntryCardComponent,
-        GroupByPipe
+        GroupByPipe,
+        ErrorMessageComponent
       ],
     }).compileComponents();
   }));
@@ -39,15 +40,4 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  // it(`should have as title 'addressly'`, async(() => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual('addressly');
-  // }));
-  // it('should render title in a h1 tag', async(() => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to addressly!');
-  // }));
 });

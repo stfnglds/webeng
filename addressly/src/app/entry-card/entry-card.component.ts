@@ -21,12 +21,13 @@ export class EntryCardComponent implements OnInit {
   @Input('data')
   set data(entry:Entry){
    this.entry=entry;
-   //console.log("try to get group "+this.entry.group);
     this._groupService.getGroupById(this.entry.group).subscribe(
       data=>{
-        //console.log(data);
-       // console.log(data.name);
-        this.groupName=data[0].name;
+        try{
+          this.groupName=data[0].name;
+        }catch(e){
+          console.log("entry " + entry._id + " has no group");
+        }
       },
       error =>{
         console.log(error);

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EntryCardComponent } from './entry-card.component';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA} from "@angular/core";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 
 describe('EntryCardComponent', () => {
@@ -15,7 +15,8 @@ describe('EntryCardComponent', () => {
         FormsModule,
         HttpClientTestingModule
       ],
-      declarations: [ EntryCardComponent ]
+      declarations: [ EntryCardComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
   }));
@@ -29,22 +30,8 @@ describe('EntryCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
 
-
-describe('EntryCardComponent', () => {
-  let component: EntryCardComponent;
-  let fixture: ComponentFixture<EntryCardComponent>;
   let httpMock: HttpTestingController;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule,],
-      declarations: [EntryCardComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    })
-      .compileComponents();
-  }));
 
   beforeEach(async() => {
     fixture = TestBed.createComponent(EntryCardComponent);

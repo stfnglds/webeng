@@ -5,6 +5,7 @@ import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('AllAddressbooksComponent', () => {
   let component: AllAddressbooksComponent;
@@ -16,7 +17,8 @@ describe('AllAddressbooksComponent', () => {
         FormsModule,
         HttpClientTestingModule,
       ],
-      declarations: [ AllAddressbooksComponent ]
+      declarations: [ AllAddressbooksComponent ],
+      schemas:[NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
