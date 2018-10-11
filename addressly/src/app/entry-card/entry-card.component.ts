@@ -38,7 +38,7 @@ export class EntryCardComponent implements OnInit {
   deleted = new EventEmitter<void>();
 
   constructor(private _entriesService: EntriesService, private _groupService: GroupsService) {
-    this.entry={};
+    this.entry={name:""};
     this.loadGroups();
   }
 

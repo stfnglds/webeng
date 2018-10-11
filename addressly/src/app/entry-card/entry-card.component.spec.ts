@@ -39,14 +39,14 @@ describe('EntryCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule,],
       declarations: [EntryCardComponent],
       schemas: [NO_ERRORS_SCHEMA],
     })
       .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(EntryCardComponent);
     httpMock = TestBed.get(HttpTestingController);
     component = fixture.componentInstance;
@@ -62,20 +62,21 @@ describe('EntryCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fire event', () => {
+  it('should fire event',  () => {
     expect(component).toBeTruthy();
 
     spyOn(component.deleted, 'emit');
 
     component.deleteEntry();
+
     fixture.detectChanges();
 
     const eventRequest = httpMock.expectOne('http://localhost:3000/api/entries/128');
     expect(eventRequest.request.method).toEqual('DELETE');
     eventRequest.flush({});
-    httpMock.verify();
 
     expect(component.deleted.emit).toHaveBeenCalled();
+
   });
 
   it('should not fire event if deletion fails', () => {
@@ -88,8 +89,7 @@ describe('EntryCardComponent', () => {
 
     const eventRequest = httpMock.expectOne('http://localhost:3000/api/entries/128');
     expect(eventRequest.request.method).toEqual('DELETE');
-    eventRequest.flush({}, {status: 400, statusText: 'Bad Request'});
-    httpMock.verify();
+    eventRequest.flush({}, {status: 404, statusText: 'Bad Request'});
 
     expect(component.deleted.emit).not.toHaveBeenCalled();
   });
