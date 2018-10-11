@@ -2,7 +2,7 @@ const Engine = require('tingodb')();
 
 const db = new Engine.Db('', {});
 
-const entries = db.collection('entries');
+const entries = db.collection('entries.json');
 
 const json = {
   name: 'New York Central Hospital',

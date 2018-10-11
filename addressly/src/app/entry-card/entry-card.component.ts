@@ -17,8 +17,9 @@ export class EntryCardComponent implements OnInit {
   public groups:Group[];
   public entry:Entry;
 
-  @Input()
-  set in(entry:Entry){
+
+  @Input('data')
+  set data(entry:Entry){
    this.entry=entry;
    //console.log("try to get group "+this.entry.group);
     this._groupService.getGroupById(this.entry.group).subscribe(
@@ -37,6 +38,7 @@ export class EntryCardComponent implements OnInit {
   deleted = new EventEmitter<void>();
 
   constructor(private _entriesService: EntriesService, private _groupService: GroupsService) {
+    this.entry={};
     this.loadGroups();
   }
 

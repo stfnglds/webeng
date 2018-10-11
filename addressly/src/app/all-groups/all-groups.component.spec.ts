@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AllGroupsComponent } from './all-groups.component';
+import {FormsModule} from "@angular/forms";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('AllGroupsComponent', () => {
   let component: AllGroupsComponent;
@@ -8,7 +11,12 @@ describe('AllGroupsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllGroupsComponent ]
+      imports:[
+        FormsModule,
+        HttpClientTestingModule
+      ],
+      declarations: [ AllGroupsComponent ],
+      schemas:[NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

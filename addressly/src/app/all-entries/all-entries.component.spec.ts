@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AllEntriesComponent } from './all-entries.component';
+import {FormsModule} from "@angular/forms";
+import {GroupByPipe} from '../pipes/group-by.pipe';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('AllEntriesComponent', () => {
   let component: AllEntriesComponent;
@@ -8,7 +12,13 @@ describe('AllEntriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllEntriesComponent ]
+      imports:[
+        FormsModule,
+        HttpClientTestingModule
+      ],
+      declarations: [ AllEntriesComponent,GroupByPipe ],
+      providers:[GroupByPipe],
+      schemas:[NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

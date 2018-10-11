@@ -1,7 +1,10 @@
+import {CUSTOM_ELEMENTS_SCHEMA, Input, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {NgModule, Pipe, PipeTransform} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+//import {NgModule, Pipe, PipeTransform} from '@angular/core';
+//import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+//import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,7 +17,6 @@ import { AllAddressbooksComponent } from './all-addressbooks/all-addressbooks.co
 import { EntryCardComponent } from './entry-card/entry-card.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
 
-
 const appRoutes: Routes = [
   { path: 'entries', component: AllEntriesComponent },
   { path: 'groups', component: AllGroupsComponent },
@@ -25,6 +27,19 @@ const appRoutes: Routes = [
 
 
 @NgModule({
+
+  imports: [
+    NgbModule,
+    HttpClientModule,
+    AngularFontAwesomeModule,
+    BrowserModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     AppComponent,
     AllEntriesComponent,
@@ -34,21 +49,8 @@ const appRoutes: Routes = [
     EntryCardComponent,
     GroupByPipe
   ],
-  imports: [
-    NgbModule.forRoot(),
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AngularFontAwesomeModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
-
-   // RouterModule.forRoot(routes),
-  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 
