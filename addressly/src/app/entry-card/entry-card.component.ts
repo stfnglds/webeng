@@ -21,18 +21,20 @@ export class EntryCardComponent implements OnInit {
   @Input('data')
   set data(entry:Entry){
    this.entry=entry;
-    this._groupService.getGroupById(this.entry.group).subscribe(
-      data=>{
-        try{
-          this.groupName=data[0].name;
-        }catch(e){
-          console.log("entry " + entry._id + " has no group");
-        }
-      },
-      error =>{
-        console.log(error);
-      }
-    );
+   if(this.entry.group){
+     this._groupService.getGroupById(this.entry.group).subscribe(
+       data=>{
+         try{
+           this.groupName=data[0].name;
+         }catch(e){
+           console.log("entry " + entry._id + " has no group");
+         }
+       },
+       error =>{
+         console.log(error);
+       }
+     );
+   }
   }
 
   @Output()

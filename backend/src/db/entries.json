@@ -1,45 +1,27 @@
-{"k":"0000000080","o":"0000000096","v":"001"}
-{"_id":16,"_uid":40,"_dt":1539007309835,"_s":"68d48102861edd1c1a8e58ad151132d1"}
-{"name":"Fish 'N Chipz","address":"London","rating":3,"group":"7","_id":{"$wrap":"$oid","v":16}}
-{"k":"0000000080","o":"0000000125","v":"001"}
-{"_id":18,"_uid":20,"_dt":1538290356261,"_s":"dec32cace189f9c477661ae71152d941"}
-{"name":"McFastFood","_id":{"$wrap":"$oid","v":18},"editMode":false,"rating":2,"group":"7","address":"Colesterolstreet 9000"}
-{"k":"0000000080","o":"0000000120","v":"001"}
-{"_id":20,"_uid":38,"_dt":1538929513292,"_s":"e8d84a69aaf24b6a1024d7a55b6ef625"}
-{"name":"Super Sushi","_id":{"$wrap":"$oid","v":20},"editMode":false,"rating":5,"address":"Mainstreet 123","group":"10"}
-{"k":"0000000080","o":"0000000130","v":"001"}
-{"_id":21,"_uid":21,"_dt":1538290408041,"_s":"cb8e582bb517826e27aaf3d81b7a74a0"}
-{"name":"Schwarzwaldklinik","_id":{"$wrap":"$oid","v":21},"editMode":false,"rating":2,"address":"Blackforrestroad 12","group":"8"}
+{"k":"0000000080","o":"0000000117","v":"001"}
+{"_id":16,"_uid":64,"_dt":1539422286180,"_s":"c486aae30b0dcf5c46fb8bfd0b539d91"}
+{"name":"Fish 'N Chips","address":"Everywherestreet 12, London","rating":3,"group":"7","_id":{"$wrap":"$oid","v":16}}
+{"k":"0000000080","o":"0000000108","v":"001"}
+{"_id":18,"_uid":63,"_dt":1539421797455,"_s":"31618efd4ba47637aa428a724e484c91"}
+{"name":"McFastFood","_id":{"$wrap":"$oid","v":18},"rating":2,"group":"7","address":"Colesterolstreet 9000"}
+{"k":"0000000080","o":"0000000103","v":"001"}
+{"_id":20,"_uid":63,"_dt":1539421797460,"_s":"89c7d3b9f28d91992ee2e776e0ddc655"}
+{"name":"Super Sushi","_id":{"$wrap":"$oid","v":20},"rating":5,"address":"Mainstreet 123","group":"10"}
+{"k":"0000000080","o":"0000000113","v":"001"}
+{"_id":21,"_uid":63,"_dt":1539421797461,"_s":"eb45ad89dc649fdef3ba11bd6c684a3f"}
+{"name":"Schwarzwaldklinik","_id":{"$wrap":"$oid","v":21},"rating":2,"address":"Blackforrestroad 12","group":"8"}
 {"k":"0000000080","o":"0000000129","v":"001"}
 {"_id":40,"_uid":40,"_dt":1539003825371,"_s":"07b72450599226bdd805132a12471434"}
 {"name":"Washington Central Hospital","address":"mainstreet 54, Washington","rating":3,"group":"6","_id":{"$wrap":"$oid","v":40}}
-{"k":"0000000080","o":"0000000045","v":"001"}
-{"_id":48,"_uid":48,"_dt":1539065866778,"_s":"e407836a413b7d16c68ea7c633dca64d"}
-{"name":"test","_id":{"$wrap":"$oid","v":48}}
-{"k":"0000000080","o":"0000000045","v":"001"}
-{"_id":49,"_uid":49,"_dt":1539065883447,"_s":"cf80f05ee2fc379e2640783359da8afe"}
-{"name":"test","_id":{"$wrap":"$oid","v":49}}
-{"k":"0000000080","o":"0000000045","v":"001"}
-{"_id":50,"_uid":50,"_dt":1539065969950,"_s":"8da79feb36b6561c901031d0dcade612"}
-{"name":"test","_id":{"$wrap":"$oid","v":50}}
-{"k":"0000000080","o":"0000000045","v":"001"}
-{"_id":51,"_uid":51,"_dt":1539066009752,"_s":"4ed12bc4aaf4e54642a28849ecf580be"}
-{"name":"test","_id":{"$wrap":"$oid","v":51}}
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":51,"_uid":51,"_dt":1539243637890,"_a":"del"}
-
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":50,"_uid":51,"_dt":1539243639718,"_a":"del"}
-
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":49,"_uid":51,"_dt":1539243641106,"_a":"del"}
-
-{"k":"0000000051","o":"0000000000","v":"001"}
-{"_id":48,"_uid":51,"_dt":1539243642326,"_a":"del"}
-
-{"k":"0000000080","o":"0000000117","v":"001"}
-{"_id":16,"_uid":51,"_dt":1539268798146,"_s":"1cccc0890760fd30b8a1966bfbeedbc0"}
-{"name":"Fish 'N Chipz","address":"Everywherestreet 12, London","rating":3,"group":"7","_id":{"$wrap":"$oid","v":16}}
-{"k":"0000000080","o":"0000000117","v":"001"}
-{"_id":16,"_uid":51,"_dt":1539268802626,"_s":"c486aae30b0dcf5c46fb8bfd0b539d91"}
-{"name":"Fish 'N Chips","address":"Everywherestreet 12, London","rating":3,"group":"7","_id":{"$wrap":"$oid","v":16}}
+{"k":"0000000080","o":"0000000114","v":"001"}
+{"_id":52,"_uid":52,"_dt":1539420477885,"_s":"098690e9f190619d79bf27896a5c2f9e"}
+{"name":"Mario's Super Pizza","address":"Nintendostreet 64","rating":5,"group":"14","_id":{"$wrap":"$oid","v":52}}
+{"k":"0000000080","o":"0000000095","v":"001"}
+{"_id":53,"_uid":53,"_dt":1539420524506,"_s":"5d3b375ccaf76e0fecec832940db505f"}
+{"name":"CATS London","address":"London","rating":4,"group":"12","_id":{"$wrap":"$oid","v":53}}
+{"k":"0000000080","o":"0000000101","v":"001"}
+{"_id":54,"_uid":54,"_dt":1539420548612,"_s":"494a5274cef14c42f330c7eb0aedc74a"}
+{"name":"CATS Cambridge","address":"Cambridge","rating":2,"group":"12","_id":{"$wrap":"$oid","v":54}}
+{"k":"0000000080","o":"0000000121","v":"001"}
+{"_id":55,"_uid":55,"_dt":1539420593383,"_s":"e8899f0bd79816720827f895f498c8e3"}
+{"name":"Dover High School","address":"Somestreet 123, Dover-West","rating":4,"group":"11","_id":{"$wrap":"$oid","v":55}}

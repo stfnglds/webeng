@@ -35,7 +35,7 @@
 
 
   <div class="card mx-auto" style="max-width: 20rem; margin-bottom:2em">
-    <button (click)="createEntry()" class="btn btn-primary newEntryButton"><b>+</b></button>
+    <button (click)="createEntry(); filteredGroup=-1;" class="btn btn-primary newEntryButton"><b>+</b></button>
   </div>
 
   <app-error-message *ngIf=" !entries && errorText!=='' " [data]="errorText"></app-error-message>
@@ -45,41 +45,5 @@
     <app-entry-card [data]="entry" (deleted)="onDeleted()"
                     [hidden]="((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating"></app-entry-card>
   </div>
-  <!--<div class="card mx-auto" *ngFor='let entry of entries' style="max-width: 20rem; margin-bottom:2em"  [ngStyle]="{'background-color': 'hsla('+entry.groupName*1234%360+',100%,75%,0.3)'}">-->
-  <!--<h3 class="card-header" style="text-align: right">-->
-  <!--&lt;!&ndash;{{getGroupNameFromId(entry.groupName)}}&ndash;&gt;-->
-  <!--<button [hidden]="entry.delete" class="btn btn-outline-danger" (click)="entry.delete = true">-->
-  <!--<fa name="trash"></fa>-->
-  <!--</button>-->
-  <!--<button [hidden]="!entry.delete" (click)="deleteEntry(entry._id)" class="btn btn-danger">wirklich Löschen</button>-->
-  <!--</h3>-->
-  <!--<br>-->
-  <!--<div class="card-body">-->
-  <!--<h4 class="card-title">-->
-  <!--<span [hidden]="entry.editMode">[{{entry._id}}] {{entry.name}}</span>-->
-  <!--<in [hidden]="!entry.editMode" type="text" class="form-control" placeholder="Name" [(ngModel)]="entry.name">-->
-  <!--<div>-->
-  <!--<i class="far fa-star " [ngClass]="{'fas':entry.rating >= 1, 'rating':entry.editMode}" (click)="entry.rating=1" ></i>-->
-  <!--<i class="far fa-star " [ngClass]="{'fas':entry.rating >= 2, 'rating':entry.editMode}" (click)="entry.rating=2"></i>-->
-  <!--<i class="far fa-star " [ngClass]="{'fas':entry.rating >= 3, 'rating':entry.editMode}" (click)="entry.rating=3"></i>-->
-  <!--<i class="far fa-star " [ngClass]="{'fas':entry.rating >= 4, 'rating':entry.editMode}" (click)="entry.rating=4"></i>-->
-  <!--<i class="far fa-star " [ngClass]="{'fas':entry.rating >= 5, 'rating':entry.editMode}" (click)="entry.rating=5"></i>-->
-  <!--</div>-->
-  <!--</h4>-->
-  <!--<p class="card-text">-->
-  <!--<span [hidden]="entry.editMode">{{entry.address}}</span>-->
-  <!--<in [hidden]="!entry.editMode" type="text" class="form-control" placeholder="Address"-->
-  <!--[(ngModel)]="entry.address">-->
-  <!--<br>-->
-  <!--<select class="form-control" [hidden]="!entry.editMode" [(ngModel)]="entry.groupName">-->
-  <!--<option *ngFor='let groupName of groups' value="{{groupName._id}}">{{groupName._id}} {{groupName.name}}</option>-->
-  <!--</select>-->
-  <!--</p>-->
-  <!--<button [hidden]="entry.editMode" (click)="entry.editMode = !entry.editMode" class="btn btn-primary">Edit</button>-->
-  <!--<button [hidden]="!entry.editMode" (click)="entry.editMode = !entry.editMode; saveEntry(entry);"-->
-  <!--class="btn btn-success">Save     </button>-->
-
-  <!--</div>-->
-  <!--</div>-->
 
 </div>

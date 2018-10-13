@@ -40,7 +40,7 @@ export class EntriesService {
       // The response body may contain clues as to what went wrong,
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `body was:`, error.error);
     }
     // return an observable with a user-facing error message
     return throwError('EntriesService Connection Error - see console log for additional information');

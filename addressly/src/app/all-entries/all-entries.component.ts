@@ -81,7 +81,7 @@ export class AllEntriesComponent implements OnInit {
   createEntry() {
     this._dataService.createEntry({name: "new Entry", rating: 1}).subscribe(
       data => {
-        this.loadGroupsAndPutNewGroupFirst();
+        this.loadEntriesAndPutNewEntryFirst();
       },
       error => {
         this.errorText += error +"\n";
@@ -93,7 +93,7 @@ export class AllEntriesComponent implements OnInit {
     this.loadEntries();
   }
 
-  private loadGroupsAndPutNewGroupFirst() {
+  private loadEntriesAndPutNewEntryFirst() {
     this._dataService.fetchCalendarEntries().subscribe(data => {
 
       this.entries = data;

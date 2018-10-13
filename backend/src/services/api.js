@@ -605,8 +605,9 @@ function updateGroup(groupId, group) {
 
         const updatedGroup = {};
         updatedGroup.name = group.name;
+        updatedGroup.addressbook = group.addressbook;
 
-        groupsCollection.update(query, group, (error, item) => {
+        groupsCollection.update(query, updatedGroup, (error, item) => {
             if (error) {
                 reject(error);
             }
