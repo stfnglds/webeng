@@ -56,30 +56,23 @@ app.use((err, req, res, next) => {
     let responseData;
 
     if (err.name === 'JsonSchemaValidation') {
-        // Log the error however you please
-        // console.log(`API DEBUG, ${err.message}`);
-        // logs "express-jsonschema: Invalid data found"
-
-        // Set a bad request http response status or whatever you want
+        // Set a bad request http response status
         res.status(400);
 
-        // Format the response body however you want
+        // Format the response body
         responseData = {
             statusText: 'Bad Request',
             jsonSchemaValidation: true,
-            validations: err.validations, // All of your validation information
+            validations: err.validations,
         };
 
         // Take into account the content type if your app serves various content types
         if (req.xhr || req.get('Content-Type') === 'application/json') {
             res.json(responseData);
         } else {
-            // If this is an html request then you should probably have
-            // some type of Bad Request html template to respond with
             res.render('badrequestTemplate', responseData);
         }
     } else {
-        // pass error to next error middleware handler
         next(err);
     }
 });
@@ -701,5 +694,5 @@ app.delete('/api/groups/:groupId', (req, res) => {
 
 
 app.listen(3000, () => {
-    console.log('API DEBUG, ' + 'API listening on port 3000!');
+    console.log('API listening on port 3000!');
 });

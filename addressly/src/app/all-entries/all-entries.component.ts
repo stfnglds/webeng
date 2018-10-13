@@ -24,7 +24,6 @@ export class AllEntriesComponent implements OnInit {
   entries: Entry[];
   groups: Group[];
   addressbooks: Addressbook[];
-  groupsFilter: Group[][];
   filteredGroup: number;
   filteredRating: number;
 
@@ -40,7 +39,6 @@ export class AllEntriesComponent implements OnInit {
     this.loadEntries();
     this.loadGroups();
     this.loadAddressbooks();
-    // this.loadGroupFilters();
     this.filteredGroup = -1;
     this.filteredRating = 1;
   }
@@ -93,6 +91,10 @@ export class AllEntriesComponent implements OnInit {
     this.loadEntries();
   }
 
+  /*
+  When a new entry is created, it should appear on top of the list.
+  The entry gets created in the database and can now be edited or deleted.
+   */
   private loadEntriesAndPutNewEntryFirst() {
     this._dataService.fetchCalendarEntries().subscribe(data => {
 
