@@ -43,7 +43,7 @@
 
   <div *ngFor='let entry of entries' class="entryCardsContainer">
     <app-entry-card [data]="entry" (deleted)="onDeleted()"
-                    [hidden]="((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating"></app-entry-card>
+                    [hidden]="(((entry.group!=filteredGroup || entry.group === undefined) && filteredGroup>0) || entry.rating<filteredRating) && !entry.editMode"></app-entry-card>
   </div>
 
 </div>
