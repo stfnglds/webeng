@@ -152,6 +152,8 @@ function addEntry(newEntry) {
         const dbEntry = {};
         dbEntry.name = newEntry.name;
         dbEntry.address = newEntry.address;
+        dbEntry.group = newEntry.group;
+        dbEntry.rating = newEntry.rating;
 
         entriesCollection.insert(dbEntry, (error, result) => {
             if (error) {
