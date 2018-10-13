@@ -24,6 +24,10 @@ export class EntriesService {
 
   constructor(private http: HttpClient) { }
 
+  /*
+  handle HTTP requests to Backend
+   */
+
   public fetchCalendarEntries(): Observable<Entry[]> {
     //return this.http.get<Entry[]>(this.webServiceUrl);
     return this.http.get<Entry[]>(this.webServiceUrl).pipe(

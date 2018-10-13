@@ -19,6 +19,10 @@ export class GroupsService {
 
   constructor(private http: HttpClient) { }
 
+  /*
+  handle HTTP requests to Backend
+   */
+
   public fetchGroups(): Observable<Group[]> {
     return this.http.get<Group[]>(this.webServiceUrl).pipe(
       catchError(this.handleError)

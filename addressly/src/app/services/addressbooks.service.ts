@@ -19,6 +19,10 @@ export class AddressbooksService {
 
   constructor(private http: HttpClient) { }
 
+  /*
+  handle HTTP requests to Backend
+   */
+
   public fetchAddressbooks(): Observable<Addressbook[]> {
     return this.http.get<Addressbook[]>(this.webServiceUrl).pipe(
       catchError(this.handleError)
